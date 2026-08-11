@@ -1,0 +1,16 @@
+[
+  {
+    "id": "sigiriya",
+    "name": "Sigiriya Rock Fortress",
+    "position": [-2, 0.5, 0],
+    "description": "Ancient palace fortress built atop a massive 200-meter column of rock with iconic frescoes and water gardens.",
+    "audioUrl": "/audio/sigiriya-ambient.mp3"
+  },
+  {
+    "id": "yala",
+    "name": "Yala National Park",
+    "position": [2, -0.5, 1],
+    "description": "Sri Lanka's premier wildlife sanctuary, famous worldwide for having one of the highest leopard densities.",
+    "audioUrl": "/audio/yala-ambient.mp3"
+  }
+]
