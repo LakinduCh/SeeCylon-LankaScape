@@ -1,14 +1,32 @@
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import gsap from 'gsap';
 import locations from '../data/locations.json';
+
+function SriLankaMap() {
+  const { scene } = useGLTF('/models/SriLankaMap.glb');
+
+  return (
+    <primitive
+      object={scene}
+      scale={2}
+      position={[0, 0, 0]}
+    />
+  );
+}
 
 // Location Node Component with Raycasting Hitboxes & Hover States (WEB-1.3)
 function LocationNode({ location, onSelect }) {
   const meshRef = useRef();
   return (
-    <group position={location.position}>
+    <group
+  position={[
+    location.position[0],
+    location.position[1] + 4.5,
+    location.position[2]
+  ]}
+>
       <mesh
         ref={meshRef}
         onClick={(e) => {
@@ -68,7 +86,7 @@ export default function LankaScapeCanvas({ selectedLocation, onSelectLocation })
     <Canvas
       dpr={[1, 2]}
       gl={{ antialias: true }}
-      camera={{ position: [0, 5, 8], fov: 50 }}
+      camera={{ position: [0, 5, 15], fov: 50 }}
       className="w-full h-screen bg-slate-950"
     >
       <ambientLight intensity={0.6} />
@@ -81,6 +99,8 @@ export default function LankaScapeCanvas({ selectedLocation, onSelectLocation })
         maxPolarAngle={Math.PI / 2 - 0.05}
         enablePan={true}
       />
+
+      <SriLankaMap />
       <CameraController targetPosition={selectedLocation?.position} />
       {/* Render Location Raycast Nodes */}
       {locations.map((loc) => (
