@@ -2,15 +2,29 @@
   {
     "id": "sigiriya",
     "name": "Sigiriya Rock Fortress",
-    "position": [-2, 0.5, 0],
+    "position": [-0.18, 4.26, -0.35],
     "description": "Ancient palace fortress built atop a massive 200-meter column of rock with iconic frescoes and water gardens.",
     "audioUrl": "/audio/sigiriya-ambient.mp3"
   },
   {
     "id": "yala",
     "name": "Yala National Park",
-    "position": [2, -0.5, 1],
+    "position": [1.13, 3.65, 2.42],
     "description": "Sri Lanka's premier wildlife sanctuary, famous worldwide for having one of the highest leopard densities.",
     "audioUrl": "/audio/yala-ambient.mp3"
+  },
+  {
+    "id": "kandy",
+    "name": "Temple of the Tooth, Kandy",
+    "position": [-0.4, 4.16, 0.82],
+    "description": "A sacred Buddhist temple in the royal palace complex of Kandy, housing the relic of the tooth of the Buddha.",
+    "audioUrl": "/audio/sigiriya-ambient.mp3"
+  },
+  {
+    "id": "galle",
+    "name": "Galle Dutch Fort",
+    "position": [-1.11, 3.53, 3.02],
+    "description": "A historic colonial fortress city built by the Portuguese and Dutch on the southwest coast, showcasing beautiful arches and ramparts.",
+    "audioUrl": "/audio/sigiriya-ambient.mp3"
   }
 ]

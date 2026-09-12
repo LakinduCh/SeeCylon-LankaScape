@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+public/models/SriLankaMap_terrain_v2_.glb
+
