@@ -1,0 +1,47 @@
+/* =====================================================
+   HORTON PLAINS CARD
+   ===================================================== */
+
+.hortonplains-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/hortonplainsbg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Horton Plains title */
+
+.hortonplains-title {
+  color: #33691e;
+}
+
+
+/* Horton Plains Play button */
+
+.hortonplains-card .play-btn {
+  background: #33691e;
+}
+
+
+.hortonplains-card .play-btn:hover {
+  background: #1b5e20;
+}
+
+
+/* Horton Plains Pause button */
+
+.hortonplains-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+
+.hortonplains-card .play-btn.playing:hover {
+  background: #9a0007;
+}

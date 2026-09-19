@@ -1,0 +1,47 @@
+/* =====================================================
+   ARUGAM BAY CARD
+   ===================================================== */
+
+.arugambay-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/arugambaybg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Arugam Bay title */
+
+.arugambay-title {
+  color: #00838f;
+}
+
+
+/* Arugam Bay Play button */
+
+.arugambay-card .play-btn {
+  background: #00838f;
+}
+
+
+.arugambay-card .play-btn:hover {
+  background: #006064;
+}
+
+
+/* Arugam Bay Pause button */
+
+.arugambay-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+
+.arugambay-card .play-btn.playing:hover {
+  background: #9a0007;
+}

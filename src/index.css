@@ -1,0 +1,197 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #000;
+}
+
+.animal-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.destination-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.destination-link {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(46, 125, 50, 0.12);
+  color: #1b5e20;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.destination-link.active {
+  background: #2e7d32;
+  color: white;
+}
+
+.play-btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 40px;
+  border: none;
+  background: #2e7d32;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.play-btn:hover {
+  background: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000;
+  padding: 20px;
+}
+
+.card {
+  width: 360px;
+  border-radius: 35px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  background-image: linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url("./assets/yalabg.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.title {
+  color: #2e7d32;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.gallery {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery:active {
+  cursor: grabbing;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.gallery-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.swipe-dot {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease;
+}
+
+.swipe-dot.active {
+  background: #fff;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #222;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
+.audio-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.play-btn {
+  width: 80%;
+}
+
+.play-btn.playing {
+  background: #d32f2f;
+}
+
+.play-btn.playing:hover {
+  background: #9a0007;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.heart-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 22px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #d32f2f;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.heart-btn.liked {
+  background: #d32f2f;
+  color: #fff;
+}
