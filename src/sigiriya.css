@@ -15,16 +15,16 @@
 
 /* Sigiriya title */
 .sigiriya-title {
-  color: #c2185b;
+  color: hwb(336 6% 64%);
 }
 
 /* Sigiriya play button */
 .sigiriya-card .play-btn {
-  background: #c2185b;
+  background: #3f061d;
 }
 
 .sigiriya-card .play-btn:hover {
-  background: #880e4f;
+  background: #4b072b;
 }
 
 .sigiriya-card .play-btn.playing {

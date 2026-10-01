@@ -1,0 +1,38 @@
+/* ---------- WILPATTU CARD ---------- */
+
+.wilpattu-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/wilpattubg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Wilpattu title */
+
+.wilpattu-title {
+  color: #315c3a;
+}
+
+/* Wilpattu play button */
+
+.wilpattu-card .play-btn {
+  background: #315c3a;
+}
+
+.wilpattu-card .play-btn:hover {
+  background: #26492e;
+}
+
+.wilpattu-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+.wilpattu-card .play-btn.playing:hover {
+  background: #9a0007;
+}

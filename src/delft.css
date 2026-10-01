@@ -1,0 +1,38 @@
+/* ---------- DELFT ISLAND CARD ---------- */
+
+.delft-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/delftbg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Delft Island title */
+
+.delft-title {
+  color: #5b3a1e;
+}
+
+/* Delft Island play button */
+
+.delft-card .play-btn {
+  background: #6b4f2a;
+}
+
+.delft-card .play-btn:hover {
+  background: #503a20;
+}
+
+.delft-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+.delft-card .play-btn.playing:hover {
+  background: #9a0007;
+}

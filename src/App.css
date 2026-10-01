@@ -57,12 +57,16 @@ body{
   margin-bottom:20px;
 }
 
+.yala-title{
+  color:#3f5b2a;
+}
+
 
 /* ---------- Swipeable gallery (replaces the video) ---------- */
 .gallery{
   position:relative;
   width:100%;
-  height:240px;
+  aspect-ratio:16 / 9;
   border-radius:20px;
   overflow:hidden;
   cursor:grab;

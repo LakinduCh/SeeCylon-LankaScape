@@ -1,25 +1,25 @@
 import React, { useRef, useState } from "react";
-import "../arugambay.css";
+import "../adamspeak.css";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import arugambayAudio from "../assets/gallefort.mp3";
-import arugambayVideo from "../assets/mirissa.mp4";
-import arugambay1 from "../assets/arugambay 1.jpeg";
-import arugambay2 from "../assets/arugambay 2.jpeg";
-import arugambay3 from "../assets/arugambay 3.jpeg";
-import arugambay4 from "../assets/arugambay 4.jpeg";
+import adamAudio from "../assets/gallefort.mp3";
+import adamVideo from "../assets/adams.mp4";
+import adam1 from "../assets/adam1.jpeg";
+import adam2 from "../assets/adam2.jpeg";
+import adam3 from "../assets/adam3.jpeg";
+import adam4 from "../assets/adam4.jpeg";
 
 const galleryItems = [
-  { type: "video", src: arugambayVideo },
-  { type: "image", src: arugambay1 },
-  { type: "image", src: arugambay2 },
-  { type: "image", src: arugambay3 },
-  { type: "image", src: arugambay4 },
+  { type: "video", src: adamVideo },
+  { type: "image", src: adam1 },
+  { type: "image", src: adam2 },
+  { type: "image", src: adam3 },
+  { type: "image", src: adam4 },
 ];
 
-function ArugamBayPage() {
-  const audioRef = useRef(new Audio(arugambayAudio));
+function AdamsPeakPage() {
+  const audioRef = useRef(new Audio(adamAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,14 +43,14 @@ function ArugamBayPage() {
     }
   };
 
-  // Go to next slide
+  // Next image/video
   const goToNext = () => {
     setCurrentIndex(
       (prev) => (prev + 1) % galleryItems.length
     );
   };
 
-  // Go to previous slide
+  // Previous image/video
   const goToPrev = () => {
     setCurrentIndex(
       (prev) =>
@@ -130,12 +130,11 @@ function ArugamBayPage() {
 
   return (
     <div className="container">
-
-      <div className="card arugambay-card">
+      <div className="card adam-card">
 
         {/* Title */}
-        <h1 className="title arugambay-title">
-          Arugam Bay
+        <h1 className="title adam-title">
+          Adam&apos;s Peak
         </h1>
 
         {/* Gallery */}
@@ -163,7 +162,7 @@ function ArugamBayPage() {
             <img
               className="gallery-image"
               src={galleryItems[currentIndex].src}
-              alt={`Arugam Bay ${currentIndex + 1}`}
+              alt={`Adam's Peak ${currentIndex + 1}`}
               draggable="false"
             />
           )}
@@ -206,18 +205,17 @@ function ArugamBayPage() {
 
         {/* Description */}
         <p className="description">
-          Arugam Bay is one of Sri Lanka&apos;s most
-          popular beach destinations and a world-famous
-          surfing spot. It is known for its beautiful
-          beaches, relaxing atmosphere, exciting waves,
-          and stunning coastal scenery. Enjoy surfing,
-          nature, and unforgettable beach experiences
-          in this beautiful destination.
+          Adam&apos;s Peak is one of Sri Lanka&apos;s most
+          iconic mountains and a popular destination for
+          pilgrims and travelers. The mountain is famous
+          for its sacred footprint, beautiful surrounding
+          scenery, and breathtaking views from the summit.
+          Experience the peaceful journey and stunning
+          landscapes of this remarkable destination.
         </p>
 
         {/* Audio button */}
         <div className="audio-buttons">
-
           <button
             className={`play-btn ${
               isPlaying ? "playing" : ""
@@ -232,7 +230,6 @@ function ArugamBayPage() {
 
             {isPlaying ? "Pause" : "Play"}
           </button>
-
         </div>
 
         {/* Heart button */}
@@ -247,9 +244,8 @@ function ArugamBayPage() {
         </button>
 
       </div>
-
     </div>
   );
 }
 
-export default ArugamBayPage;
+export default AdamsPeakPage;

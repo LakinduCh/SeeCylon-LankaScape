@@ -152,7 +152,7 @@ function HortonPlainsPage() {
 
           {galleryItems[currentIndex].type === "video" ? (
             <video
-              className="gallery-image"
+              className="gallery-image gallery-video-fit"
               src={galleryItems[currentIndex].src}
               autoPlay
               loop

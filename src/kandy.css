@@ -1,0 +1,38 @@
+/* ---------- TEMPLE OF THE TOOTH CARD ---------- */
+
+.kandy-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/kandybg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Temple of the Tooth title */
+
+.kandy-title {
+  color: #6b4a1e;
+}
+
+/* Temple of the Tooth play button */
+
+.kandy-card .play-btn {
+  background: #6b4a1e;
+}
+
+.kandy-card .play-btn:hover {
+  background: #503714;
+}
+
+.kandy-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+.kandy-card .play-btn.playing:hover {
+  background: #9a0007;
+}
