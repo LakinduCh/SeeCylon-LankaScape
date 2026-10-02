@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../gallefort.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import galleFortAudio from "../assets/gallefort.mp3";
+import galleFortBackgroundAudio from "../assets/galle2.mp3";
 import galleFortVideo from "../assets/gallefort.mp4";
 import galleFort1 from "../assets/gallefort1.jpeg";
 import galleFort2 from "../assets/gallefort2.jpeg";
@@ -20,19 +22,26 @@ const galleryItems = [
 
 function GalleFortPage() {
   const audioRef = useRef(new Audio(galleFortAudio));
+  const backgroundAudioRef = useRef(new Audio(galleFortBackgroundAudio));
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const [liked, setLiked] = useState(false);
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  useBackgroundAudio(backgroundAudioRef);
+
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

@@ -2,10 +2,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders multiple destination cards', () => {
+test('renders the Yala card and audio controls', () => {
   render(<App />);
 
-  expect(screen.getByText(/yala/i)).toBeInTheDocument();
-  expect(screen.getByText(/sigiriya/i)).toBeInTheDocument();
-  expect(screen.getByText(/ella/i)).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /yala/i })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /play/i })).toBeInTheDocument();
 });

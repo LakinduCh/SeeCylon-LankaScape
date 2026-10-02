@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../pinnawala.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import {
   FaPlay,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import pinnawalaAudio from "../assets/gallefort.mp3";
+import pinnawalaBackgroundAudio from "../assets/yala2.mp3";
 import pinnawalaVideo from "../assets/pinnawala.mp4";
 import pinnawala1 from "../assets/pinnawala1.jpeg";
 import pinnawala2 from "../assets/pinnawala2.jpeg";
@@ -25,10 +27,13 @@ const galleryItems = [
 
 function PinnawalaPage() {
   const audioRef = useRef(new Audio(pinnawalaAudio));
+  const backgroundAudioRef = useRef(new Audio(pinnawalaBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -38,13 +43,17 @@ function PinnawalaPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

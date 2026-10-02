@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import "../App.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
+import introAudio from "../assets/yala2.mp3";
 import yalaAudio from "../assets/gallefort.mp3";
+
 import yalaVideo from "../assets/yala.mp4";
 import yala1 from "../assets/yala1.jpeg";
 import yala2 from "../assets/yala2.jpeg";
@@ -20,19 +23,26 @@ const galleryItems = [
 
 function YalaPage() {
   const audioRef = useRef(new Audio(yalaAudio));
+  const backgroundAudioRef = useRef(new Audio(introAudio));
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const [liked, setLiked] = useState(false);
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  useBackgroundAudio(backgroundAudioRef);
+
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 
@@ -109,7 +119,9 @@ function YalaPage() {
 
   return (
     <div className="container">
-      <div className="card">
+      <div
+        className="card"
+      >
         <h1 className="title yala-title">Yala</h1>
 
         <div

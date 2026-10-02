@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../mirissa.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import mirissaAudio from "../assets/gallefort.mp3";
+import mirissaBackgroundAudio from "../assets/mirissa2.mp3";
 import mirissaVideo from "../assets/mirissa.mp4";
 import mirissa1 from "../assets/mirissa1.jpeg";
 import mirissa2 from "../assets/mirissa2.jpeg";
@@ -20,19 +22,26 @@ const galleryItems = [
 
 function MirissaPage() {
   const audioRef = useRef(new Audio(mirissaAudio));
+  const backgroundAudioRef = useRef(new Audio(mirissaBackgroundAudio));
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const [liked, setLiked] = useState(false);
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  useBackgroundAudio(backgroundAudioRef);
+
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

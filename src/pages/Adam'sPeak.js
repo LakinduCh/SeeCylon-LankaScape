@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../adamspeak.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import adamAudio from "../assets/gallefort.mp3";
+import adamBackgroundAudio from "../assets/galle2.mp3";
 import adamVideo from "../assets/adams.mp4";
 import adam1 from "../assets/adam1.jpeg";
 import adam2 from "../assets/adam2.jpeg";
@@ -20,10 +22,13 @@ const galleryItems = [
 
 function AdamsPeakPage() {
   const audioRef = useRef(new Audio(adamAudio));
+  const backgroundAudioRef = useRef(new Audio(adamBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -33,13 +38,17 @@ function AdamsPeakPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

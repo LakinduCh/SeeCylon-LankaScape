@@ -1,19 +1,20 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
+import useBackgroundAudio from "./hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import yalaAudio from "./assets/yala.mp3";
+import yalaAudio from "./assets/gallefort.mp3";
+import yalaBackgroundAudio from "./assets/yala2.mp3";
 import yalaVideo from "./assets/yala.mp4";
 
-// 1) Put your 4 images inside src/assets/ (e.g. yala1.jpg ... yala4.jpg)
-// 2) Import each one here
+
 import yala1 from "./assets/yala1.jpeg";
 import yala2 from "./assets/yala2.jpeg";
 import yala3 from "./assets/yala3.jpeg";
 import yala4 from "./assets/yala4.jpeg";
 
-// 3) First slide is the video, followed by the 4 images
+
 const galleryItems = [
   { type: "video", src: yalaVideo },
   { type: "image", src: yala1 },
@@ -24,7 +25,10 @@ const galleryItems = [
 
 function App() {
   const audioRef = useRef(new Audio(yalaAudio));
+  const backgroundAudioRef = useRef(new Audio(yalaBackgroundAudio));
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   // Gallery state
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,13 +38,17 @@ function App() {
   // Like state
   const [liked, setLiked] = useState(false);
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../delft.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import {
   FaPlay,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import delftAudio from "../assets/gallefort.mp3";
+import delftBackgroundAudio from "../assets/arugambay2.mp3";
 import delftVideo from "../assets/delft.mp4";
 import delft1 from "../assets/delft1.jpeg";
 import delft2 from "../assets/delft2.jpeg";
@@ -25,10 +27,13 @@ const galleryItems = [
 
 function DelftPage() {
   const audioRef = useRef(new Audio(delftAudio));
+  const backgroundAudioRef = useRef(new Audio(delftBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -38,13 +43,17 @@ function DelftPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

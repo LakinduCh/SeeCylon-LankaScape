@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../kandy.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import {
   FaPlay,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import kandyAudio from "../assets/gallefort.mp3";
+import kandyBackgroundAudio from "../assets/kandy2.mp3";
 import kandyVideo from "../assets/kandy.mp4";
 import kandy1 from "../assets/kandy1.jpeg";
 import kandy2 from "../assets/kandy2.jpeg";
@@ -25,10 +27,13 @@ const galleryItems = [
 
 function TempleOfToothPage() {
   const audioRef = useRef(new Audio(kandyAudio));
+  const backgroundAudioRef = useRef(new Audio(kandyBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -38,13 +43,17 @@ function TempleOfToothPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

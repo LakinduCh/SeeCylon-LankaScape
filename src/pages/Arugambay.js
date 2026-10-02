@@ -1,10 +1,12 @@
 
 import React, { useRef, useState } from "react";
 import "../arugambay.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import arugambayAudio from "../assets/gallefort.mp3";
+import arugambayBackgroundAudio from "../assets/arugambay2.mp3";
 import arugambayVideo from "../assets/arugambay.mp4";
 import arugambay1 from "../assets/arugambay 1.jpeg";
 import arugambay2 from "../assets/arugambay 2.jpeg";
@@ -21,10 +23,13 @@ const galleryItems = [
 
 function ArugamBayPage() {
   const audioRef = useRef(new Audio(arugambayAudio));
+  const backgroundAudioRef = useRef(new Audio(arugambayBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -34,13 +39,17 @@ function ArugamBayPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

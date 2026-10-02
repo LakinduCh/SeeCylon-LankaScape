@@ -1,10 +1,12 @@
 
 import React, { useRef, useState } from "react";
 import "../ninearch.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import nineArchAudio from "../assets/gallefort.mp3";
+import nineArchBackgroundAudio from "../assets/galle2.mp3";
 import nineArchVideo from "../assets/ninearch.mp4";
 import nineArch1 from "../assets/ninearch1.jpeg";
 import nineArch2 from "../assets/ninearch2.jpeg";
@@ -21,8 +23,11 @@ const galleryItems = [
 
 function NineArchBridgePage() {
   const audioRef = useRef(new Audio(nineArchAudio));
+  const backgroundAudioRef = useRef(new Audio(nineArchBackgroundAudio));
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -31,13 +36,17 @@ function NineArchBridgePage() {
 
   // ---------------- AUDIO ----------------
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

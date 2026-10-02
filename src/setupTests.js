@@ -3,3 +3,12 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+if (typeof window !== 'undefined' && !window.HTMLMediaElement) {
+  window.HTMLMediaElement = function HTMLMediaElement() {};
+}
+
+if (typeof window !== 'undefined') {
+  window.HTMLMediaElement.prototype.play = jest.fn();
+  window.HTMLMediaElement.prototype.pause = jest.fn();
+}

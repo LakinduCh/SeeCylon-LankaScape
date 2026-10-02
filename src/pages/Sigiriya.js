@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../sigiriya.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import sigiriyaAudio from "../assets/gallefort.mp3";
+import sigiriyaBackgroundAudio from "../assets/sigiriya2.mp3";
 import sigiriyaVideo from "../assets/sigiriya.mp4";
 import sigiriya1 from "../assets/sigiriya1.jpeg";
 import sigiriya2 from "../assets/sigiriya 2.jpeg";
@@ -20,10 +22,13 @@ const galleryItems = [
 
 function SigiriyaPage() {
   const audioRef = useRef(new Audio(sigiriyaAudio));
+  const backgroundAudioRef = useRef(new Audio(sigiriyaBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -33,13 +38,17 @@ function SigiriyaPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

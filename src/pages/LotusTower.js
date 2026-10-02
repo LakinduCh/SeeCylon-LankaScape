@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../lotustower.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import {
   FaPlay,
@@ -10,6 +11,7 @@ import {
 
 // Audio
 import lotusAudio from "../assets/gallefort.mp3";
+import lotusBackgroundAudio from "../assets/galle2.mp3";
 
 // Video
 import lotusVideo from "../assets/lotustower.mp4";
@@ -32,7 +34,10 @@ const galleryItems = [
 function LotusTowerPage() {
   // Audio
   const audioRef = useRef(new Audio(lotusAudio));
+  const backgroundAudioRef = useRef(new Audio(lotusBackgroundAudio));
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   // Gallery
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,13 +56,17 @@ function LotusTowerPage() {
 
   // ---------------- AUDIO ----------------
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

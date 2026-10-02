@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import "../wilpattu.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import {
   FaPlay,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 import wilpattuAudio from "../assets/gallefort.mp3";
+import wilpattuBackgroundAudio from "../assets/yala2.mp3";
 import wilpattuVideo from "../assets/wilpattu.mp4";
 import wilpattu1 from "../assets/wilpattu1.jpeg";
 import wilpattu2 from "../assets/wilpattu2.jpeg";
@@ -25,10 +27,13 @@ const galleryItems = [
 
 function WilpattuPage() {
   const audioRef = useRef(new Audio(wilpattuAudio));
+  const backgroundAudioRef = useRef(new Audio(wilpattuBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -38,13 +43,17 @@ function WilpattuPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 

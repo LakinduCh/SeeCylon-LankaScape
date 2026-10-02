@@ -92,6 +92,7 @@ body {
   font-size: 42px;
   font-weight: bold;
   margin-bottom: 20px;
+  opacity: 0.85;
 }
 
 .gallery {

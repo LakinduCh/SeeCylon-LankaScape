@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import "../hortonplains.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import hortonPlainsAudio from "../assets/gallefort.mp3";
+import hortonPlainsBackgroundAudio from "../assets/hortonplains2.mp3";
 import hortonPlainsVideo from "../assets/hortonplains.mp4";
 import hortonPlains1 from "../assets/hortonplains 1.jpeg";
 import hortonPlains2 from "../assets/hortonplains 2.jpeg";
@@ -20,10 +22,13 @@ const galleryItems = [
 
 function HortonPlainsPage() {
   const audioRef = useRef(new Audio(hortonPlainsAudio));
+  const backgroundAudioRef = useRef(new Audio(hortonPlainsBackgroundAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useBackgroundAudio(backgroundAudioRef);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -33,13 +38,17 @@ function HortonPlainsPage() {
   const dragEndX = useRef(0);
 
   // Play / Pause audio
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
     }
   };
 
