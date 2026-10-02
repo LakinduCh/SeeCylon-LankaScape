@@ -5,8 +5,8 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import nineArchAudio from "../assets/gallefort.mp3";
-import nineArchBackgroundAudio from "../assets/galle2.mp3";
+import nineArchAudio from "../assets/ninearch.wav";
+import nineArchBackgroundAudio from "../assets/hortonplains2.mp3";
 import nineArchVideo from "../assets/ninearch.mp4";
 import nineArch1 from "../assets/ninearch1.jpeg";
 import nineArch2 from "../assets/ninearch2.jpeg";

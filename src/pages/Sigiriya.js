@@ -4,8 +4,9 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import sigiriyaAudio from "../assets/gallefort.mp3";
+import sigiriyaAudio from "../assets/sigiriya.wav";
 import sigiriyaBackgroundAudio from "../assets/sigiriya2.mp3";
+
 import sigiriyaVideo from "../assets/sigiriya.mp4";
 import sigiriya1 from "../assets/sigiriya1.jpeg";
 import sigiriya2 from "../assets/sigiriya 2.jpeg";

@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 // Audio
-import lotusAudio from "../assets/gallefort.mp3";
+import lotusAudio from "../assets/lotustower.wav";
 import lotusBackgroundAudio from "../assets/galle2.mp3";
 
 // Video

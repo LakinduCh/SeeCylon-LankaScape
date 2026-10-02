@@ -5,7 +5,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import introAudio from "../assets/yala2.mp3";
-import yalaAudio from "../assets/gallefort.mp3";
+import yalaAudio from "../assets/yala.wav";
 
 import yalaVideo from "../assets/yala.mp4";
 import yala1 from "../assets/yala1.jpeg";

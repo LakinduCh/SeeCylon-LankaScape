@@ -9,7 +9,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-import delftAudio from "../assets/gallefort.mp3";
+import delftAudio from "../assets/delf.wav";
 import delftBackgroundAudio from "../assets/arugambay2.mp3";
 import delftVideo from "../assets/delft.mp4";
 import delft1 from "../assets/delft1.jpeg";

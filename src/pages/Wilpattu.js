@@ -9,7 +9,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-import wilpattuAudio from "../assets/gallefort.mp3";
+import wilpattuAudio from "../assets/wilpaththu.wav";
 import wilpattuBackgroundAudio from "../assets/yala2.mp3";
 import wilpattuVideo from "../assets/wilpattu.mp4";
 import wilpattu1 from "../assets/wilpattu1.jpeg";

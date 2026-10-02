@@ -9,7 +9,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-import kandyAudio from "../assets/gallefort.mp3";
+import kandyAudio from "../assets/kandy.wav";
 import kandyBackgroundAudio from "../assets/kandy2.mp3";
 import kandyVideo from "../assets/kandy.mp4";
 import kandy1 from "../assets/kandy1.jpeg";

@@ -5,7 +5,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import arugambayAudio from "../assets/gallefort.mp3";
+import arugambayAudio from "../assets/arugambay.wav";
 import arugambayBackgroundAudio from "../assets/arugambay2.mp3";
 import arugambayVideo from "../assets/arugambay.mp4";
 import arugambay1 from "../assets/arugambay 1.jpeg";

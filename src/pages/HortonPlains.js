@@ -4,7 +4,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import hortonPlainsAudio from "../assets/gallefort.mp3";
+import hortonPlainsAudio from "../assets/hortonplains.wav";
 import hortonPlainsBackgroundAudio from "../assets/hortonplains2.mp3";
 import hortonPlainsVideo from "../assets/hortonplains.mp4";
 import hortonPlains1 from "../assets/hortonplains 1.jpeg";

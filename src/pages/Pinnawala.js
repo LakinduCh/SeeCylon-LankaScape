@@ -9,7 +9,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 
-import pinnawalaAudio from "../assets/gallefort.mp3";
+import pinnawalaAudio from "../assets/pinnawala.wav";
 import pinnawalaBackgroundAudio from "../assets/yala2.mp3";
 import pinnawalaVideo from "../assets/pinnawala.mp4";
 import pinnawala1 from "../assets/pinnawala1.jpeg";

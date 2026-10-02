@@ -4,7 +4,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import adamAudio from "../assets/gallefort.mp3";
+import adamAudio from "../assets/adam.wav";
 import adamBackgroundAudio from "../assets/galle2.mp3";
 import adamVideo from "../assets/adams.mp4";
 import adam1 from "../assets/adam1.jpeg";

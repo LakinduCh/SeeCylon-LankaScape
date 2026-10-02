@@ -4,7 +4,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import mirissaAudio from "../assets/gallefort.mp3";
+import mirissaAudio from "../assets/mirissa.wav";
 import mirissaBackgroundAudio from "../assets/mirissa2.mp3";
 import mirissaVideo from "../assets/mirissa.mp4";
 import mirissa1 from "../assets/mirissa1.jpeg";
