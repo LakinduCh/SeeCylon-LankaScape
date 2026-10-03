@@ -1,1 +1,32 @@
-/* Reset App.css styles */
+/* Bottom-Left Controls Toolbar Group */
+.bottom-map-controls-group {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  transition: bottom 0.25s ease, left 0.25s ease;
+}
+
+/* 2K / 4K Ultra-Res Displays (min-width: 1920px) */
+@media (min-width: 1920px) {
+  .bottom-map-controls-group {
+    bottom: 32px;
+    left: 32px;
+    gap: 14px;
+  }
+}
+
+/* Tablet & Mobile Screens */
+@media (max-width: 768px) {
+  .bottom-map-controls-group {
+    bottom: 14px;
+    left: 14px;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 28px);
+  }
+}

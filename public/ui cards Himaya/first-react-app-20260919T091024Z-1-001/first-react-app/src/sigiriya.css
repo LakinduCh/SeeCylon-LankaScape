@@ -1,0 +1,36 @@
+/* ---------- SIGIRIYA CARD ---------- */
+
+.sigiriya-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/sigiriyabg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Sigiriya title */
+.sigiriya-title {
+  color: #c2185b;
+}
+
+/* Sigiriya play button */
+.sigiriya-card .play-btn {
+  background: #c2185b;
+}
+
+.sigiriya-card .play-btn:hover {
+  background: #880e4f;
+}
+
+.sigiriya-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+.sigiriya-card .play-btn.playing:hover {
+  background: #9a0007;
+}

@@ -1,0 +1,75 @@
+{
+  "categories": [
+    {
+      "id": "nature-wildlife",
+      "name": "Nature & Wildlife",
+      "icon": "🐆",
+      "themeColor": "#10b981",
+      "pinGeometry": "octahedron",
+      "subcategories": [
+        {
+          "id": "wildlife-safari",
+          "name": "Wildlife & Safari Sanctuaries",
+          "description": "National parks and wildlife reserves with big game animals."
+        },
+        {
+          "id": "cloud-forests",
+          "name": "Cloud Forests & High Plateaus",
+          "description": "Montane cloud forests, endemic ecosystems and dramatic cliffs."
+        }
+      ]
+    },
+    {
+      "id": "cultural-heritage",
+      "name": "Cultural & Historic Heritage",
+      "icon": "🏛️",
+      "themeColor": "#ec4899",
+      "pinGeometry": "cylinder",
+      "subcategories": [
+        {
+          "id": "ancient-monuments",
+          "name": "Ancient Palaces & Citadels",
+          "description": "Archaeological wonders and UNESCO ancient sovereign strongholds."
+        },
+        {
+          "id": "colonial-forts",
+          "name": "Colonial Fortresses & Bastions",
+          "description": "Maritime fortifications and preserved colonial architecture."
+        }
+      ]
+    },
+    {
+      "id": "coastal-marine",
+      "name": "Coastal & Marine",
+      "icon": "🏄",
+      "themeColor": "#06b6d4",
+      "pinGeometry": "sphere",
+      "subcategories": [
+        {
+          "id": "surfing-bays",
+          "name": "World Surfing Bays",
+          "description": "Global championship point breaks and oceanic swells."
+        },
+        {
+          "id": "marine-beaches",
+          "name": "Golden Beaches & Marine Life",
+          "description": "Crescent bays, coral reefs and oceanic whale migrations."
+        }
+      ]
+    },
+    {
+      "id": "highland-adventure",
+      "name": "Highland Adventure & Scenic",
+      "icon": "⛰️",
+      "themeColor": "#f59e0b",
+      "pinGeometry": "cone",
+      "subcategories": [
+        {
+          "id": "scenic-railways",
+          "name": "Historic Railways & Viaducts",
+          "description": "Century-old tea country railway engineering and valley panoramas."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+/* Hierarchical Filter UI (Two-Tier Multi-Level Controller) */
+.hierarchical-filter-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+  max-width: 100%;
+  width: max-content;
+}
+
+/* Tier 1: Primary Category Pills Bar */
+.hierarchical-category-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  padding: 3px 5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hierarchical-category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.hierarchical-cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  flex-shrink: 0;
+}
+
+.hierarchical-cat-btn:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hierarchical-cat-btn.active {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+}
+
+.hierarchical-cat-icon {
+  font-size: 13.5px;
+}
+
+/* Responsive Name Switches */
+.hierarchical-cat-name-full {
+  display: inline;
+}
+
+.hierarchical-cat-name-short {
+  display: none;
+}
+
+.hierarchical-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+}
+
+.hierarchical-cat-btn.active .hierarchical-badge {
+  background: rgba(15, 23, 42, 0.25);
+  color: #0f172a;
+}
+
+/* Tier 2: Child Subcategory Chips Bar */
+.hierarchical-subcat-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 3px 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  animation: subcatSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes subcatSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hierarchical-subcat-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.hierarchical-subcat-label {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #64748b;
+  padding: 0 4px 0 6px;
+  white-space: nowrap;
+}
+
+.hierarchical-subcat-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3.5px 9px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #cbd5e1;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.hierarchical-subcat-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.hierarchical-subcat-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ======================================================== */
+/* Responsive Breakpoints: 2K, Desktop, Laptop, Tablet, Mobile */
+/* ======================================================== */
+
+/* 2K / 4K Ultrawide Displays (2048px+, 2560px 27-inch monitors) */
+@media (min-width: 1920px) {
+  .hierarchical-category-bar {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+  .hierarchical-cat-btn {
+    padding: 7px 15px;
+    font-size: 13.5px;
+    gap: 8px;
+  }
+  .hierarchical-cat-icon {
+    font-size: 16px;
+  }
+  .hierarchical-badge {
+    min-width: 19px;
+    height: 19px;
+    font-size: 11px;
+  }
+  .hierarchical-subcat-bar {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+  .hierarchical-subcat-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+  .hierarchical-subcat-label {
+    font-size: 11px;
+  }
+}
+
+/* Laptop / Mid-Size Screen (1024px - 1440px): Use short names so it fits compactly alongside header */
+@media (min-width: 769px) and (max-width: 1440px) {
+  .hierarchical-cat-name-full {
+    display: none;
+  }
+  .hierarchical-cat-name-short {
+    display: inline;
+  }
+  .hierarchical-cat-btn {
+    padding: 5px 10px;
+    font-size: 11.5px;
+    gap: 5px;
+  }
+}
+
+/* Mobile & Tablet (< 1024px) */
+@media (max-width: 1023px) {
+  .hierarchical-filter-wrapper {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .hierarchical-cat-name-full {
+    display: none;
+  }
+  .hierarchical-cat-name-short {
+    display: inline;
+  }
+  .hierarchical-category-bar {
+    padding: 3px;
+    gap: 4px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .hierarchical-cat-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    gap: 4px;
+  }
+  .hierarchical-cat-icon {
+    font-size: 12.5px;
+  }
+  .hierarchical-subcat-bar {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 3px 5px;
+  }
+}
