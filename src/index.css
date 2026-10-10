@@ -3,3 +3,43 @@
 @theme {
   --font-sans: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+.animal-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.destination-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.destination-link {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(46, 125, 50, 0.12);
+  color: #1b5e20;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.destination-link.active {
+  background: #2e7d32;
+  color: white;
+}

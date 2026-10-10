@@ -1,0 +1,43 @@
+/* ---------- GALLE FORT CARD ---------- */
+
+.gallefort-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/gallefortbg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Galle Fort title */
+
+.gallefort-title {
+  color: #8D6E63;
+}
+
+
+/* Galle Fort Play button */
+
+.gallefort-card .play-btn {
+  background: #8D6E63;
+}
+
+.gallefort-card .play-btn:hover {
+  background: #5D4037;
+}
+
+
+/* Galle Fort Pause button */
+
+.gallefort-card .play-btn.playing {
+  background: #D32F2F;
+}
+
+.gallefort-card .play-btn.playing:hover {
+  background: #9A0007;
+}

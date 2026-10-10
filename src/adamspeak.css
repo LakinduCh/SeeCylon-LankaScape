@@ -1,0 +1,38 @@
+/* ---------- ADAM'S PEAK CARD ---------- */
+
+.adam-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/adambg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Adam's Peak title */
+
+.adam-title {
+  color: #315c3a;
+}
+
+/* Adam's Peak play button */
+
+.adam-card .play-btn {
+  background: #315c3a;
+}
+
+.adam-card .play-btn:hover {
+  background: #26492e;
+}
+
+.adam-card .play-btn.playing {
+  background: #d32f2f;
+}
+
+.adam-card .play-btn.playing:hover {
+  background: #9a0007;
+}

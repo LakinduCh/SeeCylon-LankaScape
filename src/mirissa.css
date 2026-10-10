@@ -1,0 +1,43 @@
+/* ---------- MIRISSA CARD ---------- */
+
+.mirissa-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/mirissabg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Mirissa title */
+
+.mirissa-title {
+  color: #0277BD;
+}
+
+
+/* Mirissa Play button */
+
+.mirissa-card .play-btn {
+  background: #0277BD;
+}
+
+.mirissa-card .play-btn:hover {
+  background: #01579B;
+}
+
+
+/* Mirissa Pause button */
+
+.mirissa-card .play-btn.playing {
+  background: #D32F2F;
+}
+
+.mirissa-card .play-btn.playing:hover {
+  background: #9A0007;
+}

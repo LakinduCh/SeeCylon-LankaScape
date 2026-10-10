@@ -1,0 +1,62 @@
+/* ---------- LOTUS TOWER CARD ---------- */
+
+.lotustower-card {
+
+  background-image:
+
+    linear-gradient(
+
+      rgba(255, 255, 255, 0.55),
+
+      rgba(255, 255, 255, 0.55)
+
+    ),
+
+    url("./assets/lotustowerbg.jpeg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+}
+
+
+/* Lotus Tower title */
+
+.lotustower-title {
+
+  color: #B83280;
+
+}
+
+
+/* Lotus Tower Play button */
+
+.lotustower-card .play-btn {
+
+  background: #B83280;
+
+}
+
+.lotustower-card .play-btn:hover {
+
+  background: #8E2464;
+
+}
+
+
+/* Lotus Tower Pause button */
+
+.lotustower-card .play-btn.playing {
+
+  background: #D32F2F;
+
+}
+
+.lotustower-card .play-btn.playing:hover {
+
+  background: #9A0007;
+
+}
