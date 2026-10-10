@@ -287,7 +287,42 @@ function useCategoryTexture(categoryId, colorHex) {
   }, [categoryId, colorHex]);
 }
 
-// Location Node Component: Refined Minimalist 3D Pins with Hover/Select Reveal
+// Cached high-precision 3D Sculpted Teardrop Map Pin Geometry
+let cachedTeardropGeometry = null;
+function getTeardropGeometry() {
+  if (!cachedTeardropGeometry) {
+    const s = new THREE.Shape();
+    // Tip at (0, 0.035) pointing downward to terrain
+    s.moveTo(0, 0.035);
+    // Smooth aerodynamic curve up to the right tangent point of the bulb
+    s.quadraticCurveTo(0.045, 0.11, 0.091, 0.198);
+    // Circular arc around bulb top (center: 0, 0.25; radius: 0.105)
+    s.absarc(0, 0.25, 0.105, -Math.PI / 6, Math.PI + Math.PI / 6, false);
+    // Symmetrical curve down to the tip
+    s.quadraticCurveTo(-0.045, 0.11, 0, 0.035);
+
+    // Inner circular aperture / window for bezel and luminous category jewel
+    const hole = new THREE.Path();
+    hole.absarc(0, 0.25, 0.070, 0, Math.PI * 2, true);
+    s.holes.push(hole);
+
+    const geom = new THREE.ExtrudeGeometry(s, {
+      depth: 0.024,
+      bevelEnabled: true,
+      bevelSegments: 4,
+      steps: 1,
+      bevelSize: 0.007,
+      bevelThickness: 0.007,
+    });
+    // Center depth along Z axis so the pin is symmetrically balanced around Z = 0
+    geom.translate(0, 0, -0.012);
+    geom.computeVertexNormals();
+    cachedTeardropGeometry = geom;
+  }
+  return cachedTeardropGeometry;
+}
+
+// Location Node Component: Modern 3D Teardrop Pins with Metallic Bezel & Jewel Core
 function LocationNode({
   location,
   onSelect,
@@ -321,17 +356,17 @@ function LocationNode({
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     const phaseOffset = location.position[0] * 1.8 + location.position[2] * 2.2;
-    const bob = Math.sin(time * 2.4 + phaseOffset) * 0.016;
+    const bob = Math.sin(time * 2.4 + phaseOffset) * 0.014;
 
     if (headGroupRef.current) {
-      headGroupRef.current.position.y = 0.28 + bob;
+      headGroupRef.current.position.y = bob;
     }
 
     if (shadowRef.current) {
       const shadowScale = (1 - bob * 2.5) * (isMatch ? 1 : 0.6);
       shadowRef.current.scale.set(shadowScale, shadowScale, 1);
       if (shadowRef.current.material) {
-        shadowRef.current.material.opacity = (0.34 - bob * 1.8) * (isMatch ? 1 : 0.1);
+        shadowRef.current.material.opacity = (0.36 - bob * 2.0) * (isMatch ? 1 : 0.1);
       }
     }
 
@@ -347,8 +382,8 @@ function LocationNode({
   });
 
   const nodeScale = isMatch
-    ? (isSelected ? 1.22 : (hovered ? 1.15 : 1.0))
-    : 0.45;
+    ? (isSelected ? 1.48 : (hovered ? 1.38 : 1.20))
+    : 0.55;
 
   return (
     <group
@@ -358,16 +393,16 @@ function LocationNode({
     >
       {/* 1. Soft Contact Shadow on Terrain */}
       <mesh ref={shadowRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
-        <circleGeometry args={[0.075, 32]} />
+        <circleGeometry args={[0.08, 32]} />
         <meshBasicMaterial
           color="#000000"
           transparent
-          opacity={0.34}
+          opacity={0.36}
           depthWrite={false}
         />
       </mesh>
 
-      {/* 2. Pinpoint Ground Anchor Bead & Ring */}
+      {/* 2. Pinpoint Ground Anchor Target Dot & Ring */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.008, 0]}>
         <ringGeometry args={[0.012, 0.024, 24]} />
         <meshBasicMaterial
@@ -380,7 +415,7 @@ function LocationNode({
 
       {/* 3. Concentric Ground Radar Pulse */}
       <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.009, 0]}>
-        <ringGeometry args={[0.02, 0.034, 32]} />
+        <ringGeometry args={[0.02, 0.036, 32]} />
         <meshBasicMaterial
           color={hovered || isSelected ? '#fbbf24' : activeColor}
           transparent
@@ -389,42 +424,9 @@ function LocationNode({
         />
       </mesh>
 
-      {/* 4. Slender Polished Metal Needle Stem */}
-      <group position={[0, 0, 0]}>
-        {/* Metallic needle body */}
-        <mesh position={[0, 0.11, 0]}>
-          <cylinderGeometry args={[0.004, 0.01, 0.22, 16]} />
-          <meshStandardMaterial
-            color={hovered || isSelected ? '#fbbf24' : '#e2e8f0'}
-            metalness={0.92}
-            roughness={0.16}
-          />
-        </mesh>
-
-        {/* Luminous core glow inside stem */}
-        <mesh position={[0, 0.11, 0]}>
-          <cylinderGeometry args={[0.002, 0.003, 0.22, 12]} />
-          <meshBasicMaterial
-            color={hovered || isSelected ? '#fbbf24' : activeColor}
-            transparent
-            opacity={hovered || isSelected ? 0.85 : 0.35}
-          />
-        </mesh>
-
-        {/* Needle Top Collar Sphere */}
-        <mesh position={[0, 0.22, 0]}>
-          <sphereGeometry args={[0.015, 16, 16]} />
-          <meshStandardMaterial
-            color={hovered || isSelected ? '#fbbf24' : '#e2e8f0'}
-            metalness={0.94}
-            roughness={0.14}
-          />
-        </mesh>
-      </group>
-
-      {/* 5. Invisible 3D raycast hit cylinder for instant click & hover */}
+      {/* 4. Invisible 3D raycast hit cylinder for responsive click & hover */}
       <mesh
-        position={[0, 0.26, 0]}
+        position={[0, 0.22, 0]}
         onClick={(e) => {
           e.stopPropagation();
           onSelect(location);
@@ -439,14 +441,14 @@ function LocationNode({
           document.body.style.cursor = 'auto';
         }}
       >
-        <cylinderGeometry args={[0.26, 0.26, 0.56, 12]} />
+        <cylinderGeometry args={[0.26, 0.26, 0.54, 12]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
 
-      {/* 6. Billboarded Jewel Head Group (Faces camera at ALL angles) */}
+      {/* 5. Floating Teardrop Pin Head & Bezel Group */}
       <group
         ref={headGroupRef}
-        position={[0, 0.28, 0]}
+        position={[0, 0, 0]}
         onClick={(e) => {
           e.stopPropagation();
           onSelect(location);
@@ -468,56 +470,79 @@ function LocationNode({
           lockZ={false}
         >
           {/* Ambient Glow Halo */}
-          <mesh position={[0, 0, -0.01]}>
-            <circleGeometry args={[0.13, 32]} />
+          <mesh position={[0, 0.25, -0.02]}>
+            <circleGeometry args={[0.18, 32]} />
             <meshBasicMaterial
               color={hovered || isSelected ? '#fbbf24' : activeColor}
               transparent
-              opacity={(hovered || isSelected ? 0.42 : 0.16) * glowMultiplier}
+              opacity={(hovered || isSelected ? 0.52 : 0.24) * glowMultiplier}
               depthWrite={false}
             />
           </mesh>
 
-          {/* Polished Metallic Bezel Ring */}
-          <mesh position={[0, 0, 0]}>
-            <torusGeometry args={[0.088, 0.012, 16, 36]} />
+          {/* 3D Sculpted Teardrop Pin Body (Polished Platinum / Titanium Shell) */}
+          <mesh geometry={getTeardropGeometry()} castShadow receiveShadow>
             <meshStandardMaterial
-              color={hovered || isSelected ? '#fbbf24' : '#cbd5e1'}
-              metalness={0.94}
-              roughness={0.14}
+              color={isMatch ? (hovered || isSelected ? '#fbbf24' : '#f8fafc') : '#94a3b8'}
+              metalness={0.82}
+              roughness={0.18}
               emissive={hovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(hovered || isSelected ? 0.5 : 0.15) * glowMultiplier}
+              emissiveIntensity={(hovered || isSelected ? 0.40 : 0.12) * glowMultiplier}
             />
           </mesh>
 
-          {/* Front Gemstone Medallion with Custom Vector Icon */}
-          <mesh position={[0, 0, 0.004]}>
-            <circleGeometry args={[0.084, 36]} />
+          {/* Floating Metallic Pinpoint Tip Bead */}
+          <mesh position={[0, 0.035, 0]}>
+            <sphereGeometry args={[0.012, 16, 16]} />
+            <meshStandardMaterial
+              color={hovered || isSelected ? '#fbbf24' : '#cbd5e1'}
+              metalness={0.95}
+              roughness={0.10}
+              emissive={hovered || isSelected ? '#fbbf24' : activeColor}
+              emissiveIntensity={(hovered || isSelected ? 0.5 : 0.2) * glowMultiplier}
+            />
+          </mesh>
+
+          {/* Polished Metallic Bezel Ring Framing the Jewel */}
+          <mesh position={[0, 0.25, 0]}>
+            <torusGeometry args={[0.070, 0.008, 16, 32]} />
+            <meshStandardMaterial
+              color={hovered || isSelected ? '#fbbf24' : '#e2e8f0'}
+              metalness={0.96}
+              roughness={0.10}
+              emissive={hovered || isSelected ? '#fbbf24' : activeColor}
+              emissiveIntensity={(hovered || isSelected ? 0.60 : 0.25) * glowMultiplier}
+            />
+          </mesh>
+
+          {/* Front Luminous Jewel Medallion with Category Icon Texture */}
+          <mesh position={[0, 0.25, 0.003]}>
+            <circleGeometry args={[0.066, 36]} />
             <meshStandardMaterial
               map={texture || undefined}
               color={texture ? '#ffffff' : activeColor}
-              metalness={0.12}
-              roughness={0.18}
+              metalness={0.10}
+              roughness={0.14}
               emissive={hovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(hovered || isSelected ? 0.35 : 0.12) * glowMultiplier}
+              emissiveIntensity={(hovered || isSelected ? 0.60 : 0.35) * glowMultiplier}
             />
           </mesh>
 
           {/* Back Brushed Metallic Cover Plate */}
-          <mesh position={[0, 0, -0.004]} rotation={[0, Math.PI, 0]}>
-            <circleGeometry args={[0.084, 36]} />
+          <mesh position={[0, 0.25, -0.003]} rotation={[0, Math.PI, 0]}>
+            <circleGeometry args={[0.066, 36]} />
             <meshStandardMaterial
-              color="#1e293b"
+              color="#334155"
               metalness={0.88}
               roughness={0.22}
             />
           </mesh>
         </Billboard>
 
-        {/* 7. Hover & Selection ONLY: Rich Glassmorphic Preview Card */}
+        {/* 6. Hover & Selection ONLY: Rich Glassmorphic Preview Card */}
         {(hovered || isSelected) && isMatch && (
           <Html
-            position={[0, 0.30, 0]}
+            position={[0, 0.44, 0]}
             center
             distanceFactor={6.8}
             zIndexRange={[990, 1000]}
@@ -596,7 +621,7 @@ function LocationNode({
                 </div>
               </div>
 
-              {/* Downward Anchor Stem / Triangle Arrow pointing to Pin Head */}
+              {/* Downward Anchor Stem / Triangle Arrow pointing to Pin Crown */}
               <div
                 className="w-0 h-0 mx-auto border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[8px]"
                 style={{
