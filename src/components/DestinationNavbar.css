@@ -49,7 +49,14 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   padding-bottom: 2px;
-  max-width: calc(100% - 160px);
+  flex: 1;
+  min-width: 0;
+}
+
+.destination-mute-container {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .destination-links-scroll::-webkit-scrollbar {

@@ -717,6 +717,7 @@ export default function LankaScapeCanvas({
   activeSubcategory = 'all',
   activeStyle = 'realistic',
   cameraMode = 'birdseye',
+  isMuted = false,
 }) {
   const bgAudioRef = useRef(null);
   const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
@@ -726,6 +727,7 @@ export default function LankaScapeCanvas({
     const audio = new Audio('/audio/sri-lanka-background.mp3');
     audio.loop = true;
     audio.volume = 0.35;
+    audio.muted = isMuted;
     bgAudioRef.current = audio;
 
     const startAudio = () => {
@@ -746,6 +748,13 @@ export default function LankaScapeCanvas({
       window.removeEventListener('click', startAudio);
     };
   }, []);
+
+  // Sync mute state dynamically
+  useEffect(() => {
+    if (bgAudioRef.current) {
+      bgAudioRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   // Duck background audio when destination card audio is playing
   useEffect(() => {

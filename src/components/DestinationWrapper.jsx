@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import AudioMuteToggle from './AudioMuteToggle';
 import './DestinationNavbar.css';
 
 export const DESTINATIONS = [
@@ -43,6 +44,10 @@ export default function DestinationWrapper({ children }) {
             );
           })}
         </nav>
+
+        <div className="destination-mute-container flex-shrink-0">
+          <AudioMuteToggle />
+        </div>
       </header>
 
       <main>{children}</main>

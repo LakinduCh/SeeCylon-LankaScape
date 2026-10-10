@@ -1,17 +1,26 @@
 import { useEffect } from "react";
+import { getIsMuted } from "../utils/audioManager";
 
 function useBackgroundAudio(audioRef) {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return undefined;
 
+    const initialMuted = getIsMuted();
     audio.loop = true;
     audio.volume = 0.35;
-    audio.muted = false;
+    audio.muted = initialMuted;
     audio.preload = "auto";
 
     let isDisposed = false;
     let hasLoggedAutoplayBlock = false;
+
+    const handleMuteChange = (e) => {
+      const isMuted = Boolean(e.detail?.isMuted);
+      audio.muted = isMuted;
+    };
+
+    window.addEventListener("seeceylon_mute_change", handleMuteChange);
 
     const removeInteractionListeners = () => {
       window.removeEventListener("pointerdown", retryPlayback);
@@ -21,7 +30,7 @@ function useBackgroundAudio(audioRef) {
 
     const retryPlayback = async () => {
       try {
-        audio.muted = false;
+        audio.muted = getIsMuted();
         await audio.play();
         if (!isDisposed) removeInteractionListeners();
       } catch (error) {
@@ -62,6 +71,7 @@ function useBackgroundAudio(audioRef) {
     return () => {
       isDisposed = true;
       removeInteractionListeners();
+      window.removeEventListener("seeceylon_mute_change", handleMuteChange);
       audio.pause();
       audio.currentTime = 0;
     };

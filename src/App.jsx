@@ -4,11 +4,14 @@ import LankaScapeCanvas from './components/LankaScapeCanvas';
 import DestinationCard from './components/DestinationCard';
 import HierarchicalFilter from './components/HierarchicalFilter';
 import CameraModeToggle from './components/CameraModeToggle';
+import AudioMuteToggle from './components/AudioMuteToggle';
 import { DESTINATIONS } from './components/DestinationWrapper';
+import { useSoundMute } from './utils/audioManager';
 import locations from './data/locations.json';
 import './App.css';
 
 export default function App() {
+  const { isMuted, setMute } = useSoundMute();
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [isCardAudioPlaying, setIsCardAudioPlaying] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -112,12 +115,13 @@ export default function App() {
         </div>
       </header>
 
-      {/* Bottom-Left Map Controls Toolbar (Camera Mode Toggle) */}
+      {/* Bottom-Left Map Controls Toolbar (Camera Mode Toggle & Sound Mute Toggle) */}
       <div className="bottom-map-controls-group">
         <CameraModeToggle
           cameraMode={cameraMode}
           onCameraModeChange={setCameraMode}
         />
+        <AudioMuteToggle />
       </div>
 
       {/* 3D WebGL Canvas with Dynamic Visibility & Style Engine */}
@@ -129,6 +133,7 @@ export default function App() {
         activeSubcategory={activeSubcategory}
         activeStyle={activeStyle}
         cameraMode={cameraMode}
+        isMuted={isMuted}
       />
 
       {/* Hierarchical Breadcrumb Destination Detail Card */}
@@ -136,6 +141,8 @@ export default function App() {
         location={selectedLocation}
         onClose={handleReset}
         onAudioPlayStateChange={setIsCardAudioPlaying}
+        isMuted={isMuted}
+        onUnmute={() => setMute(false)}
       />
     </main>
   );

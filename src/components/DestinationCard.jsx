@@ -4,7 +4,13 @@ import { FaPlay, FaPause, FaHeart, FaRegHeart, FaChevronLeft, FaChevronRight } f
 import { destinationCardsData } from '../data/destinationCards';
 import './DestinationCard.css';
 
-export default function DestinationCard({ location, onClose, onAudioPlayStateChange }) {
+export default function DestinationCard({
+  location,
+  onClose,
+  onAudioPlayStateChange,
+  isMuted = false,
+  onUnmute,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -42,6 +48,7 @@ export default function DestinationCard({ location, onClose, onAudioPlayStateCha
     if (cardData?.audioSrc) {
       const audio = new Audio(cardData.audioSrc);
       audio.volume = 0.6;
+      audio.muted = isMuted;
       audioRef.current = audio;
 
       audio.onended = () => {
@@ -58,6 +65,13 @@ export default function DestinationCard({ location, onClose, onAudioPlayStateCha
     }
   }, [cardData?.audioSrc, onAudioPlayStateChange]);
 
+  // Sync mute state with destination audio
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
   const toggleAudio = () => {
     if (!audioRef.current) return;
 
@@ -66,6 +80,9 @@ export default function DestinationCard({ location, onClose, onAudioPlayStateCha
       setIsPlaying(false);
       onAudioPlayStateChange?.(false);
     } else {
+      if (isMuted && onUnmute) {
+        onUnmute();
+      }
       audioRef.current
         .play()
         .then(() => {
