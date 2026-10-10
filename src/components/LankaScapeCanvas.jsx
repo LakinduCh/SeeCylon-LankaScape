@@ -289,7 +289,6 @@ function LocationNode({
   activeCategory = 'all',
   activeSubcategory = 'all',
   activeStyle = 'realistic',
-  cameraMode = 'birdseye',
 }) {
   const headGroupRef = useRef();
   const shadowRef = useRef();
@@ -514,7 +513,7 @@ function LocationNode({
           <Html
             position={[0, 0.30, 0]}
             center
-            distanceFactor={cameraMode === 'birdseye' ? 8.2 : 6.8}
+            distanceFactor={6.8}
             zIndexRange={[990, 1000]}
             className="pointer-events-auto select-none"
           >
@@ -606,8 +605,8 @@ function LocationNode({
   );
 }
 
-// GSAP Camera Fly-To & Mode Transition Controller with Aspect Ratio Awareness
-function CameraController({ targetPosition, cameraMode = 'birdseye' }) {
+// GSAP Camera Fly-To & Free Cam Orbit Controller with Aspect Ratio Awareness
+function CameraController({ targetPosition }) {
   const { camera, controls, size } = useThree();
 
   useEffect(() => {
@@ -619,60 +618,31 @@ function CameraController({ targetPosition, cameraMode = 'birdseye' }) {
       const aspect = size.width / Math.max(size.height, 1);
       const aspectMultiplier = aspect < 1.0 ? Math.min(1.8, 1.15 / aspect) : 1.0;
 
-      if (cameraMode === 'birdseye') {
-        // Bird's-Eye View: Aerial overhead map perspective centered over Sri Lanka
-        if (targetPosition) {
-          // Overhead view on selected location
-          destCam = {
-            x: targetPosition[0],
-            y: (targetPosition[1] + 9.5) * (aspect < 1.0 ? 1.25 : 1.0),
-            z: targetPosition[2] + 0.05,
-          };
-          destTarget = {
-            x: targetPosition[0],
-            y: targetPosition[1],
-            z: targetPosition[2],
-          };
-        } else {
-          // Full overhead aerial map overview of Sri Lanka nicely centered
-          destCam = {
-            x: 0,
-            y: 20.0 * aspectMultiplier,
-            z: 1.60,
-          };
-          destTarget = {
-            x: 0,
-            y: 5.7,
-            z: 1.55,
-          };
-        }
+      // Free Cam: Dynamic 3D perspective orbit camera
+      if (targetPosition) {
+        // 3D angled close-up on destination
+        destCam = {
+          x: targetPosition[0],
+          y: (targetPosition[1] + 3.0) * (aspect < 1.0 ? 1.2 : 1.0),
+          z: (targetPosition[2] + 4.0) * (aspect < 1.0 ? 1.2 : 1.0),
+        };
+        destTarget = {
+          x: targetPosition[0],
+          y: targetPosition[1] + 0.4,
+          z: targetPosition[2],
+        };
       } else {
-        // Free Cam: Dynamic 3D perspective orbit camera
-        if (targetPosition) {
-          // 3D angled close-up on destination
-          destCam = {
-            x: targetPosition[0],
-            y: (targetPosition[1] + 3.0) * (aspect < 1.0 ? 1.2 : 1.0),
-            z: (targetPosition[2] + 4.0) * (aspect < 1.0 ? 1.2 : 1.0),
-          };
-          destTarget = {
-            x: targetPosition[0],
-            y: targetPosition[1] + 0.4,
-            z: targetPosition[2],
-          };
-        } else {
-          // 3D angled overview
-          destCam = {
-            x: 0,
-            y: 12.0 * aspectMultiplier,
-            z: 13.0 * aspectMultiplier,
-          };
-          destTarget = {
-            x: 0,
-            y: 5.7,
-            z: 1.0,
-          };
-        }
+        // 3D angled overview
+        destCam = {
+          x: 0,
+          y: 12.0 * aspectMultiplier,
+          z: 13.0 * aspectMultiplier,
+        };
+        destTarget = {
+          x: 0,
+          y: 5.7,
+          z: 1.0,
+        };
       }
 
       const tweenCam = gsap.to(camera.position, {
@@ -694,7 +664,7 @@ function CameraController({ targetPosition, cameraMode = 'birdseye' }) {
         tweenTarget.kill();
       };
     }
-  }, [targetPosition, cameraMode, camera, controls, size.width, size.height]);
+  }, [targetPosition, camera, controls, size.width, size.height]);
 
   // Keep camera pan smoothly bounded within the ocean frame
   useFrame(() => {
@@ -708,7 +678,7 @@ function CameraController({ targetPosition, cameraMode = 'birdseye' }) {
   return null;
 }
 
-// Responsive R3F Canvas Viewport with Bird's-Eye / Free Cam Modes
+// Responsive R3F Canvas Viewport with Free Cam 3D Controls
 export default function LankaScapeCanvas({
   selectedLocation,
   onSelectLocation,
@@ -716,7 +686,6 @@ export default function LankaScapeCanvas({
   activeCategory = 'all',
   activeSubcategory = 'all',
   activeStyle = 'realistic',
-  cameraMode = 'birdseye',
   isMuted = false,
 }) {
   const bgAudioRef = useRef(null);
@@ -772,7 +741,7 @@ export default function LankaScapeCanvas({
       dpr={[1, 2]}
       gl={{ antialias: true }}
       camera={{
-        position: cameraMode === 'birdseye' ? [0, 20.0, 1.60] : [0, 12.0, 13.0],
+        position: [0, 12.0, 13.0],
         fov: 48,
       }}
       className={`w-full h-screen transition-colors duration-500 ${styleConfig.bgClass}`}
@@ -793,17 +762,17 @@ export default function LankaScapeCanvas({
         intensity={styleConfig.directionalLight2.intensity}
       />
 
-      {/* 3D OrbitControls Configured for Bird's-Eye vs Free Cam */}
+      {/* 3D OrbitControls Configured for Free Cam */}
       <OrbitControls
         makeDefault
         enableRotate={true}
         enablePan={true}
         enableZoom={true}
-        minDistance={cameraMode === 'birdseye' ? 5.0 : 3.5}
-        maxDistance={cameraMode === 'birdseye' ? 28.0 : 22.0}
-        minPolarAngle={cameraMode === 'birdseye' ? 0.01 : 0.15}
-        maxPolarAngle={cameraMode === 'birdseye' ? Math.PI / 4.2 : Math.PI / 2.2}
-        target={cameraMode === 'birdseye' ? [0, 5.7, 1.55] : [0, 5.7, 1.0]}
+        minDistance={3.5}
+        maxDistance={22.0}
+        minPolarAngle={0.15}
+        maxPolarAngle={Math.PI / 2.2}
+        target={[0, 5.7, 1.0]}
         mouseButtons={{
           LEFT: THREE.MOUSE.ROTATE,
           MIDDLE: THREE.MOUSE.DOLLY,
@@ -821,7 +790,6 @@ export default function LankaScapeCanvas({
 
       <CameraController
         targetPosition={selectedLocation?.position}
-        cameraMode={cameraMode}
       />
 
       {/* Render Location Raycast Nodes with Unified 3D Beacon Mesh */}
@@ -834,7 +802,6 @@ export default function LankaScapeCanvas({
           activeCategory={activeCategory}
           activeSubcategory={activeSubcategory}
           activeStyle={activeStyle}
-          cameraMode={cameraMode}
         />
       ))}
     </Canvas>

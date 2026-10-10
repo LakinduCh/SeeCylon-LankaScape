@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import LankaScapeCanvas from './components/LankaScapeCanvas';
 import DestinationCard from './components/DestinationCard';
 import HierarchicalFilter from './components/HierarchicalFilter';
-import CameraModeToggle from './components/CameraModeToggle';
 import AudioMuteToggle from './components/AudioMuteToggle';
 import { DESTINATIONS } from './components/DestinationWrapper';
 import { useSoundMute } from './utils/audioManager';
@@ -17,23 +16,7 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeSubcategory, setActiveSubcategory] = useState('all');
   const activeStyle = 'realistic';
-  const [cameraMode, setCameraMode] = useState('birdseye'); // 'birdseye' | 'free'
   const [showDestinationsMenu, setShowDestinationsMenu] = useState(false);
-
-  // Keyboard shortcut listener: Press 'V' or 'C' to toggle between Bird's-Eye View and Free Cam
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      // Don't trigger if user is typing in an input or textarea
-      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
-
-      if (e.key === 'v' || e.key === 'V' || e.key === 'c' || e.key === 'C') {
-        setCameraMode((prev) => (prev === 'birdseye' ? 'free' : 'birdseye'));
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   const handleReset = () => {
     setSelectedLocation(null);
@@ -115,12 +98,8 @@ export default function App() {
         </div>
       </header>
 
-      {/* Bottom-Left Map Controls Toolbar (Camera Mode Toggle & Sound Mute Toggle) */}
+      {/* Bottom-Left Map Controls Toolbar (Sound Mute Toggle) */}
       <div className="bottom-map-controls-group">
-        <CameraModeToggle
-          cameraMode={cameraMode}
-          onCameraModeChange={setCameraMode}
-        />
         <AudioMuteToggle />
       </div>
 
@@ -132,7 +111,6 @@ export default function App() {
         activeCategory={activeCategory}
         activeSubcategory={activeSubcategory}
         activeStyle={activeStyle}
-        cameraMode={cameraMode}
         isMuted={isMuted}
       />
 
