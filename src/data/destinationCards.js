@@ -2,6 +2,7 @@ export const destinationCardsData = {
   yala: {
     id: "yala",
     title: "Yala",
+    route: "/yala",
     cardClass: "yala-card",
     titleColor: "#2E7D32",
     btnColor: "#2E7D32",
@@ -21,6 +22,7 @@ export const destinationCardsData = {
   sigiriya: {
     id: "sigiriya",
     title: "Sigiriya",
+    route: "/sigiriya",
     cardClass: "sigiriya-card",
     titleColor: "#c2185b",
     btnColor: "#c2185b",
@@ -40,6 +42,7 @@ export const destinationCardsData = {
   galle: {
     id: "galle",
     title: "Galle Fort",
+    route: "/galle-fort",
     cardClass: "gallefort-card",
     titleColor: "#8D6E63",
     btnColor: "#8D6E63",
@@ -59,6 +62,7 @@ export const destinationCardsData = {
   horton: {
     id: "horton",
     title: "Horton Plains",
+    route: "/horton-plains",
     cardClass: "hortonplains-card",
     titleColor: "#33691e",
     btnColor: "#33691e",
@@ -78,6 +82,7 @@ export const destinationCardsData = {
   mirissa: {
     id: "mirissa",
     title: "Mirissa",
+    route: "/mirissa",
     cardClass: "mirissa-card",
     titleColor: "#0277BD",
     btnColor: "#0277BD",
@@ -97,6 +102,7 @@ export const destinationCardsData = {
   arugambay: {
     id: "arugambay",
     title: "Arugam Bay",
+    route: "/arugambay",
     cardClass: "arugambay-card",
     titleColor: "#00838f",
     btnColor: "#00838f",
@@ -116,6 +122,7 @@ export const destinationCardsData = {
   ella: {
     id: "ella",
     title: "Nine Arch Bridge",
+    route: "/nine-arch",
     cardClass: "ella-card",
     titleColor: "#2E7D32",
     btnColor: "#2E7D32",
@@ -130,6 +137,102 @@ export const destinationCardsData = {
       { type: "image", src: "/assets/destinations/ella/image2.jpeg", alt: "Ella Scenery & Waterfalls" },
       { type: "image", src: "/assets/destinations/ella/image3.jpeg", alt: "Historic Arches" },
       { type: "image", src: "/assets/destinations/ella/image4.jpeg", alt: "Ella Tea Valley" },
+    ],
+  },
+  adamspeak: {
+    id: "adamspeak",
+    title: "Adam's Peak (Sri Pada)",
+    route: "/adams-peak",
+    cardClass: "adamspeak-card",
+    titleColor: "#e65100",
+    btnColor: "#e65100",
+    btnHoverColor: "#bf360c",
+    bgImage: "/assets/destinations/adambg.jpeg",
+    audioSrc: "/assets/destinations/adam.wav",
+    description:
+      "Sacred mountain revered across faiths for the sacred footprint mark at the summit. Famous for dawn pilgrimages and celestial sunrise views over cloud seas.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/adam1.jpeg", alt: "Adam's Peak 1" },
+    ],
+  },
+  delft: {
+    id: "delft",
+    title: "Delft Island",
+    route: "/delft",
+    cardClass: "delft-card",
+    titleColor: "#0288d1",
+    btnColor: "#0288d1",
+    btnHoverColor: "#01579b",
+    bgImage: "/assets/destinations/delftbg.jpeg",
+    audioSrc: "/assets/destinations/delf.wav",
+    description:
+      "An isolated coral island in the Palk Strait featuring wild horses left by the Portuguese, ancient baobab trees, and ruins of Dutch colonial forts.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/delft1.jpeg", alt: "Delft Island 1" },
+    ],
+  },
+  kandy: {
+    id: "kandy",
+    title: "Temple of the Tooth, Kandy",
+    route: "/kandy",
+    cardClass: "kandy-card",
+    titleColor: "#f57f17",
+    btnColor: "#f57f17",
+    btnHoverColor: "#e65100",
+    bgImage: "/assets/destinations/kandybg.jpeg",
+    audioSrc: "/assets/destinations/kandy.wav",
+    description:
+      "The golden-roofed royal temple housing the sacred relic of the tooth of the Buddha, set beside the tranquil waters of Kandy Lake.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/kandy1.jpeg", alt: "Kandy 1" },
+    ],
+  },
+  lotustower: {
+    id: "lotustower",
+    title: "Colombo Lotus Tower",
+    route: "/lotus-tower",
+    cardClass: "lotustower-card",
+    titleColor: "#c2185b",
+    btnColor: "#c2185b",
+    btnHoverColor: "#880e4f",
+    bgImage: "/assets/destinations/lotustowerbg.jpeg",
+    audioSrc: "/assets/destinations/lotustower.wav",
+    description:
+      "South Asia's tallest self-supported structure shaped like an opening lotus blossom, dominating Colombo's modern coastal skyline.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/lotustower1.jpeg", alt: "Lotus Tower 1" },
+    ],
+  },
+  pinnawala: {
+    id: "pinnawala",
+    title: "Pinnawala Elephant Sanctuary",
+    route: "/pinnawala",
+    cardClass: "pinnawala-card",
+    titleColor: "#4e342e",
+    btnColor: "#4e342e",
+    btnHoverColor: "#3e2723",
+    bgImage: "/assets/destinations/pinnawalabg.jpeg",
+    audioSrc: "/assets/destinations/pinnawala.wav",
+    description:
+      "A renowned breeding sanctuary caring for orphaned Asian elephants, famous for the daily herd bathing ritual in the flowing Maha Oya river.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/pinnawala1.jpeg", alt: "Pinnawala 1" },
+    ],
+  },
+  wilpattu: {
+    id: "wilpattu",
+    title: "Wilpattu National Park",
+    route: "/wilpattu",
+    cardClass: "wilpattu-card",
+    titleColor: "#2e7d32",
+    btnColor: "#2e7d32",
+    btnHoverColor: "#1b5e20",
+    bgImage: "/assets/destinations/wilpattubg.jpeg",
+    audioSrc: "/assets/destinations/wilpaththu.wav",
+    description:
+      "Sri Lanka's largest and oldest national park, characterized by unique natural rainwater basins ('villus'), dense forests, leopards, and sloth bears.",
+    galleryItems: [
+      { type: "image", src: "/assets/destinations/wilpattu1.jpeg", alt: "Wilpattu 1" },
     ],
   },
 };

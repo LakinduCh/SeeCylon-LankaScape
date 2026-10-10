@@ -317,6 +317,41 @@
 }
 
 /* Bottom Reset View Button */
+.destination-showcase-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+}
+
+.destination-showcase-btn:hover {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.destination-showcase-btn .arrow {
+  transition: transform 0.2s ease;
+}
+
+.destination-showcase-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
 .destination-reset-btn {
   margin-top: 12px;
   width: 100%;

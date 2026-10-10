@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FaPlay, FaPause, FaHeart, FaRegHeart, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { destinationCardsData } from '../data/destinationCards';
 import './DestinationCard.css';
@@ -305,6 +306,14 @@ export default function DestinationCard({ location, onClose, onAudioPlayStateCha
             {liked ? <FaHeart /> : <FaRegHeart />}
           </button>
         </div>
+
+        {/* Explore Full Destination Showcase Link */}
+        {cardData.route && (
+          <Link to={cardData.route} className="destination-showcase-btn">
+            <span>Explore Full Showcase</span>
+            <span className="arrow">→</span>
+          </Link>
+        )}
 
         {/* Reset Camera View Button */}
         <button className="destination-reset-btn" onClick={onClose}>
