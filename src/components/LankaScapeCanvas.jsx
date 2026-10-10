@@ -85,6 +85,12 @@ const shortTags = {
   mirissa: 'Golden Coast',
   yala: 'Wildlife Safari',
   arugambay: 'Surf Point',
+  adamspeak: 'Sacred Summit',
+  delft: 'Coral Island',
+  kandy: 'Sacred Tooth Relic',
+  lotustower: 'Lotus Bloom',
+  pinnawala: 'Elephant Haven',
+  wilpattu: 'Natural Villus',
 };
 
 // Helper to darken hex color for rich radial gradient shading

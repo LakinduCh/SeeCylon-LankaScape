@@ -147,12 +147,16 @@ export const destinationCardsData = {
     titleColor: "#e65100",
     btnColor: "#e65100",
     btnHoverColor: "#bf360c",
-    bgImage: "/assets/destinations/adambg.jpeg",
-    audioSrc: "/assets/destinations/adam.wav",
+    bgImage: "/assets/destinations/adamspeak/adambg.jpeg",
+    audioSrc: "/assets/destinations/adamspeak/adam.wav",
     description:
-      "Sacred mountain revered across faiths for the sacred footprint mark at the summit. Famous for dawn pilgrimages and celestial sunrise views over cloud seas.",
+      "Sacred mountain revered across faiths for the sacred footprint mark at the summit. Famous for dawn pilgrimages and celestial sunrise views over vast cloud seas.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/adam1.jpeg", alt: "Adam's Peak 1" },
+      { type: "video", src: "/assets/destinations/adamspeak/adams.mp4" },
+      { type: "image", src: "/assets/destinations/adamspeak/adam1.jpeg", alt: "Adam's Peak 1" },
+      { type: "image", src: "/assets/destinations/adamspeak/adam2.jpeg", alt: "Adam's Peak 2" },
+      { type: "image", src: "/assets/destinations/adamspeak/adam3.jpeg", alt: "Adam's Peak 3" },
+      { type: "image", src: "/assets/destinations/adamspeak/adam4.jpeg", alt: "Adam's Peak 4" },
     ],
   },
   delft: {
@@ -163,12 +167,16 @@ export const destinationCardsData = {
     titleColor: "#0288d1",
     btnColor: "#0288d1",
     btnHoverColor: "#01579b",
-    bgImage: "/assets/destinations/delftbg.jpeg",
-    audioSrc: "/assets/destinations/delf.wav",
+    bgImage: "/assets/destinations/delft/delftbg.jpeg",
+    audioSrc: "/assets/destinations/delft/delf.wav",
     description:
       "An isolated coral island in the Palk Strait featuring wild horses left by the Portuguese, ancient baobab trees, and ruins of Dutch colonial forts.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/delft1.jpeg", alt: "Delft Island 1" },
+      { type: "video", src: "/assets/destinations/delft/delft.mp4" },
+      { type: "image", src: "/assets/destinations/delft/delft1.jpeg", alt: "Delft Island 1" },
+      { type: "image", src: "/assets/destinations/delft/delft2.jpeg", alt: "Delft Island 2" },
+      { type: "image", src: "/assets/destinations/delft/delft3.jpeg", alt: "Delft Island 3" },
+      { type: "image", src: "/assets/destinations/delft/delft4.jpeg", alt: "Delft Island 4" },
     ],
   },
   kandy: {
@@ -179,12 +187,16 @@ export const destinationCardsData = {
     titleColor: "#f57f17",
     btnColor: "#f57f17",
     btnHoverColor: "#e65100",
-    bgImage: "/assets/destinations/kandybg.jpeg",
-    audioSrc: "/assets/destinations/kandy.wav",
+    bgImage: "/assets/destinations/kandy/kandybg.jpeg",
+    audioSrc: "/assets/destinations/kandy/kandy.wav",
     description:
       "The golden-roofed royal temple housing the sacred relic of the tooth of the Buddha, set beside the tranquil waters of Kandy Lake.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/kandy1.jpeg", alt: "Kandy 1" },
+      { type: "video", src: "/assets/destinations/kandy/kandy.mp4" },
+      { type: "image", src: "/assets/destinations/kandy/kandy1.jpeg", alt: "Temple of the Tooth 1" },
+      { type: "image", src: "/assets/destinations/kandy/kandy2.jpeg", alt: "Temple of the Tooth 2" },
+      { type: "image", src: "/assets/destinations/kandy/kandy3.jpeg", alt: "Temple of the Tooth 3" },
+      { type: "image", src: "/assets/destinations/kandy/kandy4.jpeg", alt: "Temple of the Tooth 4" },
     ],
   },
   lotustower: {
@@ -195,12 +207,16 @@ export const destinationCardsData = {
     titleColor: "#c2185b",
     btnColor: "#c2185b",
     btnHoverColor: "#880e4f",
-    bgImage: "/assets/destinations/lotustowerbg.jpeg",
-    audioSrc: "/assets/destinations/lotustower.wav",
+    bgImage: "/assets/destinations/lotustower/lotustowerbg.jpeg",
+    audioSrc: "/assets/destinations/lotustower/lotustower.wav",
     description:
       "South Asia's tallest self-supported structure shaped like an opening lotus blossom, dominating Colombo's modern coastal skyline.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/lotustower1.jpeg", alt: "Lotus Tower 1" },
+      { type: "video", src: "/assets/destinations/lotustower/lotustower.mp4" },
+      { type: "image", src: "/assets/destinations/lotustower/lotustower1.jpeg", alt: "Lotus Tower 1" },
+      { type: "image", src: "/assets/destinations/lotustower/lotustower2.jpeg", alt: "Lotus Tower 2" },
+      { type: "image", src: "/assets/destinations/lotustower/lotustower3.jpeg", alt: "Lotus Tower 3" },
+      { type: "image", src: "/assets/destinations/lotustower/lotustower4.jpeg", alt: "Lotus Tower 4" },
     ],
   },
   pinnawala: {
@@ -211,12 +227,16 @@ export const destinationCardsData = {
     titleColor: "#4e342e",
     btnColor: "#4e342e",
     btnHoverColor: "#3e2723",
-    bgImage: "/assets/destinations/pinnawalabg.jpeg",
-    audioSrc: "/assets/destinations/pinnawala.wav",
+    bgImage: "/assets/destinations/pinnawala/pinnawalabg.jpeg",
+    audioSrc: "/assets/destinations/pinnawala/pinnawala.wav",
     description:
       "A renowned breeding sanctuary caring for orphaned Asian elephants, famous for the daily herd bathing ritual in the flowing Maha Oya river.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/pinnawala1.jpeg", alt: "Pinnawala 1" },
+      { type: "video", src: "/assets/destinations/pinnawala/pinnawala.mp4" },
+      { type: "image", src: "/assets/destinations/pinnawala/pinnawala1.jpeg", alt: "Pinnawala 1" },
+      { type: "image", src: "/assets/destinations/pinnawala/pinnawala2.jpeg", alt: "Pinnawala 2" },
+      { type: "image", src: "/assets/destinations/pinnawala/pinnawala3.jpeg", alt: "Pinnawala 3" },
+      { type: "image", src: "/assets/destinations/pinnawala/pinnawala4.jpeg", alt: "Pinnawala 4" },
     ],
   },
   wilpattu: {
@@ -227,12 +247,16 @@ export const destinationCardsData = {
     titleColor: "#2e7d32",
     btnColor: "#2e7d32",
     btnHoverColor: "#1b5e20",
-    bgImage: "/assets/destinations/wilpattubg.jpeg",
-    audioSrc: "/assets/destinations/wilpaththu.wav",
+    bgImage: "/assets/destinations/wilpattu/wilpattubg.jpeg",
+    audioSrc: "/assets/destinations/wilpattu/wilpaththu.wav",
     description:
       "Sri Lanka's largest and oldest national park, characterized by unique natural rainwater basins ('villus'), dense forests, leopards, and sloth bears.",
     galleryItems: [
-      { type: "image", src: "/assets/destinations/wilpattu1.jpeg", alt: "Wilpattu 1" },
+      { type: "video", src: "/assets/destinations/wilpattu/wilpattu.mp4" },
+      { type: "image", src: "/assets/destinations/wilpattu/wilpattu1.jpeg", alt: "Wilpattu 1" },
+      { type: "image", src: "/assets/destinations/wilpattu/wilpattu2.jpeg", alt: "Wilpattu 2" },
+      { type: "image", src: "/assets/destinations/wilpattu/wilpattu3.jpeg", alt: "Wilpattu 3" },
+      { type: "image", src: "/assets/destinations/wilpattu/wilpattu4.jpeg", alt: "Wilpattu 4" },
     ],
   },
 };
