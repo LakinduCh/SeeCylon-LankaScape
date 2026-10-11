@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlay, FaPause, FaHeart, FaRegHeart, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { destinationCardsData } from '../data/destinationCards';
+import { destinationThemeMusic } from '../data/destinationMusic';
 import './DestinationCard.css';
 
 export default function DestinationCard({
@@ -15,6 +16,7 @@ export default function DestinationCard({
   const [isPlaying, setIsPlaying] = useState(false);
   const [liked, setLiked] = useState(false);
   const audioRef = useRef(null);
+  const musicTheme = location?.id ? destinationThemeMusic[location.id] : null;
 
   // Fallback to location data if specific card entry not found
   const cardData = location
@@ -213,6 +215,23 @@ export default function DestinationCard({
             ✕
           </button>
         </div>
+
+        {/* Immersive Theme Music Live Banner */}
+        {musicTheme && (
+          <div className="destination-theme-banner" title={musicTheme.description}>
+            <div className="theme-equalizer">
+              <span className={`eq-bar eq-1 ${!isMuted ? 'animate-eq' : ''}`}></span>
+              <span className={`eq-bar eq-2 ${!isMuted ? 'animate-eq' : ''}`}></span>
+              <span className={`eq-bar eq-3 ${!isMuted ? 'animate-eq' : ''}`}></span>
+            </div>
+            <div className="theme-info">
+              <span className="theme-label">
+                {isMuted ? '🔇 Audio Muted' : '🎵 Immersive Sound Theme'}
+              </span>
+              <span className="theme-name">{musicTheme.title}</span>
+            </div>
+          </div>
+        )}
 
         {/* Swipeable Gallery */}
         <div
