@@ -1,0 +1,24 @@
+.anuradhapura-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/anuradhapura.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.anuradhapura-title {
+  color: #8a4b16;
+}
+
+.anuradhapura-card .play-btn {
+  background: #8a4b16;
+}
+
+.anuradhapura-card .play-btn:hover {
+  background: #63350f;
+}
+
+.anuradhapura-card .play-btn.playing {
+  background: #d32f2f;
+}

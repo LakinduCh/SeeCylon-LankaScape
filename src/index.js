@@ -15,14 +15,30 @@ import KandyPage from "./pages/Kandy";
 import LotusTowerPage from "./pages/LotusTower";
 import PinnawalaPage from "./pages/Pinnawala";
 import WilpattuPage from "./pages/Wilpattu";
+import MinneriyaPage from "./pages/Minneriya";
+import AnuradhapuraPage from "./pages/Anuradhapura";
+import NallurPage from "./pages/Nallur";
 import reportWebVitals from "./reportWebVitals";
+
+function DestinationsPage() {
+  return (
+    <main className="destinations-overview">
+      <div className="destinations-grid">
+        <AnuradhapuraPage />
+        <MinneriyaPage />
+        <NallurPage />
+      </div>
+    </main>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/yala" replace />} />
+        <Route path="/" element={<Navigate to="/destinations" replace />} />
+        <Route path="/destinations" element={<DestinationsPage />} />
         <Route path="/yala" element={<YalaPage />} />
         <Route path="/sigiriya" element={<SigiriyaPage />} />
         <Route path="/arugambay" element={<ArugambayPage />} />
@@ -36,6 +52,9 @@ root.render(
         <Route path="/lotus-tower" element={<LotusTowerPage />} />
         <Route path="/pinnawala" element={<PinnawalaPage />} />
         <Route path="/wilpattu" element={<WilpattuPage />} />
+        <Route path="/anuradhapura" element={<AnuradhapuraPage />} />
+        <Route path="/minneriya" element={<MinneriyaPage />} />
+        <Route path="/nallur-kovil" element={<NallurPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
