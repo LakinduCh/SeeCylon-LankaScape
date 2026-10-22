@@ -1,8 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import "../App.css";
-import "../nallur.css";
-import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
+import React, { useRef, useState } from "react";
+import "../nallur.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
+
+import {
+  FaPlay,
+  FaPause,
+  FaHeart,
+  FaRegHeart,
+} from "react-icons/fa";
+
+// Nallur audio assets
+import introAudio from "../assets/gallefort.wav";
+import nallurAudio from "../assets/gallefort.wav";
+
+// Nallur gallery assets
 import nallurVideo from "../assets/nallur.mp4";
 import nallur1 from "../assets/nallur 1.jpeg";
 import nallur2 from "../assets/nallur 2.jpeg";
@@ -10,171 +22,241 @@ import nallur3 from "../assets/nallur 3.jpeg";
 import nallur4 from "../assets/nallur 4.jpeg";
 
 const galleryItems = [
-	{ type: "video", src: nallurVideo, poster: nallur1 },
-	{ type: "image", src: nallur1 },
-	{ type: "image", src: nallur2 },
-	{ type: "image", src: nallur3 },
-	{ type: "image", src: nallur4 },
+  { type: "video", src: nallurVideo },
+  { type: "image", src: nallur1 },
+  { type: "image", src: nallur2 },
+  { type: "image", src: nallur3 },
+  { type: "image", src: nallur4 },
 ];
 
 function NallurPage() {
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [isPlaying, setIsPlaying] = useState(false);
-	const [liked, setLiked] = useState(false);
-	const videoRef = useRef(null);
-	const touchStartX = useRef(0);
-	const touchEndX = useRef(0);
-	const dragStartX = useRef(0);
-	const dragEndX = useRef(0);
-	const isDragging = useRef(false);
+  const audioRef = useRef(null);
+  const backgroundAudioRef = useRef(null);
 
-	useEffect(() => {
-		const video = videoRef.current;
-		if (!video) return;
+  if (!audioRef.current) {
+    audioRef.current = new Audio(nallurAudio);
+  }
 
-		if (isPlaying) {
-			video.muted = false;
-			video.play().catch((error) => {
-				console.warn("Nallur video playback failed:", error);
-				setIsPlaying(false);
-			});
-		} else {
-			video.pause();
-		}
-	}, [currentIndex, isPlaying]);
+  if (!backgroundAudioRef.current) {
+    backgroundAudioRef.current = new Audio(introAudio);
+  }
 
-	const changeSlide = (index) => {
-		setCurrentIndex(index);
-		setIsPlaying(false);
-	};
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [liked, setLiked] = useState(false);
 
-	const goToNext = () => {
-		changeSlide((currentIndex + 1) % galleryItems.length);
-	};
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const suppressClick = useRef(false);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragEndX = useRef(0);
 
-	const goToPrev = () => {
-		changeSlide(currentIndex === 0 ? galleryItems.length - 1 : currentIndex - 1);
-	};
+  useBackgroundAudio(backgroundAudioRef);
 
-	const handleTouchEnd = () => {
-		const distance = touchStartX.current - touchEndX.current;
-		if (distance > 50) goToNext();
-		else if (distance < -50) goToPrev();
-		touchStartX.current = 0;
-		touchEndX.current = 0;
-	};
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
+    }
+  };
 
-	const handleMouseUp = () => {
-		if (!isDragging.current) return;
-		isDragging.current = false;
-		const distance = dragStartX.current - dragEndX.current;
-		if (distance > 50) goToNext();
-		else if (distance < -50) goToPrev();
-		dragStartX.current = 0;
-		dragEndX.current = 0;
-	};
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
+  };
 
-	const toggleVideo = () => {
-		if (currentIndex !== 0) {
-			setCurrentIndex(0);
-			setIsPlaying(true);
-			return;
-		}
-		setIsPlaying((previous) => !previous);
-	};
+  const goToPrev = () => {
+    setCurrentIndex(
+      (prev) => (prev === 0 ? galleryItems.length - 1 : prev - 1)
+    );
+  };
 
-	const currentSlide = galleryItems[currentIndex];
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+    suppressClick.current = false;
+  };
 
-	return (
-		<div className="container">
-			<div className="card nallur-card">
-				<h1 className="title nallur-title">Nallur Kovil</h1>
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-				<div
-					className="gallery"
-					onTouchStart={(event) => {
-						touchStartX.current = event.touches[0].clientX;
-					}}
-					onTouchMove={(event) => {
-						touchEndX.current = event.touches[0].clientX;
-					}}
-					onTouchEnd={handleTouchEnd}
-					onMouseDown={(event) => {
-						isDragging.current = true;
-						dragStartX.current = event.clientX;
-					}}
-					onMouseMove={(event) => {
-						if (isDragging.current) dragEndX.current = event.clientX;
-					}}
-					onMouseUp={handleMouseUp}
-					onMouseLeave={() => {
-						isDragging.current = false;
-					}}
-				>
-					{currentSlide.type === "video" ? (
-						<video
-							ref={videoRef}
-							className="gallery-image"
-							src={currentSlide.src}
-							poster={currentSlide.poster}
-							loop
-							playsInline
-						/>
-					) : (
-						<img
-							className="gallery-image"
-							src={currentSlide.src}
-							alt={`Nallur Kovil ${currentIndex}`}
-							draggable="false"
-						/>
-					)}
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const distance = touchStartX.current - touchEndX.current;
 
-					<div className="gallery-dots">
-						{galleryItems.map((_, index) => {
-							const distance = Math.abs(index - currentIndex);
-							const size = distance === 0 ? 9 : distance === 1 ? 7 : distance === 2 ? 5 : 4;
+    if (distance > 50) {
+      suppressClick.current = true;
+      goToNext();
+    } else if (distance < -50) {
+      suppressClick.current = true;
+      goToPrev();
+    }
 
-							return (
-								<button
-									key={index}
-									type="button"
-									className={`swipe-dot ${index === currentIndex ? "active" : ""}`}
-									style={{ width: size, height: size }}
-									onClick={() => changeSlide(index)}
-									aria-label={`Show slide ${index + 1}`}
-								/>
-							);
-						})}
-					</div>
-				</div>
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
 
-				<p className="description">
-					Nallur Kandaswamy Kovil is one of Jaffna&apos;s most revered Hindu temples.
-					Its striking architecture and vibrant annual festival make it a treasured
-					place of worship and culture.
-				</p>
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    suppressClick.current = false;
+    dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
+  };
 
-				<div className="audio-buttons">
-					<button
-						className={`play-btn ${isPlaying ? "playing" : ""}`}
-						onClick={toggleVideo}
-						aria-label={isPlaying ? "Pause Nallur video" : "Play Nallur video"}
-					>
-						{isPlaying ? <FaPause className="icon" /> : <FaPlay className="icon" />}
-						{isPlaying ? "Pause" : "Play"}
-					</button>
-				</div>
+  const handleMouseMove = (e) => {
+    if (isDragging.current) {
+      dragEndX.current = e.clientX;
+    }
+  };
 
-				<button
-					className={`heart-btn ${liked ? "liked" : ""}`}
-					onClick={() => setLiked((previous) => !previous)}
-					aria-label={liked ? "Unlike Nallur Kovil" : "Like Nallur Kovil"}
-				>
-					{liked ? <FaHeart /> : <FaRegHeart />}
-				</button>
-			</div>
-		</div>
-	);
+  const handleMouseUp = () => {
+    if (!isDragging.current) return;
+
+    isDragging.current = false;
+    const distance = dragStartX.current - dragEndX.current;
+
+    if (distance > 50) {
+      suppressClick.current = true;
+      goToNext();
+    } else if (distance < -50) {
+      suppressClick.current = true;
+      goToPrev();
+    }
+
+    dragStartX.current = 0;
+    dragEndX.current = 0;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    dragStartX.current = 0;
+    dragEndX.current = 0;
+  };
+
+  const handleSideNavigation = (navigate) => (e) => {
+    e.stopPropagation();
+    if (suppressClick.current) {
+      suppressClick.current = false;
+      return;
+    }
+    navigate();
+  };
+
+  const toggleLike = () => {
+    setLiked((prev) => !prev);
+  };
+
+  return (
+    <div className="container">
+      <div className="card nallur-card">
+        <h1 className="title nallur-title">Nallur</h1>
+
+        <div
+          className="gallery"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+        >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={handleSideNavigation(goToPrev)}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={handleSideNavigation(goToNext)}
+          />
+          {galleryItems[currentIndex].type === "video" ? (
+            <video
+              key={galleryItems[currentIndex].src}
+              className="gallery-image"
+              src={galleryItems[currentIndex].src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              draggable="false"
+            />
+          ) : (
+            <img
+              className="gallery-image"
+              src={galleryItems[currentIndex].src}
+              alt={`Nallur Kandaswamy Temple ${currentIndex + 1}`}
+              draggable="false"
+            />
+          )}
+
+          <div className="gallery-dots">
+            {galleryItems.map((_, index) => {
+              const distance = Math.abs(index - currentIndex);
+
+              let size = 4;
+              if (distance === 0) size = 9;
+              else if (distance === 1) size = 7;
+              else if (distance === 2) size = 5;
+
+              return (
+                <span
+                  key={index}
+                  className={`swipe-dot ${
+                    index === currentIndex ? "active" : ""
+                  }`}
+                  style={{ width: size, height: size }}
+                  onClick={() => setCurrentIndex(index)}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <p className="description">
+          Nallur, located in Jaffna, is famous for the magnificent
+          Nallur Kandaswamy Kovil, one of Sri Lanka's most important
+          Hindu temples. Known for its beautiful Dravidian architecture,
+          golden decorations, and vibrant annual Nallur Festival,
+          it is a special destination for culture, spirituality,
+          and Tamil heritage.
+        </p>
+
+        <div className="audio-buttons">
+          <button
+            className={`play-btn ${isPlaying ? "playing" : ""}`}
+            onClick={toggleAudio}
+          >
+            {isPlaying ? (
+              <FaPause className="icon" />
+            ) : (
+              <FaPlay className="icon" />
+            )}
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+        </div>
+
+        <button
+          className={`heart-btn ${liked ? "liked" : ""}`}
+          onClick={toggleLike}
+          aria-label="Like Nallur"
+        >
+          {liked ? <FaHeart /> : <FaRegHeart />}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default NallurPage;

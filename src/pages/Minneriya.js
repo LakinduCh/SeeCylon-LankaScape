@@ -1,8 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import "../App.css";
-import "../minneriya.css";
-import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
+import React, { useRef, useState } from "react";
+import "../minneriya.css";
+import useBackgroundAudio from "../hooks/useBackgroundAudio";
+
+import {
+  FaPlay,
+  FaPause,
+  FaHeart,
+  FaRegHeart,
+} from "react-icons/fa";
+
+// Minneriya audio assets
+import introAudio from "../assets/yala2.mp3";
+import minneriyaAudio from "../assets/wilpaththu.wav";
+
+// Minneriya gallery assets
 import minneriyaVideo from "../assets/minneriya.mp4";
 import minneriya1 from "../assets/minneriya 1.jpeg";
 import minneriya2 from "../assets/minneriya 2.jpeg";
@@ -10,171 +22,231 @@ import minneriya3 from "../assets/minneriya 3.jpeg";
 import minneriya4 from "../assets/minneriya 4.jpeg";
 
 const galleryItems = [
-	{ type: "video", src: minneriyaVideo, poster: minneriya1 },
-	{ type: "image", src: minneriya1 },
-	{ type: "image", src: minneriya2 },
-	{ type: "image", src: minneriya3 },
-	{ type: "image", src: minneriya4 },
+  { type: "video", src: minneriyaVideo },
+  { type: "image", src: minneriya1 },
+  { type: "image", src: minneriya2 },
+  { type: "image", src: minneriya3 },
+  { type: "image", src: minneriya4 },
 ];
 
 function MinneriyaPage() {
-	const [currentIndex, setCurrentIndex] = useState(0);
-	const [isPlaying, setIsPlaying] = useState(false);
-	const [liked, setLiked] = useState(false);
-	const videoRef = useRef(null);
-	const touchStartX = useRef(0);
-	const touchEndX = useRef(0);
-	const dragStartX = useRef(0);
-	const dragEndX = useRef(0);
-	const isDragging = useRef(false);
+  const audioRef = useRef(null);
+  const backgroundAudioRef = useRef(null);
 
-	useEffect(() => {
-		const video = videoRef.current;
-		if (!video) return;
+  if (audioRef.current === null) {
+    audioRef.current = new Audio(minneriyaAudio);
+  }
 
-		if (isPlaying) {
-			video.muted = false;
-			video.play().catch((error) => {
-				console.warn("Minneriya video playback failed:", error);
-				setIsPlaying(false);
-			});
-		} else {
-			video.pause();
-		}
-	}, [currentIndex, isPlaying]);
+  if (backgroundAudioRef.current === null) {
+    backgroundAudioRef.current = new Audio(introAudio);
+  }
 
-	const changeSlide = (index) => {
-		setCurrentIndex(index);
-		setIsPlaying(false);
-	};
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [liked, setLiked] = useState(false);
 
-	const goToNext = () => {
-		changeSlide((currentIndex + 1) % galleryItems.length);
-	};
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragEndX = useRef(0);
 
-	const goToPrev = () => {
-		changeSlide(currentIndex === 0 ? galleryItems.length - 1 : currentIndex - 1);
-	};
+  useBackgroundAudio(backgroundAudioRef);
 
-	const handleTouchEnd = () => {
-		const distance = touchStartX.current - touchEndX.current;
-		if (distance > 50) goToNext();
-		else if (distance < -50) goToPrev();
-		touchStartX.current = 0;
-		touchEndX.current = 0;
-	};
+  const toggleAudio = async () => {
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.warn("Audio playback failed:", error);
+    }
+  };
 
-	const handleMouseUp = () => {
-		if (!isDragging.current) return;
-		isDragging.current = false;
-		const distance = dragStartX.current - dragEndX.current;
-		if (distance > 50) goToNext();
-		else if (distance < -50) goToPrev();
-		dragStartX.current = 0;
-		dragEndX.current = 0;
-	};
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % galleryItems.length);
+  };
 
-	const toggleVideo = () => {
-		if (currentIndex !== 0) {
-			setCurrentIndex(0);
-			setIsPlaying(true);
-			return;
-		}
-		setIsPlaying((previous) => !previous);
-	};
+  const goToPrev = () => {
+    setCurrentIndex(
+      (prev) => (prev === 0 ? galleryItems.length - 1 : prev - 1)
+    );
+  };
 
-	const currentSlide = galleryItems[currentIndex];
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-	return (
-		<div className="container">
-			<div className="card minneriya-card">
-				<h1 className="title minneriya-title">Minneriya</h1>
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-				<div
-					className="gallery"
-					onTouchStart={(event) => {
-						touchStartX.current = event.touches[0].clientX;
-					}}
-					onTouchMove={(event) => {
-						touchEndX.current = event.touches[0].clientX;
-					}}
-					onTouchEnd={handleTouchEnd}
-					onMouseDown={(event) => {
-						isDragging.current = true;
-						dragStartX.current = event.clientX;
-					}}
-					onMouseMove={(event) => {
-						if (isDragging.current) dragEndX.current = event.clientX;
-					}}
-					onMouseUp={handleMouseUp}
-					onMouseLeave={() => {
-						isDragging.current = false;
-					}}
-				>
-					{currentSlide.type === "video" ? (
-						<video
-							ref={videoRef}
-							className="gallery-image"
-							src={currentSlide.src}
-							poster={currentSlide.poster}
-							loop
-							playsInline
-						/>
-					) : (
-						<img
-							className="gallery-image"
-							src={currentSlide.src}
-							alt={`Minneriya National Park ${currentIndex}`}
-							draggable="false"
-						/>
-					)}
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current;
 
-					<div className="gallery-dots">
-						{galleryItems.map((_, index) => {
-							const distance = Math.abs(index - currentIndex);
-							const size = distance === 0 ? 9 : distance === 1 ? 7 : distance === 2 ? 5 : 4;
+    if (distance > 50) goToNext();
+    else if (distance < -50) goToPrev();
 
-							return (
-								<button
-									key={index}
-									type="button"
-									className={`swipe-dot ${index === currentIndex ? "active" : ""}`}
-									style={{ width: size, height: size }}
-									onClick={() => changeSlide(index)}
-									aria-label={`Show slide ${index + 1}`}
-								/>
-							);
-						})}
-					</div>
-				</div>
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
 
-				<p className="description">
-					Minneriya National Park is known for its vast reservoir, rich wildlife,
-					and seasonal gatherings of elephants. Explore open grasslands and
-					forest landscapes in the heart of Sri Lanka.
-				</p>
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
+  };
 
-				<div className="audio-buttons">
-					<button
-						className={`play-btn ${isPlaying ? "playing" : ""}`}
-						onClick={toggleVideo}
-						aria-label={isPlaying ? "Pause Minneriya video" : "Play Minneriya video"}
-					>
-						{isPlaying ? <FaPause className="icon" /> : <FaPlay className="icon" />}
-						{isPlaying ? "Pause" : "Play"}
-					</button>
-				</div>
+  const handleMouseMove = (e) => {
+    if (isDragging.current) {
+      dragEndX.current = e.clientX;
+    }
+  };
 
-				<button
-					className={`heart-btn ${liked ? "liked" : ""}`}
-					onClick={() => setLiked((previous) => !previous)}
-					aria-label={liked ? "Unlike Minneriya" : "Like Minneriya"}
-				>
-					{liked ? <FaHeart /> : <FaRegHeart />}
-				</button>
-			</div>
-		</div>
-	);
+  const handleMouseUp = () => {
+    if (!isDragging.current) return;
+
+    isDragging.current = false;
+    const distance = dragStartX.current - dragEndX.current;
+
+    if (distance > 50) goToNext();
+    else if (distance < -50) goToPrev();
+
+    dragStartX.current = 0;
+    dragEndX.current = 0;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    dragStartX.current = 0;
+    dragEndX.current = 0;
+  };
+
+  const toggleLike = () => {
+    setLiked((prev) => !prev);
+  };
+
+  return (
+    <div className="container">
+      <div className="card minneriya-card">
+        <h1 className="title minneriya-title">
+          Minneriya
+        </h1>
+
+        <div
+          className="gallery"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+        >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          />
+          {galleryItems[currentIndex].type === "video" ? (
+            <video
+              key={galleryItems[currentIndex].src}
+              className="gallery-image"
+              src={galleryItems[currentIndex].src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              draggable="false"
+            />
+          ) : (
+            <img
+              className="gallery-image"
+              src={galleryItems[currentIndex].src}
+              alt={`Minneriya National Park ${
+                currentIndex + 1
+              }`}
+              draggable="false"
+            />
+          )}
+
+          <div className="gallery-dots">
+            {galleryItems.map((_, index) => {
+              const distance = Math.abs(index - currentIndex);
+
+              let size = 4;
+              if (distance === 0) size = 9;
+              else if (distance === 1) size = 7;
+              else if (distance === 2) size = 5;
+
+              return (
+                <span
+                  key={index}
+                  className={`swipe-dot ${
+                    index === currentIndex ? "active" : ""
+                  }`}
+                  style={{ width: size, height: size }}
+                  onClick={() => setCurrentIndex(index)}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <p className="description">
+          Minneriya National Park is famous for its spectacular
+          Elephant Gathering, where large herds of wild Asian
+          elephants gather around the Minneriya Tank during
+          the dry season. Enjoy an exciting wildlife safari
+          and discover elephants, deer, monkeys, and many
+          beautiful bird species in their natural habitat.
+        </p>
+
+        <div className="audio-buttons">
+          <button
+            className={`play-btn ${
+              isPlaying ? "playing" : ""
+            }`}
+            onClick={toggleAudio}
+          >
+            {isPlaying ? (
+              <FaPause className="icon" />
+            ) : (
+              <FaPlay className="icon" />
+            )}
+
+            {isPlaying ? "Pause" : "Play"}
+          </button>
+        </div>
+
+        <button
+          className={`heart-btn ${liked ? "liked" : ""}`}
+          onClick={toggleLike}
+          aria-label="Like Minneriya"
+        >
+          {liked ? <FaHeart /> : <FaRegHeart />}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default MinneriyaPage;

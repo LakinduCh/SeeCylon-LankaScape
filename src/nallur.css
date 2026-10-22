@@ -1,0 +1,34 @@
+
+/* Nallur Destination Card */
+
+.nallur-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/nallur 1.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nallur-title {
+  color: #b8860b;
+}
+
+.nallur-title:hover {
+  color: #800000;
+}
+
+.nallur-card .play-btn {
+  background: #b8860b;
+}
+
+.nallur-card .play-btn:hover {
+  background: #800000;
+}
+
+.nallur-card .play-btn.playing {
+  background: #d32f2f;
+}

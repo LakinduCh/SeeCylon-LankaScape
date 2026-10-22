@@ -20,25 +20,13 @@ import AnuradhapuraPage from "./pages/Anuradhapura";
 import NallurPage from "./pages/Nallur";
 import reportWebVitals from "./reportWebVitals";
 
-function DestinationsPage() {
-  return (
-    <main className="destinations-overview">
-      <div className="destinations-grid">
-        <AnuradhapuraPage />
-        <MinneriyaPage />
-        <NallurPage />
-      </div>
-    </main>
-  );
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/destinations" replace />} />
-        <Route path="/destinations" element={<DestinationsPage />} />
+        <Route path="/" element={<Navigate to="/yala" replace />} />
         <Route path="/yala" element={<YalaPage />} />
         <Route path="/sigiriya" element={<SigiriyaPage />} />
         <Route path="/arugambay" element={<ArugambayPage />} />

@@ -68,6 +68,7 @@ function NineArchBridgePage() {
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
@@ -99,6 +100,7 @@ function NineArchBridgePage() {
   const handleMouseDown = (e) => {
     isDragging.current = true;
     dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
   };
 
   const handleMouseMove = (e) => {
@@ -155,6 +157,24 @@ function NineArchBridgePage() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          />
 
           {galleryItems[currentIndex].type === "video" ? (
             <video
