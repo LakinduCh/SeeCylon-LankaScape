@@ -30,16 +30,8 @@ const galleryItems = [
 ];
 
 function NallurPage() {
-  const audioRef = useRef(null);
-  const backgroundAudioRef = useRef(null);
-
-  if (!audioRef.current) {
-    audioRef.current = new Audio(nallurAudio);
-  }
-
-  if (!backgroundAudioRef.current) {
-    backgroundAudioRef.current = new Audio(introAudio);
-  }
+  const audioRef = useRef(new Audio(nallurAudio));
+  const backgroundAudioRef = useRef(new Audio(introAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

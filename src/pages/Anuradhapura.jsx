@@ -29,16 +29,8 @@ const galleryItems = [
 ];
 
 function AnuradhapuraPage() {
-  const audioRef = useRef(null);
-  const backgroundAudioRef = useRef(null);
-
-  if (audioRef.current === null) {
-    audioRef.current = new Audio(anuradhapuraAudio);
-  }
-
-  if (backgroundAudioRef.current === null) {
-    backgroundAudioRef.current = new Audio(introAudio);
-  }
+  const audioRef = useRef(new Audio(anuradhapuraAudio));
+  const backgroundAudioRef = useRef(new Audio(introAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -30,16 +30,8 @@ const galleryItems = [
 ];
 
 function MinneriyaPage() {
-  const audioRef = useRef(null);
-  const backgroundAudioRef = useRef(null);
-
-  if (audioRef.current === null) {
-    audioRef.current = new Audio(minneriyaAudio);
-  }
-
-  if (backgroundAudioRef.current === null) {
-    backgroundAudioRef.current = new Audio(introAudio);
-  }
+  const audioRef = useRef(new Audio(minneriyaAudio));
+  const backgroundAudioRef = useRef(new Audio(introAudio));
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

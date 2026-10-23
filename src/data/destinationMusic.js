@@ -65,4 +65,19 @@ export const destinationThemeMusic = {
     title: 'Natural Villus & Ancient Wilderness',
     description: 'Serene dry-zone lake calls, rustling teak trees, and natural rainwater basin wildlife.',
   },
+  anuradhapura: {
+    audioSrc: '/assets/destinations/anuradhapura/anuradhapura2.mp3',
+    title: 'Sacred Stupas & Monastic Chimes',
+    description: 'Ancient Buddhist bells, serene temple chants, and monastic wind chimes of the sacred capital.',
+  },
+  minneriya: {
+    audioSrc: '/assets/destinations/minneriya/minneriya2.wav',
+    title: 'The Great Gathering & Lakeside Ambience',
+    description: 'Peaceful elephant sanctuary calls, gentle ripples of the ancient reservoir, and wilderness sounds.',
+  },
+  nallur: {
+    audioSrc: '/assets/destinations/nallur/nallur2.wav',
+    title: 'Sacred Nadaswaram & Kovil Bells',
+    description: 'Devotional temple bells, resonant Thavil drums, and traditional Nadaswaram echoing through the holy sanctum.',
+  },
 };
