@@ -4,7 +4,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
-import galleFortAudio from "../assets/gallefort.mp3";
+import galleFortAudio from "../assets/galle.wav";
 import galleFortBackgroundAudio from "../assets/galle2.mp3";
 import galleFortVideo from "../assets/gallefort.mp4";
 import galleFort1 from "../assets/gallefort1.jpeg";

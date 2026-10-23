@@ -11,8 +11,8 @@ import {
 } from "react-icons/fa";
 
 // Nallur audio assets
-import introAudio from "../assets/gallefort.wav";
-import nallurAudio from "../assets/gallefort.wav";
+import introAudio from "../assets/nallur track.wav";
+import nallurAudio from "../assets/nallur voice.wav";
 
 // Nallur gallery assets
 import nallurVideo from "../assets/nallur.mp4";

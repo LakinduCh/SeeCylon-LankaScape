@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 import delftAudio from "../assets/delf.wav";
-import delftBackgroundAudio from "../assets/arugambay2.mp3";
+import delftBackgroundAudio from "../assets/delft.wav";
 import delftVideo from "../assets/delft.mp4";
 import delft1 from "../assets/delft1.jpeg";
 import delft2 from "../assets/delft2.jpeg";

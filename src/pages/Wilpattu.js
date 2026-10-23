@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 import wilpattuAudio from "../assets/wilpaththu.wav";
-import wilpattuBackgroundAudio from "../assets/yala2.mp3";
+import wilpattuBackgroundAudio from "../assets/wilpatthu.wav";
 import wilpattuVideo from "../assets/wilpattu.mp4";
 import wilpattu1 from "../assets/wilpattu1.jpeg";
 import wilpattu2 from "../assets/wilpattu2.jpeg";

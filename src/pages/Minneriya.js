@@ -11,8 +11,8 @@ import {
 } from "react-icons/fa";
 
 // Minneriya audio assets
-import introAudio from "../assets/yala2.mp3";
-import minneriyaAudio from "../assets/wilpaththu.wav";
+import introAudio from "../assets/wilpatthu.wav";
+import minneriyaAudio from "../assets/minneriya voice.mp3";
 
 // Minneriya gallery assets
 import minneriyaVideo from "../assets/minneriya.mp4";

@@ -11,8 +11,8 @@ import {
 } from "react-icons/fa";
 
 // Import Anuradhapura assets
-import introAudio from "../assets/gallefort.wav";
-import anuradhapuraAudio from "../assets/gallefort.wav";
+import introAudio from "../assets/anuradapura.mp3";
+import anuradhapuraAudio from "../assets/anuradhapura voice.mp3";
 
 import anuradhapuraVideo from "../assets/anuradhapura.mp4";
 import anuradhapura1 from "../assets/anuradhapura 1.jpeg";
