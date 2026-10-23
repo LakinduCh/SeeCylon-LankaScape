@@ -1,0 +1,35 @@
+
+/* Anuradhapura Destination Card */
+
+.anuradhapura-card {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url("./assets/anuradhapura 3.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.anuradhapura-title {
+  color: #8d6e63;
+}
+
+.anuradhapura-title:hover {
+  color: #5d4037;
+}
+
+/* Anuradhapura play button */
+.anuradhapura-card .play-btn {
+  background: #8d6e63;
+}
+
+.anuradhapura-card .play-btn:hover {
+  background: #5d4037;
+}
+
+.anuradhapura-card .play-btn.playing {
+  background: #d32f2f;
+}

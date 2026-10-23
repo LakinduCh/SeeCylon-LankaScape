@@ -1,0 +1,22 @@
+
+/* Minneriya Destination Card */
+
+.minneriya-title {
+  color: #558b2f;
+}
+
+.minneriya-title:hover {
+  color: #33691e;
+}
+
+.minneriya-card .play-btn {
+  background: #558b2f;
+}
+
+.minneriya-card .play-btn:hover {
+  background: #33691e;
+}
+
+.minneriya-card .play-btn.playing {
+  background: #d32f2f;
+}

@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 import delftAudio from "../assets/delf.wav";
-import delftBackgroundAudio from "../assets/arugambay2.mp3";
+import delftBackgroundAudio from "../assets/delft.wav";
 import delftVideo from "../assets/delft.mp4";
 import delft1 from "../assets/delft1.jpeg";
 import delft2 from "../assets/delft2.jpeg";
@@ -78,6 +78,7 @@ function DelftPage() {
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
@@ -105,6 +106,7 @@ function DelftPage() {
   const handleMouseDown = (e) => {
     isDragging.current = true;
     dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
   };
 
   const handleMouseMove = (e) => {
@@ -162,6 +164,24 @@ function DelftPage() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          />
 
           {galleryItems[currentIndex].type === "video" ? (
             <video

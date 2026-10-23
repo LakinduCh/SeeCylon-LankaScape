@@ -18,6 +18,9 @@ import KandyPage from './pages/Kandy';
 import LotusTowerPage from './pages/LotusTower';
 import PinnawalaPage from './pages/Pinnawala';
 import WilpattuPage from './pages/Wilpattu';
+import AnuradhapuraPage from './pages/Anuradhapura';
+import MinneriyaPage from './pages/Minneriya';
+import NallurPage from './pages/Nallur';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -126,6 +129,38 @@ createRoot(document.getElementById('root')).render(
           element={
             <DestinationWrapper>
               <WilpattuPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/anuradhapura"
+          element={
+            <DestinationWrapper>
+              <AnuradhapuraPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/minneriya"
+          element={
+            <DestinationWrapper>
+              <MinneriyaPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/nallur"
+          element={
+            <DestinationWrapper>
+              <NallurPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/nallur-kovil"
+          element={
+            <DestinationWrapper>
+              <NallurPage />
             </DestinationWrapper>
           }
         />

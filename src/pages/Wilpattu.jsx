@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 
 import wilpattuAudio from "../assets/wilpaththu.wav";
-import wilpattuBackgroundAudio from "../assets/yala2.mp3";
+import wilpattuBackgroundAudio from "../assets/wilpatthu.wav";
 import wilpattuVideo from "../assets/wilpattu.mp4";
 import wilpattu1 from "../assets/wilpattu1.jpeg";
 import wilpattu2 from "../assets/wilpattu2.jpeg";
@@ -78,6 +78,7 @@ function WilpattuPage() {
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
@@ -105,6 +106,7 @@ function WilpattuPage() {
   const handleMouseDown = (e) => {
     isDragging.current = true;
     dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
   };
 
   const handleMouseMove = (e) => {
@@ -162,6 +164,24 @@ function WilpattuPage() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          />
 
           {galleryItems[currentIndex].type === "video" ? (
             <video

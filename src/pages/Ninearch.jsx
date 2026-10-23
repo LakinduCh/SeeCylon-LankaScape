@@ -6,7 +6,7 @@ import useBackgroundAudio from "../hooks/useBackgroundAudio";
 import { FaPlay, FaPause, FaHeart, FaRegHeart } from "react-icons/fa";
 
 import nineArchAudio from "../assets/ninearch.wav";
-import nineArchBackgroundAudio from "../assets/hortonplains2.mp3";
+import nineArchBackgroundAudio from "../assets/nine arch track.mp3";
 import nineArchVideo from "../assets/ninearch.mp4";
 import nineArch1 from "../assets/ninearch1.jpeg";
 import nineArch2 from "../assets/ninearch2.jpeg";
@@ -68,6 +68,7 @@ function NineArchBridgePage() {
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
@@ -99,6 +100,7 @@ function NineArchBridgePage() {
   const handleMouseDown = (e) => {
     isDragging.current = true;
     dragStartX.current = e.clientX;
+    dragEndX.current = e.clientX;
   };
 
   const handleMouseMove = (e) => {
@@ -155,6 +157,24 @@ function NineArchBridgePage() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
+          <button
+            className="gallery-side gallery-side-prev"
+            type="button"
+            aria-label="Previous image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrev();
+            }}
+          />
+          <button
+            className="gallery-side gallery-side-next"
+            type="button"
+            aria-label="Next image"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+          />
 
           {galleryItems[currentIndex].type === "video" ? (
             <video
