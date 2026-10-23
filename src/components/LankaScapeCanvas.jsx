@@ -92,6 +92,9 @@ const shortTags = {
   lotustower: 'Lotus Bloom',
   pinnawala: 'Elephant Haven',
   wilpattu: 'Natural Villus',
+  anuradhapura: 'Ancient Capital',
+  minneriya: 'Elephant Gathering',
+  nallur: 'Sacred Kovil',
 };
 
 const destinationDisplayNames = {
@@ -108,14 +111,35 @@ const destinationDisplayNames = {
   lotustower: 'Lotus Tower',
   pinnawala: 'Pinnawala',
   wilpattu: 'Wilpattu',
+  anuradhapura: 'Anuradhapura',
+  minneriya: 'Minneriya',
+  nallur: 'Nallur Kovil',
 };
 
 const labelOffsets = {
-  horton: [0, 0.38, 0],
-  ella: [0, 0.46, 0],
-  adamspeak: [0, 0.48, 0],
-  pinnawala: [0, 0.46, 0],
-  kandy: [0, 0.40, 0],
+  // Northern Region
+  delft: [-0.08, 0.44, 0],
+  nallur: [0.08, 0.46, 0],
+  wilpattu: [-0.08, 0.44, 0],
+  anuradhapura: [0.02, 0.52, -0.06],
+  sigiriya: [-0.10, 0.42, 0.04],
+  minneriya: [0.12, 0.44, 0],
+
+  // Central Region
+  pinnawala: [-0.14, 0.46, 0],
+  kandy: [0.10, 0.46, -0.04],
+  lotustower: [-0.10, 0.46, 0],
+
+  // Highland Region
+  adamspeak: [-0.08, 0.48, 0.06],
+  horton: [0, 0.42, 0.06],
+  ella: [0.12, 0.48, -0.02],
+
+  // Eastern & Southern Coastal Region
+  arugambay: [0.08, 0.44, 0],
+  yala: [0.08, 0.46, 0],
+  galle: [-0.08, 0.46, 0],
+  mirissa: [0.08, 0.42, 0],
 };
 
 // Helper to darken hex color for rich radial gradient shading
