@@ -31,7 +31,7 @@ function CanvasLoader() {
 }
 
 function SriLankaMap({ activeStyle = 'realistic' }) {
-  const { scene, animations } = useGLTF('/models/MPM-project_V4.glb');
+  const { scene, animations } = useGLTF('/models/MPM-project_V5.glb');
   const { actions } = useAnimations(animations, scene);
 
   // Auto-play wildlife and ambient idle animations
@@ -986,4 +986,4 @@ export default function LankaScapeCanvas({
   );
 }
 
-useGLTF.preload('/models/MPM-project_V4.glb');
+useGLTF.preload('/models/MPM-project_V5.glb');
