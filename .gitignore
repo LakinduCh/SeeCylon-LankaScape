@@ -43,3 +43,4 @@ dist-ssr
 *.glb
 public/models/*.glb
 !public/models/MPM-project_V4.glb
+!public/models/MPM-project_V5.glb
