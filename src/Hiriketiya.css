@@ -1,0 +1,21 @@
+.hiriketiya-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/hiriketiya1.jpeg");
+}
+
+.hiriketiya-title {
+  color: #64b5f6;
+}
+
+.hiriketiya-card .play-btn,
+.hiriketiya-card .play-btn:hover,
+.hiriketiya-card .play-btn.playing,
+.hiriketiya-card .play-btn.playing:hover {
+  background: #64b5f6;
+}
+
+.hiriketiya-card .play-btn:hover,
+.hiriketiya-card .play-btn.playing:hover {
+  background: #1e88e5;
+}

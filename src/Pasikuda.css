@@ -1,0 +1,25 @@
+.pasikuda-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/Pasikuda1.jpeg");
+}
+
+.pasikuda-title {
+  color: #64b5f6;
+}
+
+.pasikuda-card .play-btn,
+.pasikuda-card .play-btn:hover,
+.pasikuda-card .play-btn.playing,
+.pasikuda-card .play-btn.playing:hover {
+  background: #64b5f6;
+}
+
+.pasikuda-card .play-btn:hover,
+.pasikuda-card .play-btn.playing:hover {
+  background: #1e88e5;
+}
+
+.pasikuda-card .gallery video {
+  transform: scale(1.08);
+}

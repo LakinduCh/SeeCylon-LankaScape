@@ -18,6 +18,11 @@ import WilpattuPage from "./pages/Wilpattu";
 import MinneriyaPage from "./pages/Minneriya";
 import AnuradhapuraPage from "./pages/Anuradhapura";
 import NallurPage from "./pages/Nallur";
+import HiriketiyaPage from "./pages/Hiriketiya";
+import PasikudaPage from "./pages/Pasikuda";
+import NilaveliPage from "./pages/Nilaveli";
+import AdamsBridgePage from "./pages/AdamsBridge";
+import BasilicaPage from "./pages/Basilica";
 import reportWebVitals from "./reportWebVitals";
 
 
@@ -27,6 +32,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/yala" replace />} />
+        <Route path="/hiriketiya" element={<HiriketiyaPage />} />
+        <Route path="/pasikuda" element={<PasikudaPage />} />
+        <Route path="/nilaveli" element={<NilaveliPage />} />
+        <Route path="/adams-bridge" element={<AdamsBridgePage />} />
+        <Route path="/basilica" element={<BasilicaPage />} />
         <Route path="/yala" element={<YalaPage />} />
         <Route path="/sigiriya" element={<SigiriyaPage />} />
         <Route path="/arugambay" element={<ArugambayPage />} />

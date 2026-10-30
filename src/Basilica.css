@@ -1,0 +1,21 @@
+.basilica-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/basilica1.jpeg");
+}
+
+.basilica-title {
+  color: #8e3b2f;
+}
+
+.basilica-card .play-btn,
+.basilica-card .play-btn:hover,
+.basilica-card .play-btn.playing,
+.basilica-card .play-btn.playing:hover {
+  background: #8e3b2f;
+}
+
+.basilica-card .play-btn:hover,
+.basilica-card .play-btn.playing:hover {
+  background: #6d2c24;
+}
