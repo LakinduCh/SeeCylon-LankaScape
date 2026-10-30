@@ -21,6 +21,11 @@ import WilpattuPage from './pages/Wilpattu';
 import AnuradhapuraPage from './pages/Anuradhapura';
 import MinneriyaPage from './pages/Minneriya';
 import NallurPage from './pages/Nallur';
+import AdamsBridgePage from './pages/AdamsBridge';
+import BasilicaPage from './pages/Basilica';
+import HiriketiyaPage from './pages/Hiriketiya';
+import NilaveliPage from './pages/Nilaveli';
+import PasikudaPage from './pages/Pasikuda';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -165,6 +170,46 @@ createRoot(document.getElementById('root')).render(
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route
+          path="/hiriketiya"
+          element={
+            <DestinationWrapper>
+              <HiriketiyaPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/pasikuda"
+          element={
+            <DestinationWrapper>
+              <PasikudaPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/nilaveli"
+          element={
+            <DestinationWrapper>
+              <NilaveliPage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/adams-bridge"
+          element={
+            <DestinationWrapper>
+              <AdamsBridgePage />
+            </DestinationWrapper>
+          }
+        />
+        <Route
+          path="/basilica"
+          element={
+            <DestinationWrapper>
+              <BasilicaPage />
+            </DestinationWrapper>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>

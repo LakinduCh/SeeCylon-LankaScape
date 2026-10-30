@@ -1,0 +1,25 @@
+.adams-bridge-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/adams bridge.jpeg");
+}
+
+.adams-bridge-title {
+  color: #1565c0;
+}
+
+.adams-bridge-card .play-btn,
+.adams-bridge-card .play-btn:hover,
+.adams-bridge-card .play-btn.playing,
+.adams-bridge-card .play-btn.playing:hover {
+  background: #1565c0;
+}
+
+.adams-bridge-card .play-btn:hover,
+.adams-bridge-card .play-btn.playing:hover {
+  background: #0d47a1;
+}
+
+.adams-bridge-card .gallery video {
+  transform: scale(1.05);
+}

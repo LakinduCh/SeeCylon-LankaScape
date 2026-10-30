@@ -1,0 +1,25 @@
+.nilaveli-card {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+    url("./assets/nilaveli1.jpeg");
+}
+
+.nilaveli-title {
+  color: #1565c0;
+}
+
+.nilaveli-card .play-btn,
+.nilaveli-card .play-btn:hover,
+.nilaveli-card .play-btn.playing,
+.nilaveli-card .play-btn.playing:hover {
+  background: #1565c0;
+}
+
+.nilaveli-card .play-btn:hover,
+.nilaveli-card .play-btn.playing:hover {
+  background: #0d47a1;
+}
+
+.nilaveli-card .gallery video {
+  transform: scale(1.08);
+}

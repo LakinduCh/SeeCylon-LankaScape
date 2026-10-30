@@ -17,6 +17,11 @@ export const DESTINATIONS = [
   { path: '/lotus-tower', label: 'Lotus Tower' },
   { path: '/pinnawala', label: 'Pinnawala' },
   { path: '/wilpattu', label: 'Wilpattu' },
+  { path: '/hiriketiya', label: 'Hiriketiya' },
+  { path: '/pasikuda', label: 'Pasikuda' },
+  { path: '/nilaveli', label: 'Nilaveli' },
+  { path: '/adams-bridge', label: "Adam's Bridge" },
+  { path: '/basilica', label: 'Basilica' },
 ];
 
 export default function DestinationWrapper({ children }) {
