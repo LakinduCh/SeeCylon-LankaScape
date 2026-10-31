@@ -256,3 +256,21 @@ html, body, #root {
   }
 }
 
+/* Walk game: "+Rs 50" floating pickup text */
+@keyframes hit-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes banner-fade {
+  0% { opacity: 0; transform: translateY(6px); }
+  10% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes coin-pop {
+  0% { opacity: 0; transform: translateY(8px) scale(0.8); }
+  15% { opacity: 1; transform: translateY(0) scale(1.15); }
+  100% { opacity: 0; transform: translateY(-34px) scale(1); }
+}

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LankaScapeCanvas from './components/LankaScapeCanvas';
+import WalkHud from './game/WalkHud';
+import { vehicleFor, nextVehicle } from './game/rides';
 import DestinationCard from './components/DestinationCard';
 import HierarchicalFilter from './components/HierarchicalFilter';
 import AudioMuteToggle from './components/AudioMuteToggle';
@@ -14,6 +16,62 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeSubcategory, setActiveSubcategory] = useState('all');
   const activeStyle = 'realistic';
+  const [walkMode, setWalkMode] = useState(false);
+  // Destinations reached on this walk; cleared when walking stops, like the coins
+  const [stamps, setStamps] = useState([]);
+
+  // Rupee coins found on this walk: { coinId: value }. Every walk starts fresh, so
+  // stopping (button or Esc) puts all the coins back and zeroes the rupees.
+  const [coinsFound, setCoinsFound] = useState({});
+  const [lastPickup, setLastPickup] = useState(null);
+  const [dead, setDead] = useState(false);
+
+  useEffect(() => {
+    if (!walkMode) {
+      setCoinsFound({});
+      setLastPickup(null);
+      setStamps([]);
+    }
+  }, [walkMode]);
+
+  const rupees = Object.values(coinsFound).reduce((sum, v) => sum + v, 0);
+
+  const handleCollect = (coin) => {
+    setCoinsFound((prev) => (coin.id in prev ? prev : { ...prev, [coin.id]: coin.value }));
+    setLastPickup({ value: coin.value, key: Date.now() });
+  };
+
+  // Health hit zero: end the walk (which resets coins and stamps) and show the death screen
+  const handleDeath = () => {
+    setWalkMode(false);
+    setDead(true);
+  };
+
+  const handleRetry = () => {
+    setDead(false);
+    setWalkMode(true);
+  };
+
+  const handleResetCoins = () => {
+    setCoinsFound({});
+    setLastPickup(null);
+  };
+
+  useEffect(() => {
+    if (!walkMode) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setWalkMode(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [walkMode]);
+
+  // Walking into a destination collects its stamp and opens its card
+  const handleArrive = (loc) => {
+    setStamps((prev) => (prev.includes(loc.id) ? prev : [...prev, loc.id]));
+    setSelectedLocation(loc);
+    setIsCardAudioPlaying(false);
+  };
 
   const handleReset = () => {
     setSelectedLocation(null);
@@ -79,6 +137,28 @@ export default function App() {
         activeSubcategory={activeSubcategory}
         activeStyle={activeStyle}
         isMuted={isMuted}
+        walkMode={walkMode}
+        onArrive={handleArrive}
+        onCollect={handleCollect}
+        onDeath={handleDeath}
+        rupees={rupees}
+        collectedCoinIds={Object.keys(coinsFound)}
+      />
+
+      <WalkHud
+        walking={walkMode}
+        onToggle={() => setWalkMode((w) => !w)}
+        stampCount={stamps.length}
+        total={locations.length}
+        rupees={rupees}
+        ride={vehicleFor(rupees)}
+        nextRide={nextVehicle(rupees)}
+        coinsFound={Object.keys(coinsFound).filter((id) => !id.startsWith('reward:')).length}
+        lastPickup={lastPickup}
+        onResetCoins={handleResetCoins}
+        dead={dead}
+        onRetry={handleRetry}
+        onCloseDeath={() => setDead(false)}
       />
 
       {/* Hierarchical Breadcrumb Destination Detail Card */}

@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import locations from '../data/locations.json';
 import { mapStyles } from '../data/mapStyles';
 import { destinationThemeMusic } from '../data/destinationMusic';
+import GameLayer from '../game/GameLayer';
 
 // Sleek 3D Loading Indicator
 function CanvasLoader() {
@@ -63,6 +64,7 @@ function SriLankaMap({ activeStyle = 'realistic' }) {
 
   return (
     <primitive
+      name="lanka-map"
       object={scene}
       scale={0.456}
       position={[0, -4.12, -0.127]}
@@ -95,6 +97,11 @@ const shortTags = {
   anuradhapura: 'Ancient Capital',
   minneriya: 'Elephant Gathering',
   nallur: 'Sacred Kovil',
+  hiriketiya: 'Surf Bay',
+  pasikuda: 'Pale Sand Bay',
+  nilaveli: 'Pigeon Island',
+  adamsbridge: "Rama's Bridge",
+  basilica: 'Pilgrim Basilica',
 };
 
 const destinationDisplayNames = {
@@ -114,6 +121,11 @@ const destinationDisplayNames = {
   anuradhapura: 'Anuradhapura',
   minneriya: 'Minneriya',
   nallur: 'Nallur Kovil',
+  hiriketiya: 'Hiriketiya',
+  pasikuda: 'Pasikuda',
+  nilaveli: 'Nilaveli',
+  adamsbridge: "Adam's Bridge",
+  basilica: 'Basilica',
 };
 
 const labelOffsets = {
@@ -382,6 +394,7 @@ function LocationNode({
   activeCategory = 'all',
   activeSubcategory = 'all',
   activeStyle = 'realistic',
+  walkMode = false,
 }) {
   const headGroupRef = useRef();
   const shadowRef = useRef();
@@ -396,7 +409,9 @@ function LocationNode({
   const texture = useCategoryTexture(location.categoryId, activeColor);
   const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
   const glowMultiplier = styleConfig.pinGlowMultiplier || 1.0;
-  const labelPos = labelOffsets[location.id] || [0, 0.44, 0];
+  const baseLabelPos = labelOffsets[location.id] || [0, 0.44, 0];
+  // While walking, lift the board so it floats above the traveler instead of covering him
+  const labelPos = walkMode ? [baseLabelPos[0], baseLabelPos[1] + 0.35, baseLabelPos[2]] : baseLabelPos;
 
   useEffect(() => {
     return () => {
@@ -589,7 +604,9 @@ function LocationNode({
         <Html
           position={labelPos}
           center
-          distanceFactor={7.0}
+          // distanceFactor scales the board by 1/distance; the chase camera is ~1 unit away,
+          // so keep it small in walk mode or the board balloons over the traveler
+          distanceFactor={walkMode ? 0.7 : 7.0}
           zIndexRange={isHovered ? [990, 1000] : [100, 200]}
           className="pointer-events-auto select-none"
         >
@@ -819,6 +836,12 @@ export default function LankaScapeCanvas({
   activeSubcategory = 'all',
   activeStyle = 'realistic',
   isMuted = false,
+  walkMode = false,
+  onArrive,
+  onCollect,
+  onDeath,
+  rupees = 0,
+  collectedCoinIds = [],
 }) {
   const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
   const [hoveredLocationId, setHoveredLocationId] = useState(null);
@@ -988,8 +1011,20 @@ export default function LankaScapeCanvas({
         <SriLankaMap activeStyle={activeStyle} />
       </Suspense>
 
-      <CameraController
-        targetPosition={selectedLocation?.position}
+      {/* The tour camera would fight the walker's chase camera, so it only runs when not walking */}
+      {!walkMode && (
+        <CameraController
+          targetPosition={selectedLocation?.position}
+        />
+      )}
+      <GameLayer
+        active={walkMode}
+        onArrive={onArrive}
+        onCollect={onCollect}
+        onDeath={onDeath}
+        rupees={rupees}
+        collectedIds={collectedCoinIds}
+        muted={isMuted}
       />
 
       {/* Render Location Raycast Nodes with Unified 3D Beacon Mesh */}
@@ -999,7 +1034,8 @@ export default function LankaScapeCanvas({
           location={loc}
           onSelect={onSelectLocation}
           isSelected={selectedLocation?.id === loc.id}
-          isHovered={hoveredLocationId === loc.id}
+          isHovered={!walkMode && hoveredLocationId === loc.id}
+          walkMode={walkMode}
           onHover={(isHovering) => handleLocationHover(loc.id, isHovering)}
           activeCategory={activeCategory}
           activeSubcategory={activeSubcategory}
