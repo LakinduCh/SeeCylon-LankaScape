@@ -77,7 +77,7 @@
     "thumbnail": "/assets/destinations/sigiriya/image1.jpeg",
     "position": [-1.057, 5.72, -1.103],
     "description": "Ancient palace fortress built atop a massive 200-meter column of rock with iconic frescoes, mirror wall, and landscaped water gardens.",
-    "audioUrl": "/assets/destinations/sigiriya/audio.mp3"
+    "audioUrl": "/assets/destinations/sigiriya/voiceover.wav"
   },
   {
     "id": "minneriya",
@@ -173,7 +173,7 @@
     "thumbnail": "/assets/destinations/horton/image1.jpeg",
     "position": [-0.135, 5.70, 2.564],
     "description": "A stunning highland plateau with misty cloud forests, rich biodiversity, Baker's Falls, and the sheer drop of World's End cliff.",
-    "audioUrl": "/assets/destinations/horton/audio.mp3"
+    "audioUrl": "/assets/destinations/horton/voiceover.wav"
   },
   {
     "id": "ella",
@@ -189,7 +189,7 @@
     "thumbnail": "/assets/destinations/ella/image1.jpeg",
     "position": [0.18, 5.72, 2.22],
     "description": "An architectural marvel built entirely of solid rocks, bricks, and cement without steel, soaring amidst lush highland tea plantations.",
-    "audioUrl": "/assets/destinations/ella/audio.mp3"
+    "audioUrl": "/assets/destinations/ella/voiceover.wav"
   },
   {
     "id": "arugambay",
@@ -205,7 +205,7 @@
     "thumbnail": "/assets/destinations/arugambay/image1.jpeg",
     "position": [2.067, 5.58, 1.628],
     "description": "World-renowned surf destination on the Indian Ocean with pristine sandy beaches, right-hand point breaks, and laid-back coastal culture.",
-    "audioUrl": "/assets/destinations/arugambay/audio.mp3"
+    "audioUrl": "/assets/destinations/arugambay/voiceover.wav"
   },
   {
     "id": "yala",
@@ -221,7 +221,7 @@
     "thumbnail": "/assets/destinations/yala/image1.jpeg",
     "position": [1.231, 5.54, 2.482],
     "description": "Sri Lanka's most celebrated wildlife sanctuary, home to roaming wild elephants, sloth bears, and one of the highest leopard densities on Earth.",
-    "audioUrl": "/assets/destinations/yala/audio.mp3"
+    "audioUrl": "/assets/destinations/yala/voiceover.wav"
   },
   {
     "id": "galle",
@@ -237,7 +237,7 @@
     "thumbnail": "/assets/destinations/galle/image1.jpeg",
     "position": [-1.439, 5.56, 4.065],
     "description": "A UNESCO World Heritage coastal bastion built by the Portuguese and fortified by the Dutch, boasting historic ramparts and ocean views.",
-    "audioUrl": "/assets/destinations/galle/audio.mp3"
+    "audioUrl": "/assets/destinations/galle/voiceover.wav"
   },
   {
     "id": "mirissa",
@@ -253,6 +253,81 @@
     "thumbnail": "/assets/destinations/mirissa/image1.jpeg",
     "position": [-0.846, 5.42, 4.085],
     "description": "Sri Lanka's tropical coastal paradise celebrated for golden crescent shores, clear turquoise waters, coconut palms, and whale watching.",
-    "audioUrl": "/assets/destinations/mirissa/audio.mp3"
+    "audioUrl": "/assets/destinations/mirissa/voiceover.wav"
+  },
+  {
+    "id": "hiriketiya",
+    "nodeName": "hiriketiya",
+    "name": "Hiriketiya Bay",
+    "categoryId": "coastal-marine",
+    "subcategoryId": "surfing-bays",
+    "categoryName": "Coastal & Marine",
+    "subcategoryName": "World Surfing Bays",
+    "hierarchyPath": ["Coastal & Marine", "World Surfing Bays", "Hiriketiya Bay"],
+    "pinGeometry": "sphere",
+    "tags": ["Surf Bay", "Palm-Fringed Sands", "Dikwella"],
+    "thumbnail": "/assets/destinations/hiriketiya/image1.jpeg",
+    "position": [-0.524, 5.46, 4.05],
+    "description": "Hiriketiya is a small, crescent-shaped bay on Sri Lanka's southern coast, near the town of Dikwella."
+  },
+  {
+    "id": "pasikuda",
+    "nodeName": "pasikuda",
+    "name": "Pasikuda Beach",
+    "categoryId": "coastal-marine",
+    "subcategoryId": "marine-beaches",
+    "categoryName": "Coastal & Marine",
+    "subcategoryName": "Golden Beaches & Marine Life",
+    "hierarchyPath": ["Coastal & Marine", "Golden Beaches & Marine Life", "Pasikuda Beach"],
+    "pinGeometry": "sphere",
+    "tags": ["Shallow Turquoise Bay", "Pale Sands", "East Coast"],
+    "thumbnail": "/assets/destinations/pasikuda/image1.jpeg",
+    "position": [1.005, 5.46, -0.958],
+    "description": "Pasikuda, on Sri Lanka's eastern coast near Batticaloa, is famed for its long sweep of pale sand and clear, shallow water."
+  },
+  {
+    "id": "nilaveli",
+    "nodeName": "nilaveli",
+    "name": "Nilaveli Beach",
+    "categoryId": "coastal-marine",
+    "subcategoryId": "marine-beaches",
+    "categoryName": "Coastal & Marine",
+    "subcategoryName": "Golden Beaches & Marine Life",
+    "hierarchyPath": ["Coastal & Marine", "Golden Beaches & Marine Life", "Nilaveli Beach"],
+    "pinGeometry": "sphere",
+    "tags": ["White Sands", "Pigeon Island", "Snorkeling"],
+    "thumbnail": "/assets/destinations/nilaveli/image1.jpeg",
+    "position": [0.309, 5.46, -2.211],
+    "description": "Just north of Trincomalee, Nilaveli is a tranquil stretch of white sand bordered by the clear waters of Sri Lanka's east coast."
+  },
+  {
+    "id": "adamsbridge",
+    "nodeName": "adams bridge",
+    "name": "Adam's Bridge",
+    "categoryId": "coastal-marine",
+    "subcategoryId": "marine-beaches",
+    "categoryName": "Coastal & Marine",
+    "subcategoryName": "Golden Beaches & Marine Life",
+    "hierarchyPath": ["Coastal & Marine", "Golden Beaches & Marine Life", "Adam's Bridge"],
+    "pinGeometry": "sphere",
+    "tags": ["Rama's Bridge", "Limestone Shoals", "Mannar"],
+    "thumbnail": "/assets/destinations/adamsbridge/image1.jpeg",
+    "position": [-2.513, 5.44, -2.779],
+    "description": "Adam's Bridge, also known as Rama's Bridge or Ram Setu, is a chain of shallow shoals and sandbanks in the sea between Mannar Island in Sri Lanka and India."
+  },
+  {
+    "id": "basilica",
+    "nodeName": "basilica",
+    "name": "Basilica of Our Lady of Lanka",
+    "categoryId": "cultural-heritage",
+    "subcategoryId": "ancient-monuments",
+    "categoryName": "Cultural & Historic Heritage",
+    "subcategoryName": "Ancient Palaces & Citadels",
+    "hierarchyPath": ["Cultural & Historic Heritage", "Ancient Palaces & Citadels", "Basilica of Our Lady of Lanka"],
+    "pinGeometry": "cylinder",
+    "tags": ["Pilgrimage Site", "Our Lady of Lanka", "Tewatte"],
+    "thumbnail": "/assets/destinations/basilica/image1.jpg",
+    "position": [-2.092, 5.56, 1.94],
+    "description": "The Basilica of Our Lady of Lanka at Tewatte, near Ragama, is one of Sri Lanka's best-known Catholic pilgrimage sites."
   }
 ]

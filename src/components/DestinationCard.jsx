@@ -323,6 +323,7 @@ export default function DestinationCard({
 
         {/* Audio & Heart Actions */}
         <div className="destination-actions">
+          {cardData.audioSrc && (
           <button
             className={`destination-play-btn ${isPlaying ? 'playing' : ''}`}
             onClick={toggleAudio}
@@ -333,6 +334,7 @@ export default function DestinationCard({
             {isPlaying ? <FaPause className="text-sm" /> : <FaPlay className="text-sm" />}
             <span>{isPlaying ? 'Pause Audio' : 'Play Audio'}</span>
           </button>
+          )}
 
           <button
             className={`destination-heart-btn ${liked ? 'liked' : ''}`}

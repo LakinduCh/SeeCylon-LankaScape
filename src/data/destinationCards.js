@@ -8,7 +8,7 @@ export const destinationCardsData = {
     btnColor: "#2E7D32",
     btnHoverColor: "#1B5E20",
     bgImage: "/assets/destinations/yala/bg.jpeg",
-    audioSrc: "/assets/destinations/yala/audio.mp3",
+    audioSrc: "/assets/destinations/yala/voiceover.wav",
     description:
       "Yala National Park is Sri Lanka's most famous wildlife sanctuary. It is home to leopards, elephants, sloth bears, deer, crocodiles, and many bird species. Experience the beauty of nature and wildlife in one unforgettable destination.",
     galleryItems: [
@@ -28,7 +28,7 @@ export const destinationCardsData = {
     btnColor: "#c2185b",
     btnHoverColor: "#880e4f",
     bgImage: "/assets/destinations/sigiriya/bg.jpeg",
-    audioSrc: "/assets/destinations/sigiriya/audio.mp3",
+    audioSrc: "/assets/destinations/sigiriya/voiceover.wav",
     description:
       "Sigiriya is one of Sri Lanka's most famous historical landmarks. It is an ancient rock fortress surrounded by beautiful gardens and natural scenery. Explore the historic site, admire the ancient paintings, and enjoy the amazing view from the top of the rock.",
     galleryItems: [
@@ -48,7 +48,7 @@ export const destinationCardsData = {
     btnColor: "#8D6E63",
     btnHoverColor: "#5D4037",
     bgImage: "/assets/destinations/galle/bg.jpeg",
-    audioSrc: "/assets/destinations/galle/audio.mp3",
+    audioSrc: "/assets/destinations/galle/voiceover.wav",
     description:
       "Galle Fort is a historic landmark on the southern coast of Sri Lanka. It is famous for its old stone walls, colonial buildings, charming streets, and beautiful ocean views. Explore the historic fort, discover its unique culture, and enjoy the beautiful coastal scenery.",
     galleryItems: [
@@ -68,7 +68,7 @@ export const destinationCardsData = {
     btnColor: "#33691e",
     btnHoverColor: "#1b5e20",
     bgImage: "/assets/destinations/horton/bg.jpeg",
-    audioSrc: "/assets/destinations/horton/audio.mp3",
+    audioSrc: "/assets/destinations/horton/voiceover.wav",
     description:
       "Horton Plains National Park is a beautiful highland area in Sri Lanka, known for its cool climate, green grasslands, forests, and stunning mountain views. It is home to many plants and animals and is famous for World's End, Baker's Falls, and peaceful hiking trails.",
     galleryItems: [
@@ -88,7 +88,7 @@ export const destinationCardsData = {
     btnColor: "#0277BD",
     btnHoverColor: "#01579B",
     bgImage: "/assets/destinations/mirissa/bg.jpeg",
-    audioSrc: "/assets/destinations/mirissa/audio.mp3",
+    audioSrc: "/assets/destinations/mirissa/voiceover.wav",
     description:
       "Mirissa is a beautiful coastal destination in southern Sri Lanka. It is famous for its golden beach, clear blue water, relaxing atmosphere, and beautiful sunsets. Visitors can enjoy surfing, swimming, whale watching, and the peaceful beauty of the ocean.",
     galleryItems: [
@@ -108,7 +108,7 @@ export const destinationCardsData = {
     btnColor: "#00838f",
     btnHoverColor: "#006064",
     bgImage: "/assets/destinations/arugambay/bg.jpeg",
-    audioSrc: "/assets/destinations/arugambay/audio.mp3",
+    audioSrc: "/assets/destinations/arugambay/voiceover.wav",
     description:
       "Arugam Bay is one of Sri Lanka's most popular beach destinations and a world-famous surfing spot. It is known for its beautiful beaches, relaxing atmosphere, exciting waves, and stunning coastal scenery. Enjoy surfing, nature, and unforgettable beach experiences in this beautiful destination.",
     galleryItems: [
@@ -128,9 +128,9 @@ export const destinationCardsData = {
     btnColor: "#2E7D32",
     btnHoverColor: "#1B5E20",
     bgImage: "/assets/destinations/ella/bg.jpeg",
-    audioSrc: "/assets/destinations/ella/audio.mp3",
+    audioSrc: "/assets/destinations/ella/voiceover.wav",
     description:
-      "An architectural marvel built entirely of solid rocks, bricks, and cement without steel, soaring amidst lush highland tea plantations in Ella. A world-famous scenic railway winding through misty mountain clouds.",
+      "Nine Arch Bridge is one of Sri Lanka's most beautiful railway bridges, located between Ella and Demodara. Surrounded by green mountains and tea plantations, the bridge offers a stunning view and is a popular destination for both local and foreign tourists.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/ella/video.mp4" },
       { type: "image", src: "/assets/destinations/ella/image1.jpeg", alt: "Nine Arch Bridge Train" },
@@ -141,7 +141,7 @@ export const destinationCardsData = {
   },
   adamspeak: {
     id: "adamspeak",
-    title: "Adam's Peak (Sri Pada)",
+    title: "Adam's Peak",
     route: "/adams-peak",
     cardClass: "adamspeak-card",
     titleColor: "#e65100",
@@ -150,7 +150,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/adamspeak/adambg.jpeg",
     audioSrc: "/assets/destinations/adamspeak/adam.wav",
     description:
-      "Sacred mountain revered across faiths for the sacred footprint mark at the summit. Famous for dawn pilgrimages and celestial sunrise views over vast cloud seas.",
+      "Adam's Peak is one of Sri Lanka's most iconic mountains and a popular destination for pilgrims and travelers. The mountain is famous for its sacred footprint, beautiful surrounding scenery, and breathtaking views from the summit. Experience the peaceful journey and stunning landscapes of this remarkable destination.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/adamspeak/adams.mp4" },
       { type: "image", src: "/assets/destinations/adamspeak/adam1.jpeg", alt: "Adam's Peak 1" },
@@ -170,7 +170,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/delft/delftbg.jpeg",
     audioSrc: "/assets/destinations/delft/delf.wav",
     description:
-      "An isolated coral island in the Palk Strait featuring wild horses left by the Portuguese, ancient baobab trees, and ruins of Dutch colonial forts.",
+      "Delft Island is a unique island located off the northern coast of Sri Lanka. It is famous for its wild ponies, ancient ruins, coral walls, baobab trees, and beautiful coastal landscapes. Explore the island and discover its fascinating history and natural beauty.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/delft/delft.mp4" },
       { type: "image", src: "/assets/destinations/delft/delft1.jpeg", alt: "Delft Island 1" },
@@ -181,7 +181,7 @@ export const destinationCardsData = {
   },
   kandy: {
     id: "kandy",
-    title: "Temple of the Tooth, Kandy",
+    title: "Temple of the Tooth",
     route: "/kandy",
     cardClass: "kandy-card",
     titleColor: "#f57f17",
@@ -190,7 +190,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/kandy/kandybg.jpeg",
     audioSrc: "/assets/destinations/kandy/kandy.wav",
     description:
-      "The golden-roofed royal temple housing the sacred relic of the tooth of the Buddha, set beside the tranquil waters of Kandy Lake.",
+      "The Temple of the Tooth is one of Sri Lanka's most sacred and important religious sites, located in the historic city of Kandy. The temple is believed to house a sacred tooth relic of the Buddha and is surrounded by beautiful traditional architecture, peaceful gardens, and the scenic Kandy Lake.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/kandy/kandy.mp4" },
       { type: "image", src: "/assets/destinations/kandy/kandy1.jpeg", alt: "Temple of the Tooth 1" },
@@ -201,7 +201,7 @@ export const destinationCardsData = {
   },
   lotustower: {
     id: "lotustower",
-    title: "Colombo Lotus Tower",
+    title: "Lotus Tower",
     route: "/lotus-tower",
     cardClass: "lotustower-card",
     titleColor: "#c2185b",
@@ -210,7 +210,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/lotustower/lotustowerbg.jpeg",
     audioSrc: "/assets/destinations/lotustower/lotustower.wav",
     description:
-      "South Asia's tallest self-supported structure shaped like an opening lotus blossom, dominating Colombo's modern coastal skyline.",
+      "Colombo Lotus Tower rises above the city with panoramic views, modern architecture, and a memorable evening skyline.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/lotustower/lotustower.mp4" },
       { type: "image", src: "/assets/destinations/lotustower/lotustower1.jpeg", alt: "Lotus Tower 1" },
@@ -221,7 +221,7 @@ export const destinationCardsData = {
   },
   pinnawala: {
     id: "pinnawala",
-    title: "Pinnawala Elephant Sanctuary",
+    title: "Elephant Orphanage",
     route: "/pinnawala",
     cardClass: "pinnawala-card",
     titleColor: "#4e342e",
@@ -230,7 +230,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/pinnawala/pinnawalabg.jpeg",
     audioSrc: "/assets/destinations/pinnawala/pinnawala.wav",
     description:
-      "A renowned breeding sanctuary caring for orphaned Asian elephants, famous for the daily herd bathing ritual in the flowing Maha Oya river.",
+      "Pinnawala Elephant Orphanage is a popular destination in Sri Lanka where visitors can observe elephants in a natural and peaceful environment. The area is especially known for elephants bathing and playing in the river, creating a memorable experience surrounded by beautiful tropical scenery.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/pinnawala/pinnawala.mp4" },
       { type: "image", src: "/assets/destinations/pinnawala/pinnawala1.jpeg", alt: "Pinnawala 1" },
@@ -250,7 +250,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/wilpattu/wilpattubg.jpeg",
     audioSrc: "/assets/destinations/wilpattu/wilpaththu.wav",
     description:
-      "Sri Lanka's largest and oldest national park, characterized by unique natural rainwater basins ('villus'), dense forests, leopards, and sloth bears.",
+      "Wilpattu National Park is one of Sri Lanka's most famous wildlife destinations, known for its beautiful natural landscapes, dense forests, and unique natural lakes called villus. The park is home to elephants, leopards, sloth bears, deer, crocodiles, and many species of birds, making it an exciting destination for wildlife lovers.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/wilpattu/wilpattu.mp4" },
       { type: "image", src: "/assets/destinations/wilpattu/wilpattu1.jpeg", alt: "Wilpattu 1" },
@@ -270,7 +270,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/anuradhapura/bg.jpeg",
     audioSrc: "/assets/destinations/anuradhapura/audio.mp3",
     description:
-      "Sri Lanka's ancient sovereign capital celebrated for monumental white stupas, the sacred Jaya Sri Maha Bodhi tree, and preserved Buddhist monasteries spanning over a thousand years.",
+      "Anuradhapura is one of Sri Lanka's most important ancient cities, famous for its sacred Buddhist sites, enormous stupas, and ancient ruins. Explore the sacred Sri Maha Bodhi tree, Ruwanwelisaya Stupa, Jetavanaramaya, and the rich history of Sri Lanka's ancient kingdom.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/anuradhapura/video.mp4" },
       { type: "image", src: "/assets/destinations/anuradhapura/image1.jpeg", alt: "Anuradhapura 1" },
@@ -290,7 +290,7 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/minneriya/bg.jpeg",
     audioSrc: "/assets/destinations/minneriya/audio.mp3",
     description:
-      "World-famous for 'The Great Gathering', where hundreds of wild Asian elephants congregate on the lush shores of the ancient Minneriya reservoir during the dry season.",
+      "Minneriya National Park is famous for its spectacular Elephant Gathering, where large herds of wild Asian elephants gather around the Minneriya Tank during the dry season. Enjoy an exciting wildlife safari and discover elephants, deer, monkeys, and many beautiful bird species in their natural habitat.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/minneriya/video.mp4" },
       { type: "image", src: "/assets/destinations/minneriya/image1.jpeg", alt: "Minneriya 1" },
@@ -301,7 +301,7 @@ export const destinationCardsData = {
   },
   nallur: {
     id: "nallur",
-    title: "Nallur Kovil",
+    title: "Nallur",
     route: "/nallur-kovil",
     cardClass: "nallur-card",
     titleColor: "#ec4899",
@@ -310,13 +310,108 @@ export const destinationCardsData = {
     bgImage: "/assets/destinations/nallur/bg.jpeg",
     audioSrc: "/assets/destinations/nallur/audio.mp3",
     description:
-      "The sacred spiritual heart of Jaffna, renowned for its towering golden gopuram, intricate Dravidian architecture, sacred holy pools, and vibrant religious pageantry.",
+      "Nallur, located in Jaffna, is famous for the magnificent Nallur Kandaswamy Kovil, one of Sri Lanka's most important Hindu temples. Known for its beautiful Dravidian architecture, golden decorations, and vibrant annual Nallur Festival, it is a special destination for culture, spirituality, and Tamil heritage.",
     galleryItems: [
       { type: "video", src: "/assets/destinations/nallur/video.mp4" },
       { type: "image", src: "/assets/destinations/nallur/image1.jpeg", alt: "Nallur 1" },
       { type: "image", src: "/assets/destinations/nallur/image2.jpeg", alt: "Nallur 2" },
       { type: "image", src: "/assets/destinations/nallur/image3.jpeg", alt: "Nallur 3" },
       { type: "image", src: "/assets/destinations/nallur/image4.jpeg", alt: "Nallur 4" },
+    ],
+  },
+  hiriketiya: {
+    id: "hiriketiya",
+    title: "Hiriketiya",
+    route: "/hiriketiya",
+    cardClass: "hiriketiya-card",
+    titleColor: "#64b5f6",
+    btnColor: "#64b5f6",
+    btnHoverColor: "#1e88e5",
+    bgImage: "/assets/destinations/hiriketiya/bg.jpeg",
+    description:
+      "Hiriketiya is a small, crescent-shaped bay on Sri Lanka's southern coast, near the town of Dikwella. Palm-fringed sands curve around clear water, creating a scenic setting for a swim or a slow afternoon by the shore. The bay is also a popular surf spot, with waves that draw both learners and experienced surfers, while nearby cafés give the village its laid-back, welcoming feel.",
+    galleryItems: [
+      { type: "video", src: "/assets/destinations/hiriketiya/video.mp4" },
+      { type: "image", src: "/assets/destinations/hiriketiya/image1.jpeg", alt: "Hiriketiya 1" },
+      { type: "image", src: "/assets/destinations/hiriketiya/image2.jpeg", alt: "Hiriketiya 2" },
+      { type: "image", src: "/assets/destinations/hiriketiya/image3.jpeg", alt: "Hiriketiya 3" },
+      { type: "image", src: "/assets/destinations/hiriketiya/image4.jpeg", alt: "Hiriketiya 4" },
+    ],
+  },
+  pasikuda: {
+    id: "pasikuda",
+    title: "Pasikuda",
+    route: "/pasikuda",
+    cardClass: "pasikuda-card",
+    titleColor: "#64b5f6",
+    btnColor: "#64b5f6",
+    btnHoverColor: "#1e88e5",
+    bgImage: "/assets/destinations/pasikuda/bg.jpeg",
+    description:
+      "Pasikuda, on Sri Lanka's eastern coast near Batticaloa, is famed for its long sweep of pale sand and clear, shallow water. The gently sloping bay is ideal for a relaxed swim and an unhurried day by the sea. Take in the open coastline, watch the light shift across the water, and enjoy a quieter side of the island's east coast.",
+    galleryItems: [
+      { type: "video", src: "/assets/destinations/pasikuda/video.mp4" },
+      { type: "image", src: "/assets/destinations/pasikuda/image1.jpeg", alt: "Pasikuda 1" },
+      { type: "image", src: "/assets/destinations/pasikuda/image2.jpeg", alt: "Pasikuda 2" },
+      { type: "image", src: "/assets/destinations/pasikuda/image3.jpeg", alt: "Pasikuda 3" },
+      { type: "image", src: "/assets/destinations/pasikuda/image4.jpeg", alt: "Pasikuda 4" },
+    ],
+  },
+  nilaveli: {
+    id: "nilaveli",
+    title: "Nilaveli",
+    route: "/nilaveli",
+    cardClass: "nilaveli-card",
+    titleColor: "#1565c0",
+    btnColor: "#1565c0",
+    btnHoverColor: "#0d47a1",
+    bgImage: "/assets/destinations/nilaveli/bg.jpeg",
+    description:
+      "Just north of Trincomalee, Nilaveli is a tranquil stretch of white sand bordered by the clear waters of Sri Lanka's east coast. Its calm shoreline is a welcome place to swim, stroll, or simply pause beneath the palms. From the beach, visitors can take a boat to Pigeon Island National Park, where coral reefs and tropical fish make snorkeling a memorable way to explore the coast.",
+    galleryItems: [
+      { type: "video", src: "/assets/destinations/nilaveli/video.mp4" },
+      { type: "image", src: "/assets/destinations/nilaveli/image1.jpeg", alt: "Nilaveli 1" },
+      { type: "image", src: "/assets/destinations/nilaveli/image2.jpeg", alt: "Nilaveli 2" },
+      { type: "image", src: "/assets/destinations/nilaveli/image3.jpeg", alt: "Nilaveli 3" },
+      { type: "image", src: "/assets/destinations/nilaveli/image4.jpeg", alt: "Nilaveli 4" },
+    ],
+  },
+  adamsbridge: {
+    id: "adamsbridge",
+    title: "Adam's Bridge",
+    route: "/adams-bridge",
+    cardClass: "adamsbridge-card",
+    titleColor: "#1565c0",
+    btnColor: "#1565c0",
+    btnHoverColor: "#0d47a1",
+    bgImage: "/assets/destinations/adamsbridge/bg.jpeg",
+    description:
+      "Adam's Bridge, also known as Rama's Bridge or Ram Setu, is a chain of shallow shoals and sandbanks in the sea between Mannar Island in Sri Lanka and India. The pale formations stand out against the surrounding blue water, creating a striking coastal landscape best appreciated from a distance. The area is also notable for its rich natural and cultural associations, making it a fascinating part of the island's north-western seascape.",
+    galleryItems: [
+      { type: "video", src: "/assets/destinations/adamsbridge/video.mp4" },
+      { type: "image", src: "/assets/destinations/adamsbridge/image1.jpeg", alt: "Adam's Bridge 1" },
+      { type: "image", src: "/assets/destinations/adamsbridge/image2.jpeg", alt: "Adam's Bridge 2" },
+      { type: "image", src: "/assets/destinations/adamsbridge/image3.jpeg", alt: "Adam's Bridge 3" },
+      { type: "image", src: "/assets/destinations/adamsbridge/image4.jpeg", alt: "Adam's Bridge 4" },
+    ],
+  },
+  basilica: {
+    id: "basilica",
+    title: "Basilica of Our Lady of Lanka",
+    route: "/basilica",
+    cardClass: "basilica-card",
+    titleColor: "#8e3b2f",
+    btnColor: "#8e3b2f",
+    btnHoverColor: "#6d2c24",
+    bgImage: "/assets/destinations/basilica/bg.jpg",
+    description:
+      "The Basilica of Our Lady of Lanka at Tewatte, near Ragama, is one of Sri Lanka's best-known Catholic pilgrimage sites. Its spacious design brings together traditional basilica features with local artistic influences, creating a distinctive place for prayer and reflection. Visitors can admire the architecture, take in the peaceful grounds, and learn about the devotion that draws pilgrims here throughout the year.",
+    galleryItems: [
+      { type: "video", src: "/assets/destinations/basilica/video.mp4" },
+      { type: "image", src: "/assets/destinations/basilica/image1.jpg", alt: "Basilica of Our Lady of Lanka 1" },
+      { type: "image", src: "/assets/destinations/basilica/image2.jpeg", alt: "Basilica of Our Lady of Lanka 2" },
+      { type: "image", src: "/assets/destinations/basilica/image3.jpg", alt: "Basilica of Our Lady of Lanka 3" },
+      { type: "image", src: "/assets/destinations/basilica/image4.jpg", alt: "Basilica of Our Lady of Lanka 4" },
     ],
   },
 };
