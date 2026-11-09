@@ -4,9 +4,10 @@ export const ENEMIES = {
   leopard: { shape: 'quad', size: 0.17, speed: 1.15, hp: 2, dmg: 12, cooldown: 1.0, color: '#d99a2b', spots: '#3a2410', ears: true },
   boar: { shape: 'quad', size: 0.15, speed: 0.85, hp: 3, dmg: 10, cooldown: 1.1, color: '#5a4535', tusks: true, ears: true },
   elephant: { shape: 'quad', size: 0.34, speed: 0.55, hp: 6, dmg: 25, cooldown: 1.5, color: '#7d8794', trunk: true, tusks: true, ears: true },
+  snake: { shape: 'snake', size: 0.2, speed: 0.8, hp: 1, dmg: 12, cooldown: 1.2, color: '#4f7a2b', accent: '#e0c030' },
 };
 
-// Challenges, keyed by location id. Only Yala and Minneriya have one; every other
+// Challenges, keyed by location id. Only Yala, Minneriya and Wilpattu have one; every other
 // destination opens its card as soon as the traveler walks up to it.
 //  defend: animals charge the traveler; fight them off with Space.
 //  dodge:  hazards mark a red circle on the ground, then strike; step out before they land.
@@ -14,6 +15,7 @@ export const ENEMIES = {
 export const CHALLENGES = {
   yala: { kind: 'defend', title: 'Leopard Ambush', blurb: 'Leopards and boars burst from the scrub.', enemies: [['leopard', 4], ['boar', 2]], interval: 2.2, maxAlive: 3, reward: 150 },
   minneriya: { kind: 'defend', title: 'Elephant Charge', blurb: 'The great gathering turns on you.', enemies: [['elephant', 3]], interval: 4.0, maxAlive: 2, reward: 200 },
+  wilpattu: { kind: 'defend', title: 'Snake Attack', blurb: 'Cobras and vipers slither out of the villu grass.', enemies: [['snake', 6]], interval: 2.0, maxAlive: 3, reward: 120 },
 };
 
 export const ZONE_RADIUS = 0.5; // stepping inside starts the challenge

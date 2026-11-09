@@ -61,7 +61,34 @@ function Quad({ d }) {
   );
 }
 
+// A snake: a chain of spheres that undulates sideways as it slithers (length 1, facing +Z)
+function Snake({ d }) {
+  const segs = useRef([]);
+  const count = 8;
+  useFrame((state) => {
+    const t = state.clock.elapsedTime * 6;
+    segs.current.forEach((seg, i) => {
+      if (seg) seg.position.x = Math.sin(t + i * 0.9) * 0.12;
+    });
+  });
+  return (
+    <group>
+      {Array.from({ length: count }, (_, i) => {
+        const z = 0.5 - (i / (count - 1)) * 1.0;
+        const r = i === 0 ? 0.1 : 0.08 - (i / count) * 0.04;
+        return (
+          <mesh key={i} position={[0, r, z]} ref={(el) => { segs.current[i] = el; }}>
+            <sphereGeometry args={[r, 10, 8]} />
+            <meshStandardMaterial color={i % 2 ? d.accent : d.color} roughness={0.7} />
+          </mesh>
+        );
+      })}
+    </group>
+  );
+}
+
 export default function Animal({ type }) {
   const d = ENEMIES[type];
+  if (d.shape === 'snake') return <Snake d={d} />;
   return <Quad d={d} />;
 }

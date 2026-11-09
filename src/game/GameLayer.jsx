@@ -185,7 +185,7 @@ export default function GameLayer({ active, onArrive, onCollect, onDeath, collec
     const camScale = live.current.ride.cam;
     const desired = new THREE.Vector3(p.x - fx * CAM_DISTANCE * camScale, p.y + CAM_HEIGHT * camScale, p.z - fz * CAM_DISTANCE * camScale);
     camera.position.lerp(desired, 1 - Math.exp(-dt * 5));
-    lookAt.current.set(p.x + fx * 0.2, p.y + 0.13, p.z + fz * 0.2);
+    lookAt.current.set(p.x + fx * 0.15, p.y + 0.1, p.z + fz * 0.15);
     camera.lookAt(lookAt.current);
 
     // Destinations with a challenge open their card once it's beaten (and again on a return
@@ -240,7 +240,7 @@ export default function GameLayer({ active, onArrive, onCollect, onDeath, collec
 
   return (
     <>
-      <Traveler ref={traveler} scale={0.2} vehicle={ride.tier} />
+      <Traveler ref={traveler} scale={0.15} vehicle={ride.tier} />
       <ChallengeLayer
         active={active}
         posRef={pos}

@@ -8,13 +8,11 @@ import {
   ATTACK_ARC, ATTACK_COOLDOWN, challengeProgress, playerAttack, startChallenge, stepChallenge,
 } from './combat';
 import {
-  damagePlayer, getCombat, healPlayer, markCleared, resetCombat, say, setChallengeHud, useCombat,
+  damagePlayer, getCombat, markCleared, resetCombat, say, setChallengeHud, useCombat,
 } from './combatStore';
 import { consumeAttack } from './input';
 import { sfx } from './sfx';
 
-const REGEN_PER_SECOND = 1.5;
-const CLEAR_HEAL = 30;
 const FALLBACK_GROUND = 5.4;
 
 const groundAt = (terrain, x, z) => terrain.current?.heightAt(x, z) ?? FALLBACK_GROUND;
@@ -104,7 +102,6 @@ export default function ChallengeLayer({ active, posRef, headingRef, terrain, tr
   const slashT = useRef(0);
   const slashRef = useRef();
   const hudClock = useRef(0);
-  const regenAcc = useRef(0);
   const deathSent = useRef(false);
   const [, setVersion] = useState(0);
   const bump = () => setVersion((v) => v + 1);
@@ -112,17 +109,21 @@ export default function ChallengeLayer({ active, posRef, headingRef, terrain, tr
   const live = useRef({});
   live.current = { onClear, onDeath, muted };
 
+  const walkStarted = useRef(false);
   useEffect(() => {
     if (!active) {
+      walkStarted.current = false;
       ch.current = null;
       setChallengeHud(null);
       return undefined;
     }
+    // The effect can re-run mid-walk (a hot reload, say); that must not refill the health
+    if (walkStarted.current) return undefined;
+    walkStarted.current = true;
     resetCombat();
     ch.current = null;
     armed.current = new Set();
     deathSent.current = false;
-    regenAcc.current = 0;
     bump();
     return undefined;
   }, [active]);
@@ -185,16 +186,6 @@ export default function ChallengeLayer({ active, posRef, headingRef, terrain, tr
         say(`${def.title}!`);
         if (sound) sfx.start();
         bump();
-      } else {
-        // out of danger: heal slowly
-        const { health, max } = getCombat();
-        if (health < max) {
-          regenAcc.current += dt * REGEN_PER_SECOND;
-          if (regenAcc.current >= 1) {
-            healPlayer(Math.floor(regenAcc.current));
-            regenAcc.current %= 1;
-          }
-        }
       }
       return;
     }
@@ -227,7 +218,6 @@ export default function ChallengeLayer({ active, posRef, headingRef, terrain, tr
 
     if (c.done === 'win') {
       const { reward, title } = c.def;
-      healPlayer(CLEAR_HEAL);
       markCleared(c.loc.id);
       say(`${title} cleared!`);
       if (sound) sfx.win();

@@ -383,3 +383,47 @@ function analyseSurface(heights, land, w, h, colors) {
   for (let i = 0; i < w * h; i++) blocked[i] = core[i] > 0 && land[i] ? 1 : 0;
   return { ground, blocked, kind };
 }
+
+// --- Spawning -------------------------------------------------------------------------
+
+// Clear ground means him and everything within r of him is walkable, so he never starts
+// pressed against a wall or the sea.
+function clearAround(T, x, z, r) {
+  if (!T.isWalkable(x, z)) return false;
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+    if (!T.isWalkable(x + Math.cos(a) * r, z + Math.sin(a) * r)) return false;
+  }
+  return true;
+}
+
+// How far he can walk in a heading before something blocks him (forward = (sin h, cos h))
+function openRun(T, x, z, heading, max = 1.5) {
+  let d = 0;
+  while (d < max && T.isWalkable(x + Math.sin(heading) * (d + 0.03), z + Math.cos(heading) * (d + 0.03))) d += 0.03;
+  return d;
+}
+
+// Nearest spot to (x, z) with room around it, facing the most open direction. A destination
+// pin can sit on a landmark or the shoreline, and starting right at the foot of a wall (or
+// facing one) leaves him unable to move.
+export function findSpawn(T, x, z) {
+  for (let r = 0; r <= 1.5; r += 0.05) {
+    for (let a = 0; a < Math.PI * 2; a += Math.PI / 12) {
+      const sx = x + Math.cos(a) * r;
+      const sz = z + Math.sin(a) * r;
+      if (!clearAround(T, sx, sz, 0.12)) continue;
+      let heading = 0;
+      let best = -1;
+      for (let k = 0; k < 24; k++) {
+        const hd = (k / 24) * Math.PI * 2;
+        const run = openRun(T, sx, sz, hd);
+        if (run > best) {
+          best = run;
+          heading = hd;
+        }
+      }
+      return { x: sx, z: sz, heading };
+    }
+  }
+  return null;
+}
