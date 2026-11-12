@@ -12,7 +12,9 @@ There are two versions of that file:
 GitHub does not allow files over 100 MB, so the full-size file is shared through Google Drive.
 You do **not** need it to run the site. Use it only if you want the best-looking map.
 
-**Full-size download:** `PASTE THE GOOGLE DRIVE LINK HERE`
+**Full-size download:** https://drive.google.com/drive/folders/1BqLR6c2uT1Qb0wynSdNyEjnakWKflbKI?usp=sharing
+
+Open the folder and download the **V6 file** (`MPM-project_V6.glb`). Rename it to exactly `MPM-project_V6.glb` if the name is different.
 
 SHA-256 of the full-size file (to check the download is complete):
 
@@ -34,7 +36,7 @@ Open the address that `npm run dev` prints (usually http://localhost:5173). Noth
 
 ## Option B: use the full-size map
 
-1. Download the full-size file from the Drive link above (about 698 MB).
+1. Download the V6 file from the Drive folder above (about 698 MB).
 2. Check it (optional but recommended). In PowerShell:
    ```powershell
    Get-FileHash .\MPM-project_V6.glb -Algorithm SHA256
