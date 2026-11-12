@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import LankaScapeCanvas from './components/LankaScapeCanvas';
 import DestinationCard from './components/DestinationCard';
 import HierarchicalFilter from './components/HierarchicalFilter';
 import AudioMuteToggle from './components/AudioMuteToggle';
+import OutlineToggle from './components/OutlineToggle';
+import GameHud from './components/GameHud';
 import { useSoundMute } from './utils/audioManager';
 import locations from './data/locations.json';
 import './App.css';
+import './cartoon.css';
+
+// Game mode is built but switched off for now: the button shows "Coming Soon".
+const GAME_ENABLED = false;
 
 export default function App() {
   const { isMuted, setMute } = useSoundMute();
@@ -14,6 +20,35 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeSubcategory, setActiveSubcategory] = useState('all');
   const activeStyle = 'realistic';
+  const [gameMode, setGameMode] = useState(false);
+  const [nearPlace, setNearPlace] = useState(null);
+
+  const enterGame = useCallback(() => {
+    setSelectedLocation(null);
+    setIsCardAudioPlaying(false);
+    setGameMode(true);
+  }, []);
+  const exitGame = useCallback(() => {
+    setGameMode(false);
+    setNearPlace(null);
+  }, []);
+  useEffect(() => {
+    if (!gameMode) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') exitGame();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [gameMode, exitGame]);
+  const [outlineEnabled, setOutlineEnabled] = useState(() => {
+    try { return localStorage.getItem('mapOutline') !== 'off'; } catch { return true; }
+  });
+  const toggleOutline = useCallback(() => {
+    setOutlineEnabled((on) => {
+      try { localStorage.setItem('mapOutline', on ? 'off' : 'on'); } catch { /* ignore */ }
+      return !on;
+    });
+  }, []);
 
   const handleReset = () => {
     setSelectedLocation(null);
@@ -37,7 +72,7 @@ export default function App() {
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-slate-950 font-sans">
       {/* Unified Top Navigation Bar (Header + Hierarchical Filter) */}
-      <header className="fixed top-0 left-0 right-0 z-30 px-4 py-3 sm:px-6 sm:py-4 pointer-events-none select-none">
+      <header hidden={gameMode} className="fixed top-0 left-0 right-0 z-30 px-4 py-3 sm:px-6 sm:py-4 pointer-events-none select-none">
         <div className="w-full flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
           {/* Brand Logo & Taxonomy Subtitle */}
           <div className="pointer-events-auto flex flex-col flex-shrink-0">
@@ -68,6 +103,16 @@ export default function App() {
       {/* Bottom-Left Map Controls Toolbar (Sound Mute Toggle) */}
       <div className="bottom-map-controls-group">
         <AudioMuteToggle />
+        <OutlineToggle enabled={outlineEnabled} onToggle={toggleOutline} />
+        <button
+          type="button"
+          className="game-mode-btn"
+          onClick={gameMode ? exitGame : enterGame}
+          disabled={!GAME_ENABLED && !gameMode}
+          title={gameMode ? 'Back to the map [Esc]' : GAME_ENABLED ? 'Walk around the map' : 'Game mode is coming soon'}
+        >
+          {gameMode ? '🗺️ Back to Map' : GAME_ENABLED ? '🎮 Game Mode' : '🎮 Game Mode · Coming Soon'}
+        </button>
       </div>
 
       {/* 3D WebGL Canvas with Dynamic Visibility & Style Engine */}
@@ -79,11 +124,16 @@ export default function App() {
         activeSubcategory={activeSubcategory}
         activeStyle={activeStyle}
         isMuted={isMuted}
+        outlineEnabled={outlineEnabled}
+        gameMode={gameMode}
+        onNearPlace={setNearPlace}
       />
+
+      {gameMode && <GameHud nearPlace={nearPlace} />}
 
       {/* Hierarchical Breadcrumb Destination Detail Card */}
       <DestinationCard
-        location={selectedLocation}
+        location={gameMode ? null : selectedLocation}
         onClose={handleReset}
         onAudioPlayStateChange={setIsCardAudioPlaying}
         isMuted={isMuted}

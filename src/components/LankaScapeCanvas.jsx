@@ -6,6 +6,9 @@ import * as THREE from 'three';
 import locations from '../data/locations.json';
 import { mapStyles } from '../data/mapStyles';
 import { destinationThemeMusic } from '../data/destinationMusic';
+import SkyDome, { HORIZON_COLOR } from './SkyDome';
+import ToonOutline, { toonify } from './ToonOutline';
+import GameLayer from './GameLayer';
 
 // Sleek 3D Loading Indicator
 function CanvasLoader() {
@@ -31,7 +34,7 @@ function CanvasLoader() {
 }
 
 function SriLankaMap({ activeStyle = 'realistic' }) {
-  const { scene, animations } = useGLTF('/models/MPM-project_V5.glb');
+  const { scene, animations } = useGLTF('/models/MPM-project_V6.glb');
   const { actions } = useAnimations(animations, scene);
 
   // Auto-play wildlife and ambient idle animations
@@ -48,6 +51,7 @@ function SriLankaMap({ activeStyle = 'realistic' }) {
     if (scene) {
       const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
 
+      toonify(scene);
       scene.traverse((child) => {
         if (child.isMesh) {
           if (child.material) {
@@ -65,7 +69,7 @@ function SriLankaMap({ activeStyle = 'realistic' }) {
     <primitive
       object={scene}
       scale={0.456}
-      position={[0, -4.12, -0.127]}
+      position={[0.03, 5.3, 0.28]}
     />
   );
 }
@@ -396,7 +400,7 @@ function LocationNode({
   const texture = useCategoryTexture(location.categoryId, activeColor);
   const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
   const glowMultiplier = styleConfig.pinGlowMultiplier || 1.0;
-  const labelPos = labelOffsets[location.id] || [0, 0.44, 0];
+  const labelPos = [0, 0.2, 0];
 
   useEffect(() => {
     return () => {
@@ -434,8 +438,8 @@ function LocationNode({
   });
 
   const nodeScale = isMatch
-    ? (isSelected ? 1.48 : (isHovered ? 1.28 : 1.20))
-    : 0.55;
+    ? (isSelected ? 1.5 : (isHovered ? 1.4 : 1.0))
+    : 0.6;
 
   return (
     <group
@@ -443,42 +447,9 @@ function LocationNode({
       scale={nodeScale}
       visible={true}
     >
-      {/* 1. Soft Contact Shadow on Terrain */}
-      <mesh ref={shadowRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.005, 0]}>
-        <circleGeometry args={[0.08, 32]} />
-        <meshBasicMaterial
-          color="#000000"
-          transparent
-          opacity={0.36}
-          depthWrite={false}
-        />
-      </mesh>
-
-      {/* 2. Pinpoint Ground Anchor Target Dot & Ring */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.008, 0]}>
-        <ringGeometry args={[0.012, 0.024, 24]} />
-        <meshBasicMaterial
-          color={isHovered || isSelected ? '#fbbf24' : activeColor}
-          transparent
-          opacity={isMatch ? 0.9 : 0.2}
-          depthWrite={false}
-        />
-      </mesh>
-
-      {/* 3. Concentric Ground Radar Pulse */}
-      <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.009, 0]}>
-        <ringGeometry args={[0.02, 0.036, 32]} />
-        <meshBasicMaterial
-          color={isHovered || isSelected ? '#fbbf24' : activeColor}
-          transparent
-          opacity={isMatch ? 0.48 : 0.1}
-          depthWrite={false}
-        />
-      </mesh>
-
       {/* 4. Invisible 3D raycast hit cylinder for responsive click & hover */}
       <mesh
-        position={[0, 0.22, 0]}
+        position={[0, 0.07, 0]}
         onClick={(e) => {
           e.stopPropagation();
           onSelect(location);
@@ -494,242 +465,40 @@ function LocationNode({
           document.body.style.cursor = 'auto';
         }}
       >
-        <cylinderGeometry args={[0.26, 0.26, 0.54, 12]} />
-        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+        <sphereGeometry args={[0.1, 12, 12]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} userData={{ outlineParameters: { visible: false } }} />
       </mesh>
 
-      {/* 5. Floating Teardrop Pin Head & Bezel Group */}
-      <group
-        ref={headGroupRef}
-        position={[0, 0, 0]}
-        onClick={(e) => {
-          e.stopPropagation();
-          onSelect(location);
-        }}
-      >
-        <Billboard
-          follow={true}
-          lockX={false}
-          lockY={false}
-          lockZ={false}
-        >
-          {/* Ambient Glow Halo */}
-          <mesh position={[0, 0.25, -0.02]}>
-            <circleGeometry args={[0.18, 32]} />
-            <meshBasicMaterial
-              color={isHovered || isSelected ? '#fbbf24' : activeColor}
-              transparent
-              opacity={(isHovered || isSelected ? 0.52 : 0.24) * glowMultiplier}
-              depthWrite={false}
-            />
-          </mesh>
+      {/* 5. Small flat map dot: dark outline, category colour, tiny white centre */}
+      <Billboard position={[0, 0.07, 0]}>
+        <mesh>
+          <circleGeometry args={[0.052, 28]} />
+          <meshBasicMaterial color="#0b3d4a" transparent opacity={isMatch ? 0.9 : 0.3} depthWrite={false} fog={false} userData={{ outlineParameters: { visible: false } }} />
+        </mesh>
+        <mesh position={[0, 0, 0.001]}>
+          <circleGeometry args={[0.038, 28]} />
+          <meshBasicMaterial color={isHovered || isSelected ? '#ffd83d' : activeColor} transparent opacity={isMatch ? 0.95 : 0.35} depthWrite={false} fog={false} userData={{ outlineParameters: { visible: false } }} />
+        </mesh>
+        <mesh position={[0, 0, 0.002]}>
+          <circleGeometry args={[0.013, 20]} />
+          <meshBasicMaterial color="#ffffff" transparent opacity={isMatch ? 0.95 : 0.35} depthWrite={false} fog={false} userData={{ outlineParameters: { visible: false } }} />
+        </mesh>
+      </Billboard>
 
-          {/* 3D Sculpted Teardrop Pin Body (Polished Platinum / Titanium Shell) */}
-          <mesh geometry={getTeardropGeometry()} castShadow receiveShadow>
-            <meshStandardMaterial
-              color={isMatch ? (isHovered || isSelected ? '#fbbf24' : '#f8fafc') : '#94a3b8'}
-              metalness={0.82}
-              roughness={0.18}
-              emissive={isHovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(isHovered || isSelected ? 0.40 : 0.12) * glowMultiplier}
-            />
-          </mesh>
-
-          {/* Floating Metallic Pinpoint Tip Bead */}
-          <mesh position={[0, 0.035, 0]}>
-            <sphereGeometry args={[0.012, 16, 16]} />
-            <meshStandardMaterial
-              color={isHovered || isSelected ? '#fbbf24' : '#cbd5e1'}
-              metalness={0.95}
-              roughness={0.10}
-              emissive={isHovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(isHovered || isSelected ? 0.5 : 0.2) * glowMultiplier}
-            />
-          </mesh>
-
-          {/* Polished Metallic Bezel Ring Framing the Jewel */}
-          <mesh position={[0, 0.25, 0]}>
-            <torusGeometry args={[0.070, 0.008, 16, 32]} />
-            <meshStandardMaterial
-              color={isHovered || isSelected ? '#fbbf24' : '#e2e8f0'}
-              metalness={0.96}
-              roughness={0.10}
-              emissive={isHovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(isHovered || isSelected ? 0.60 : 0.25) * glowMultiplier}
-            />
-          </mesh>
-
-          {/* Front Luminous Jewel Medallion with Category Icon Texture */}
-          <mesh position={[0, 0.25, 0.003]}>
-            <circleGeometry args={[0.066, 36]} />
-            <meshStandardMaterial
-              map={texture || undefined}
-              color={texture ? '#ffffff' : activeColor}
-              metalness={0.10}
-              roughness={0.14}
-              emissive={isHovered || isSelected ? '#fbbf24' : activeColor}
-              emissiveIntensity={(isHovered || isSelected ? 0.60 : 0.35) * glowMultiplier}
-            />
-          </mesh>
-
-          {/* Back Brushed Metallic Cover Plate */}
-          <mesh position={[0, 0.25, -0.003]} rotation={[0, Math.PI, 0]}>
-            <circleGeometry args={[0.066, 36]} />
-            <meshStandardMaterial
-              color="#334155"
-              metalness={0.88}
-              roughness={0.22}
-            />
-          </mesh>
-        </Billboard>
-      </group>
-
-      {/* 6. Unified Destination Map Overlay (Single Stable HTML Element) */}
-      {!isSelected && isMatch && (
+      {/* 6. Hover-only cartoon name tag */}
+      {!isSelected && isMatch && isHovered && (
         <Html
           position={labelPos}
           center
           distanceFactor={7.0}
-          zIndexRange={isHovered ? [990, 1000] : [100, 200]}
-          className="pointer-events-auto select-none"
+          zIndexRange={[990, 1000]}
+          className="pointer-events-none select-none"
         >
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(location);
-            }}
-            onMouseEnter={() => {
-              onHover(true);
-              document.body.style.cursor = 'pointer';
-            }}
-            onMouseLeave={() => {
-              onHover(false);
-              document.body.style.cursor = 'auto';
-            }}
-            className="relative cursor-pointer transition-transform duration-200"
-          >
-            {isHovered ? (
-              /* Rich Travel Badge when Hovered */
-              <div
-                className="flex flex-col items-center transform -translate-y-2 animate-in fade-in zoom-in-95 duration-150"
-                style={{
-                  filter: activeStyle === 'night'
-                    ? 'drop-shadow(0 14px 28px rgba(0,0,0,0.65))'
-                    : 'drop-shadow(0 12px 24px rgba(15,23,42,0.18))',
-                }}
-              >
-                <div
-                  className="flex items-center gap-2.5 p-2 pr-3.5 rounded-2xl border transition-all duration-200"
-                  style={{
-                    background: activeStyle === 'night'
-                      ? 'rgba(24, 24, 27, 0.96)'
-                      : 'rgba(255, 255, 255, 0.98)',
-                    borderColor: activeStyle === 'night'
-                      ? 'rgba(255, 255, 255, 0.16)'
-                      : 'rgba(226, 232, 240, 0.95)',
-                    boxShadow: activeStyle === 'night'
-                      ? '0 10px 25px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
-                      : '0 10px 25px -4px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1)',
-                  }}
-                >
-                  {/* Clean Photo Thumbnail */}
-                  <div
-                    className="relative w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border"
-                    style={{
-                      borderColor: activeStyle === 'night' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)',
-                    }}
-                  >
-                    <img
-                      src={location.thumbnail}
-                      alt={location.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Info Text */}
-                  <div className="flex flex-col text-left pr-1 min-w-[110px] max-w-[170px]">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: activeColor }}
-                      />
-                      <span
-                        className="text-[10px] font-semibold uppercase tracking-wider truncate"
-                        style={{ color: activeStyle === 'night' ? '#a1a1aa' : '#64748b' }}
-                      >
-                        {shortTags[location.id] || location.subcategoryName || location.categoryName}
-                      </span>
-                    </div>
-
-                    <h4
-                      className="text-[13px] font-bold tracking-tight leading-tight truncate font-sans"
-                      style={{ color: activeStyle === 'night' ? '#ffffff' : '#0f172a' }}
-                    >
-                      {location.name}
-                    </h4>
-                  </div>
-
-                  {/* Action Chevron Circle */}
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{
-                      backgroundColor: activeStyle === 'night'
-                        ? 'rgba(255, 255, 255, 0.08)'
-                        : 'rgba(241, 245, 249, 1)',
-                      color: activeStyle === 'night' ? '#e4e4e7' : '#475569',
-                    }}
-                  >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Clean Downward Pointer Arrow */}
-                <div
-                  className="w-0 h-0 mx-auto border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px]"
-                  style={{
-                    borderTopColor: activeStyle === 'night'
-                      ? 'rgba(24, 24, 27, 0.96)'
-                      : 'rgba(255, 255, 255, 0.98)',
-                  }}
-                />
-              </div>
-            ) : (
-              /* Sleek Persistent Pill Label when NOT Hovered */
-              <div
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border backdrop-blur-md transition-all duration-200 hover:scale-105 shadow-md"
-                style={{
-                  backgroundColor: activeStyle === 'night'
-                    ? 'rgba(15, 23, 42, 0.90)'
-                    : 'rgba(255, 255, 255, 0.95)',
-                  borderColor: activeStyle === 'night'
-                    ? 'rgba(255, 255, 255, 0.16)'
-                    : 'rgba(226, 232, 240, 0.95)',
-                  color: activeStyle === 'night' ? '#f8fafc' : '#0f172a',
-                  boxShadow: activeStyle === 'night'
-                    ? '0 4px 14px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.3)'
-                    : '0 4px 14px rgba(15,23,42,0.15), 0 1px 3px rgba(15,23,42,0.06)',
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse"
-                  style={{ backgroundColor: activeColor }}
-                />
-                <span className="text-[11px] font-bold tracking-tight whitespace-nowrap font-sans">
-                  {destinationDisplayNames[location.id] || location.name}
-                </span>
-              </div>
-            )}
+          <div className="cartoon-name-tag" style={{ '--tag-color': activeColor }}>
+            <span className="cartoon-name-dot" />
+            <span className="cartoon-name-text">
+              {destinationDisplayNames[location.id] || location.name}
+            </span>
           </div>
         </Html>
       )}
@@ -738,11 +507,11 @@ function LocationNode({
 }
 
 // GSAP Camera Fly-To & Free Cam Orbit Controller with Aspect Ratio Awareness
-function CameraController({ targetPosition }) {
+function CameraController({ targetPosition, gameMode = false }) {
   const { camera, controls, size } = useThree();
 
   useEffect(() => {
-    if (controls) {
+    if (controls && !gameMode) {
       let destCam;
       let destTarget;
 
@@ -796,11 +565,11 @@ function CameraController({ targetPosition }) {
         tweenTarget.kill();
       };
     }
-  }, [targetPosition, camera, controls, size.width, size.height]);
+  }, [targetPosition, camera, controls, size.width, size.height, gameMode]);
 
   // Keep camera pan smoothly bounded within the ocean frame
   useFrame(() => {
-    if (controls) {
+    if (controls && !gameMode) {
       controls.target.x = THREE.MathUtils.clamp(controls.target.x, -6.0, 6.0);
       controls.target.z = THREE.MathUtils.clamp(controls.target.z, -6.0, 6.5);
       controls.target.y = THREE.MathUtils.clamp(controls.target.y, 4.5, 7.0);
@@ -819,6 +588,9 @@ export default function LankaScapeCanvas({
   activeSubcategory = 'all',
   activeStyle = 'realistic',
   isMuted = false,
+  outlineEnabled = true,
+  gameMode = false,
+  onNearPlace,
 }) {
   const styleConfig = mapStyles[activeStyle] || mapStyles.realistic;
   const [hoveredLocationId, setHoveredLocationId] = useState(null);
@@ -918,13 +690,15 @@ export default function LankaScapeCanvas({
   // Audio Ducking when destination card voice narration is playing
   useEffect(() => {
     if (activeMusicRef.current) {
-      if (isCardAudioPlaying) {
+      if (gameMode) {
+        activeMusicRef.current.volume = 0.14;
+      } else if (isCardAudioPlaying) {
         activeMusicRef.current.volume = 0.08;
       } else {
         activeMusicRef.current.volume = 0.38;
       }
     }
-  }, [isCardAudioPlaying]);
+  }, [isCardAudioPlaying, gameMode]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -941,11 +715,23 @@ export default function LankaScapeCanvas({
       dpr={[1, 2]}
       gl={{ antialias: true }}
       camera={{
-        position: [0, 12.0, 13.0],
+        position: [0, 11.0, 12.5],
         fov: 48,
       }}
       className={`w-full h-screen transition-colors duration-500 ${styleConfig.bgClass}`}
     >
+      <ToonOutline enabled={outlineEnabled} />
+
+      {/* Day sky + haze that melts the sea's far edge into the horizon */}
+      {activeStyle === 'night' ? (
+        <fog attach="fog" args={['#0b1020', 24, 44]} />
+      ) : (
+        <>
+          <SkyDome />
+          <fog attach="fog" args={[HORIZON_COLOR, 24, 44]} />
+        </>
+      )}
+
       {/* Dynamic Lighting System Driven by Map Style Theming Engine */}
       <ambientLight
         color={styleConfig.ambientLight.color}
@@ -965,11 +751,12 @@ export default function LankaScapeCanvas({
       {/* 3D OrbitControls Configured for Free Cam */}
       <OrbitControls
         makeDefault
+        enabled={!gameMode}
         enableRotate={true}
         enablePan={true}
         enableZoom={true}
         minDistance={3.5}
-        maxDistance={22.0}
+        maxDistance={15.0}
         minPolarAngle={0.15}
         maxPolarAngle={Math.PI / 2.2}
         target={[0, 5.7, 1.0]}
@@ -990,10 +777,17 @@ export default function LankaScapeCanvas({
 
       <CameraController
         targetPosition={selectedLocation?.position}
+        gameMode={gameMode}
       />
 
+      {gameMode && (
+        <Suspense fallback={null}>
+          <GameLayer isMuted={isMuted} onNear={onNearPlace} />
+        </Suspense>
+      )}
+
       {/* Render Location Raycast Nodes with Unified 3D Beacon Mesh */}
-      {locations.map((loc) => (
+      {!gameMode && locations.map((loc) => (
         <LocationNode
           key={loc.id}
           location={loc}
@@ -1010,4 +804,4 @@ export default function LankaScapeCanvas({
   );
 }
 
-useGLTF.preload('/models/MPM-project_V5.glb');
+useGLTF.preload('/models/MPM-project_V6.glb');

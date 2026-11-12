@@ -11,7 +11,7 @@
     "pinGeometry": "sphere",
     "tags": ["Wild Horses", "Giant Baobab", "Dutch Ruins"],
     "thumbnail": "/assets/destinations/delft/delft1.jpeg",
-    "position": [-2.45, 5.42, -3.72],
+    "position": [-1.907, 5.65, -3.67],
     "description": "Remote coral atoll island in northern Palk Strait featuring roaming wild ponies left by Portuguese seafarers, ancient hollow baobab trees, and coral walls.",
     "audioUrl": "/assets/destinations/delft/delf.wav"
   },
@@ -27,7 +27,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Golden Gopuram", "Jaffna Heritage", "Dravidian Architecture"],
     "thumbnail": "/assets/destinations/nallur/image1.jpeg",
-    "position": [-1.272, 5.48, -3.483],
+    "position": [-0.729, 5.652, -3.433],
     "description": "The sacred spiritual heart of the Jaffna peninsula, this magnificent Hindu temple features ornate golden gopuram towers, sacred water tanks, and vibrant festivals.",
     "audioUrl": "/assets/destinations/nallur/audio.mp3"
   },
@@ -43,7 +43,7 @@
     "pinGeometry": "octahedron",
     "tags": ["Natural Villus", "Leopards & Bears", "Ancient Wilderness"],
     "thumbnail": "/assets/destinations/wilpattu/wilpattu1.jpeg",
-    "position": [-2.20, 5.50, -1.65],
+    "position": [-1.697, 5.513, -1.682],
     "description": "Sri Lanka's largest and oldest national park, characterized by unique natural rainwater sand-rimmed lakes ('villus'), dense forests, and leopards.",
     "audioUrl": "/assets/destinations/wilpattu/wilpaththu.wav"
   },
@@ -59,7 +59,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Ancient Capital", "Sacred Stupas", "UNESCO Heritage"],
     "thumbnail": "/assets/destinations/anuradhapura/image1.jpeg",
-    "position": [-0.741, 5.58, -1.778],
+    "position": [-1.009, 5.638, -1.68],
     "description": "Sri Lanka's ancient sovereign capital celebrated for monumental white stupas, the sacred Jaya Sri Maha Bodhi tree, and preserved Buddhist monasteries spanning over a millennium.",
     "audioUrl": "/assets/destinations/anuradhapura/audio.mp3"
   },
@@ -75,7 +75,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Ancient Citadel", "UNESCO Heritage", "Frescoes & Mirror Wall"],
     "thumbnail": "/assets/destinations/sigiriya/image1.jpeg",
-    "position": [-1.057, 5.72, -1.103],
+    "position": [-0.328, 5.722, -0.79],
     "description": "Ancient palace fortress built atop a massive 200-meter column of rock with iconic frescoes, mirror wall, and landscaped water gardens.",
     "audioUrl": "/assets/destinations/sigiriya/audio.mp3"
   },
@@ -91,7 +91,7 @@
     "pinGeometry": "octahedron",
     "tags": ["The Great Gathering", "Wild Elephants", "Ancient Tank"],
     "thumbnail": "/assets/destinations/minneriya/image1.jpeg",
-    "position": [-0.35, 5.64, -1.05],
+    "position": [0.379, 5.65, -0.737],
     "description": "Famed worldwide for 'The Great Gathering', where hundreds of wild Asian elephants congregate on the lush shores of the ancient Minneriya rainwater reservoir.",
     "audioUrl": "/assets/destinations/minneriya/audio.mp3"
   },
@@ -107,7 +107,7 @@
     "pinGeometry": "octahedron",
     "tags": ["Orphaned Elephants", "River Bathing", "Wildlife Conservation"],
     "thumbnail": "/assets/destinations/pinnawala/pinnawala1.jpeg",
-    "position": [-1.044, 5.68, 1.433],
+    "position": [-0.989, 5.646, 2.536],
     "description": "A world-famous breeding sanctuary caring for rescued Asian elephants, featuring daily herd processions and bathing in the Maha Oya river.",
     "audioUrl": "/assets/destinations/pinnawala/pinnawala.wav"
   },
@@ -123,7 +123,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Sacred Tooth Relic", "Royal Palace", "Kandy Lake"],
     "thumbnail": "/assets/destinations/kandy/kandy1.jpeg",
-    "position": [-0.58, 5.74, 1.05],
+    "position": [-0.288, 5.866, 1.761],
     "description": "The golden-roofed royal temple housing the sacred relic of the tooth of the Buddha, set beside the tranquil waters of Kandy Lake.",
     "audioUrl": "/assets/destinations/kandy/kandy.wav"
   },
@@ -139,7 +139,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Observation Deck", "Lotus Bloom", "Colombo Skyline"],
     "thumbnail": "/assets/destinations/lotustower/lotustower1.jpeg",
-    "position": [-2.442, 5.52, 2.055],
+    "position": [-1.87, 5.968, 2.425],
     "description": "South Asia's tallest self-supported structure shaped like an opening lotus blossom, overlooking the Indian Ocean and Colombo's coastal skyline.",
     "audioUrl": "/assets/destinations/lotustower/lotustower.wav"
   },
@@ -155,7 +155,7 @@
     "pinGeometry": "cone",
     "tags": ["Sacred Summit", "Cloud Seas", "Sunrise Pilgrimage"],
     "thumbnail": "/assets/destinations/adamspeak/adam1.jpeg",
-    "position": [-0.62, 5.88, 2.18],
+    "position": [-0.012, 6.051, 2.72],
     "description": "Sacred conical peak revered across faiths, renowned for spiritual night climbs, celestial sunrise shadows, and views over undulating cloud oceans.",
     "audioUrl": "/assets/destinations/adamspeak/adam.wav"
   },
@@ -171,7 +171,7 @@
     "pinGeometry": "octahedron",
     "tags": ["World's End", "Cloud Forest", "Baker's Falls"],
     "thumbnail": "/assets/destinations/horton/image1.jpeg",
-    "position": [-0.135, 5.70, 2.564],
+    "position": [0.473, 5.65, 3.104],
     "description": "A stunning highland plateau with misty cloud forests, rich biodiversity, Baker's Falls, and the sheer drop of World's End cliff.",
     "audioUrl": "/assets/destinations/horton/audio.mp3"
   },
@@ -187,7 +187,7 @@
     "pinGeometry": "cone",
     "tags": ["Scenic Railway", "Tea Plantations", "Colonial Viaduct"],
     "thumbnail": "/assets/destinations/ella/image1.jpeg",
-    "position": [0.18, 5.72, 2.22],
+    "position": [0.721, 5.49, 2.518],
     "description": "An architectural marvel built entirely of solid rocks, bricks, and cement without steel, soaring amidst lush highland tea plantations.",
     "audioUrl": "/assets/destinations/ella/audio.mp3"
   },
@@ -203,7 +203,7 @@
     "pinGeometry": "sphere",
     "tags": ["Point Break Surf", "Indian Ocean Swell", "Coastal Dunes"],
     "thumbnail": "/assets/destinations/arugambay/image1.jpeg",
-    "position": [2.067, 5.58, 1.628],
+    "position": [1.833, 5.828, 1.819],
     "description": "World-renowned surf destination on the Indian Ocean with pristine sandy beaches, right-hand point breaks, and laid-back coastal culture.",
     "audioUrl": "/assets/destinations/arugambay/audio.mp3"
   },
@@ -219,7 +219,7 @@
     "pinGeometry": "octahedron",
     "tags": ["Leopard Sanctuary", "Wild Elephants", "Dry-Zone Safari"],
     "thumbnail": "/assets/destinations/yala/image1.jpeg",
-    "position": [1.231, 5.54, 2.482],
+    "position": [0.84, 5.395, 3.216],
     "description": "Sri Lanka's most celebrated wildlife sanctuary, home to roaming wild elephants, sloth bears, and one of the highest leopard densities on Earth.",
     "audioUrl": "/assets/destinations/yala/audio.mp3"
   },
@@ -235,7 +235,7 @@
     "pinGeometry": "cylinder",
     "tags": ["Colonial Ramparts", "Maritime Bastion", "Ocean Lighthouse"],
     "thumbnail": "/assets/destinations/galle/image1.jpeg",
-    "position": [-1.439, 5.56, 4.065],
+    "position": [-1.454, 5.526, 4.315],
     "description": "A UNESCO World Heritage coastal bastion built by the Portuguese and fortified by the Dutch, boasting historic ramparts and ocean views.",
     "audioUrl": "/assets/destinations/galle/audio.mp3"
   },
@@ -251,7 +251,7 @@
     "pinGeometry": "sphere",
     "tags": ["Whale Watching", "Golden Sands", "Tropical Sunsets"],
     "thumbnail": "/assets/destinations/mirissa/image1.jpeg",
-    "position": [-0.846, 5.42, 4.085],
+    "position": [-0.261, 5.732, 4.778],
     "description": "Sri Lanka's tropical coastal paradise celebrated for golden crescent shores, clear turquoise waters, coconut palms, and whale watching.",
     "audioUrl": "/assets/destinations/mirissa/audio.mp3"
   }
